@@ -14,6 +14,7 @@
 		B617B3C12A7EB4E600613526 /* FlashFitMobileAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B617B3C02A7EB4E600613526 /* FlashFitMobileAppTests.swift */; };
 		B617B3CB2A7EB4E600613526 /* FlashFitMobileAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B617B3CA2A7EB4E600613526 /* FlashFitMobileAppUITests.swift */; };
 		B617B3CD2A7EB4E600613526 /* FlashFitMobileAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B617B3CC2A7EB4E600613526 /* FlashFitMobileAppUITestsLaunchTests.swift */; };
+		B617B3DA2A7EB7CA00613526 /* HomeScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B617B3D92A7EB7CA00613526 /* HomeScreenView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +45,7 @@
 		B617B3C62A7EB4E600613526 /* FlashFitMobileAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FlashFitMobileAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B617B3CA2A7EB4E600613526 /* FlashFitMobileAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashFitMobileAppUITests.swift; sourceTree = "<group>"; };
 		B617B3CC2A7EB4E600613526 /* FlashFitMobileAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashFitMobileAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		B617B3D92A7EB7CA00613526 /* HomeScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +98,7 @@
 			children = (
 				B617B3AF2A7EB4E400613526 /* FlashFitMobileAppApp.swift */,
 				B617B3B12A7EB4E400613526 /* ContentView.swift */,
+				B617B3D92A7EB7CA00613526 /* HomeScreenView.swift */,
 				B617B3B32A7EB4E600613526 /* Assets.xcassets */,
 				B617B3B52A7EB4E600613526 /* Preview Content */,
 			);
@@ -257,6 +260,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B617B3DA2A7EB7CA00613526 /* HomeScreenView.swift in Sources */,
 				B617B3B22A7EB4E400613526 /* ContentView.swift in Sources */,
 				B617B3B02A7EB4E400613526 /* FlashFitMobileAppApp.swift in Sources */,
 			);
