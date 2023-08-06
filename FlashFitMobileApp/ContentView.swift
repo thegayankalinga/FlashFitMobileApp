@@ -18,12 +18,12 @@ struct ContentView: View {
                         }
                     WorkoutHomeView()
                         .tabItem{
-                            Label("Workout", systemImage: "heart.fill")
+                            Label("Workout", systemImage: "dumbbell.fill")
                         }
+                    
                     HomeScreenView() // todo: popup
                         .tabItem{
-                            Label("Add", systemImage: "plus.square.fill")
-                        }
+                            Label("Add", systemImage: "plus.circle.fill")                       }
                     MealHomeView()
                         .tabItem{
                             Label("Meal", systemImage: "cup.and.saucer.fill")
@@ -33,7 +33,7 @@ struct ContentView: View {
                             Label("Report", systemImage: "doc.text.below.ecg.fill")
                         }
                 }
-                .navigationTitle("Flash Fit")
+               // .navigationTitle("Flash Fit")
                 .toolbar{
                     ToolbarItem(placement: .navigationBarTrailing){
                         Button{

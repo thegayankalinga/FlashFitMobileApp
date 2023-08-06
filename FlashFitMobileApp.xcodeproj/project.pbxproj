@@ -11,6 +11,7 @@
 		72732F3D2A7F724D009B80AA /* WorkoutHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72732F3C2A7F724D009B80AA /* WorkoutHomeView.swift */; };
 		72732F402A7F7274009B80AA /* MealHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72732F3F2A7F7274009B80AA /* MealHomeView.swift */; };
 		72732F432A7F728E009B80AA /* ReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72732F422A7F728E009B80AA /* ReportView.swift */; };
+		727C265E2A7FE8090003AD5B /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 727C265D2A7FE8090003AD5B /* EditProfileView.swift */; };
 		72AA62402A7FABAC00AD9A04 /* ProfileSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72AA623F2A7FABAC00AD9A04 /* ProfileSectionView.swift */; };
 		72AA62422A7FABEB00AD9A04 /* WeeklyChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72AA62412A7FABEB00AD9A04 /* WeeklyChartView.swift */; };
 		72AA62452A7FAC8400AD9A04 /* HelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72AA62442A7FAC8400AD9A04 /* HelpView.swift */; };
@@ -49,6 +50,7 @@
 		72732F3C2A7F724D009B80AA /* WorkoutHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutHomeView.swift; sourceTree = "<group>"; };
 		72732F3F2A7F7274009B80AA /* MealHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealHomeView.swift; sourceTree = "<group>"; };
 		72732F422A7F728E009B80AA /* ReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportView.swift; sourceTree = "<group>"; };
+		727C265D2A7FE8090003AD5B /* EditProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; };
 		72AA623F2A7FABAC00AD9A04 /* ProfileSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSectionView.swift; sourceTree = "<group>"; };
 		72AA62412A7FABEB00AD9A04 /* WeeklyChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyChartView.swift; sourceTree = "<group>"; };
 		72AA62442A7FAC8400AD9A04 /* HelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpView.swift; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 		72732F362A7F717D009B80AA /* PersonalizationView */ = {
 			isa = PBXGroup;
 			children = (
+				727C265C2A7FE78C0003AD5B /* EditProfileView */,
 				72732F392A7F71FC009B80AA /* ProfileHomeView.swift */,
 			);
 			path = PersonalizationView;
@@ -164,6 +167,14 @@
 				72732F422A7F728E009B80AA /* ReportView.swift */,
 			);
 			path = ReportView;
+			sourceTree = "<group>";
+		};
+		727C265C2A7FE78C0003AD5B /* EditProfileView */ = {
+			isa = PBXGroup;
+			children = (
+				727C265D2A7FE8090003AD5B /* EditProfileView.swift */,
+			);
+			path = EditProfileView;
 			sourceTree = "<group>";
 		};
 		72AA62432A7FAC6F00AD9A04 /* HelpView */ = {
@@ -370,6 +381,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				727C265E2A7FE8090003AD5B /* EditProfileView.swift in Sources */,
 				B617B3DA2A7EB7CA00613526 /* HomeScreenView.swift in Sources */,
 				72732F3D2A7F724D009B80AA /* WorkoutHomeView.swift in Sources */,
 				72732F402A7F7274009B80AA /* MealHomeView.swift in Sources */,
