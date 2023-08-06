@@ -11,6 +11,12 @@
 		72732F3D2A7F724D009B80AA /* WorkoutHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72732F3C2A7F724D009B80AA /* WorkoutHomeView.swift */; };
 		72732F402A7F7274009B80AA /* MealHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72732F3F2A7F7274009B80AA /* MealHomeView.swift */; };
 		72732F432A7F728E009B80AA /* ReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72732F422A7F728E009B80AA /* ReportView.swift */; };
+		72AA62402A7FABAC00AD9A04 /* ProfileSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72AA623F2A7FABAC00AD9A04 /* ProfileSectionView.swift */; };
+		72AA62422A7FABEB00AD9A04 /* WeeklyChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72AA62412A7FABEB00AD9A04 /* WeeklyChartView.swift */; };
+		72AA62452A7FAC8400AD9A04 /* HelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72AA62442A7FAC8400AD9A04 /* HelpView.swift */; };
+		72AA62472A7FADFD00AD9A04 /* PredictionSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72AA62462A7FADFD00AD9A04 /* PredictionSectionView.swift */; };
+		72AA62492A7FBB0000AD9A04 /* PlanTodayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72AA62482A7FBB0000AD9A04 /* PlanTodayView.swift */; };
+		72AA624C2A7FC96500AD9A04 /* PredictionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72AA624B2A7FC96500AD9A04 /* PredictionView.swift */; };
 		B617B3B02A7EB4E400613526 /* FlashFitMobileAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B617B3AF2A7EB4E400613526 /* FlashFitMobileAppApp.swift */; };
 		B617B3B22A7EB4E400613526 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B617B3B12A7EB4E400613526 /* ContentView.swift */; };
 		B617B3B42A7EB4E600613526 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B617B3B32A7EB4E600613526 /* Assets.xcassets */; };
@@ -43,6 +49,12 @@
 		72732F3C2A7F724D009B80AA /* WorkoutHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutHomeView.swift; sourceTree = "<group>"; };
 		72732F3F2A7F7274009B80AA /* MealHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealHomeView.swift; sourceTree = "<group>"; };
 		72732F422A7F728E009B80AA /* ReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportView.swift; sourceTree = "<group>"; };
+		72AA623F2A7FABAC00AD9A04 /* ProfileSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSectionView.swift; sourceTree = "<group>"; };
+		72AA62412A7FABEB00AD9A04 /* WeeklyChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyChartView.swift; sourceTree = "<group>"; };
+		72AA62442A7FAC8400AD9A04 /* HelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpView.swift; sourceTree = "<group>"; };
+		72AA62462A7FADFD00AD9A04 /* PredictionSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictionSectionView.swift; sourceTree = "<group>"; };
+		72AA62482A7FBB0000AD9A04 /* PlanTodayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanTodayView.swift; sourceTree = "<group>"; };
+		72AA624B2A7FC96500AD9A04 /* PredictionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictionView.swift; sourceTree = "<group>"; };
 		B617B3AC2A7EB4E400613526 /* FlashFitMobileApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlashFitMobileApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B617B3AF2A7EB4E400613526 /* FlashFitMobileAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashFitMobileAppApp.swift; sourceTree = "<group>"; };
 		B617B3B12A7EB4E400613526 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -84,6 +96,8 @@
 		72732F342A7F715B009B80AA /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				72AA624A2A7FC94F00AD9A04 /* PredictionView */,
+				72AA62432A7FAC6F00AD9A04 /* HelpView */,
 				72732F412A7F727F009B80AA /* ReportView */,
 				72732F3E2A7F725E009B80AA /* MealHomeView */,
 				72732F3B2A7F722E009B80AA /* WorkoutHomeView */,
@@ -113,6 +127,10 @@
 			isa = PBXGroup;
 			children = (
 				B617B3D92A7EB7CA00613526 /* HomeScreenView.swift */,
+				72AA623F2A7FABAC00AD9A04 /* ProfileSectionView.swift */,
+				72AA62412A7FABEB00AD9A04 /* WeeklyChartView.swift */,
+				72AA62462A7FADFD00AD9A04 /* PredictionSectionView.swift */,
+				72AA62482A7FBB0000AD9A04 /* PlanTodayView.swift */,
 			);
 			path = HomeView;
 			sourceTree = "<group>";
@@ -146,6 +164,22 @@
 				72732F422A7F728E009B80AA /* ReportView.swift */,
 			);
 			path = ReportView;
+			sourceTree = "<group>";
+		};
+		72AA62432A7FAC6F00AD9A04 /* HelpView */ = {
+			isa = PBXGroup;
+			children = (
+				72AA62442A7FAC8400AD9A04 /* HelpView.swift */,
+			);
+			path = HelpView;
+			sourceTree = "<group>";
+		};
+		72AA624A2A7FC94F00AD9A04 /* PredictionView */ = {
+			isa = PBXGroup;
+			children = (
+				72AA624B2A7FC96500AD9A04 /* PredictionView.swift */,
+			);
+			path = PredictionView;
 			sourceTree = "<group>";
 		};
 		B617B3A32A7EB4E400613526 = {
@@ -339,8 +373,14 @@
 				B617B3DA2A7EB7CA00613526 /* HomeScreenView.swift in Sources */,
 				72732F3D2A7F724D009B80AA /* WorkoutHomeView.swift in Sources */,
 				72732F402A7F7274009B80AA /* MealHomeView.swift in Sources */,
+				72AA62452A7FAC8400AD9A04 /* HelpView.swift in Sources */,
 				72732F3A2A7F71FC009B80AA /* ProfileHomeView.swift in Sources */,
+				72AA62402A7FABAC00AD9A04 /* ProfileSectionView.swift in Sources */,
 				72732F432A7F728E009B80AA /* ReportView.swift in Sources */,
+				72AA624C2A7FC96500AD9A04 /* PredictionView.swift in Sources */,
+				72AA62422A7FABEB00AD9A04 /* WeeklyChartView.swift in Sources */,
+				72AA62472A7FADFD00AD9A04 /* PredictionSectionView.swift in Sources */,
+				72AA62492A7FBB0000AD9A04 /* PlanTodayView.swift in Sources */,
 				B617B3B22A7EB4E400613526 /* ContentView.swift in Sources */,
 				B617B3B02A7EB4E400613526 /* FlashFitMobileAppApp.swift in Sources */,
 			);
