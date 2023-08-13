@@ -44,6 +44,7 @@ struct PredictionSectionView: View {
                 .foregroundColor(.black)
             }
         }
+        //.frame(height: 120)
  
     }
     

@@ -53,7 +53,7 @@ struct LoginView: View {
                     do{
                         let user = try loginVM.login(email: loginVM.email, password: loginVM.password, moc: moc)
                         print("successfull login")
-                        self.nextView = IdentifiableView(view: AnyView(HomeScreenView()))
+                        self.nextView = IdentifiableView(view: AnyView(ContentView()))
                     }catch LoginError.invalidCredentials{
                         showingAlert.toggle()
                         print("Invalid Credentials")

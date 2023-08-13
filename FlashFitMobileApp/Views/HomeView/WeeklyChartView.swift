@@ -66,7 +66,7 @@ struct WeeklyChartView: View {
                     .cornerRadius(6)
                 }
             }
-            .frame(height: 120)
+            .frame(height: 150)
             .chartXAxis {
                 AxisMarks(values: dayByContent.map {$0.date}) { date in
                     AxisValueLabel(format: .dateTime.weekday(.narrow), centered: true)

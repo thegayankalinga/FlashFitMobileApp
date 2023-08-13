@@ -8,6 +8,10 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @State private var showPopUp = false
+    @State private var selectedOption: String? = nil
+    
     var body: some View {
         NavigationView {
             VStack{
@@ -20,10 +24,17 @@ struct ContentView: View {
                         .tabItem{
                             Label("Workout", systemImage: "dumbbell.fill")
                         }
+    
                     
-                    HomeScreenView() // todo: popup
-                        .tabItem{
-                            Label("Add", systemImage: "plus.circle.fill")                       }
+                    PopoverView(selectedOption: $selectedOption)
+                        .tabItem {
+                            Label("Add", systemImage: "plus.circle.fill")
+                        }
+                        .sheet(isPresented: $showPopUp) {
+                            PopoverView(selectedOption: $selectedOption)
+                        }
+                    
+                    
                     MealHomeView()
                         .tabItem{
                             Label("Meal", systemImage: "cup.and.saucer.fill")
@@ -33,22 +44,39 @@ struct ContentView: View {
                             Label("Report", systemImage: "doc.text.below.ecg.fill")
                         }
                 }
-               // .navigationTitle("Flash Fit")
-                .toolbar{
-                    ToolbarItem(placement: .navigationBarTrailing){
-                        Button{
-                            //NavigationLink("Help", destination: HelpView())
-                        } label: {
-                            Image(systemName: "questionmark.circle.fill")
-                                .font(.system(.title2))
-                        }
-                    }
-                }
                 .padding()
-                
-            }
+            }.padding(.top)
         }
     }
+}
+
+// TODO *****
+struct PopoverView: View {
+    @Binding var selectedOption: String?
+    
+    var body: some View {
+        AddWorkoutView()
+      /*  VStack {
+            HStack{
+                Button(action: {
+                    selectedOption = "w"
+                    
+                }) {
+                    Text("Workout")
+                }
+               // Spacer()
+                Button(action: {
+                    selectedOption = "m"
+                }) {
+                    Text("Meal")
+                }
+            }.padding()
+        }
+        .foregroundColor(.black)
+        .frame(width: 300, height: 150)
+        .background(.orange) */
+    }
+    
 }
 
 struct ContentView_Previews: PreviewProvider {

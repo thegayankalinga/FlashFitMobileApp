@@ -12,7 +12,7 @@ struct HomeScreenView: View {
        
         VStack{
             // profile
-            ProfileSectionView()
+            ProfileSectionView().padding(.bottom, 20)
             
             ScrollView {
                 
