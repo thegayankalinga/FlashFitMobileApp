@@ -26,6 +26,30 @@
 		B617B3CB2A7EB4E600613526 /* FlashFitMobileAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B617B3CA2A7EB4E600613526 /* FlashFitMobileAppUITests.swift */; };
 		B617B3CD2A7EB4E600613526 /* FlashFitMobileAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B617B3CC2A7EB4E600613526 /* FlashFitMobileAppUITestsLaunchTests.swift */; };
 		B617B3DA2A7EB7CA00613526 /* HomeScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B617B3D92A7EB7CA00613526 /* HomeScreenView.swift */; };
+		B621B2672A85C712001C4711 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B621B2662A85C712001C4711 /* UserModel.swift */; };
+		B621B2692A85C736001C4711 /* RegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B621B2682A85C736001C4711 /* RegistrationViewModel.swift */; };
+		B621B26D2A873185001C4711 /* PasswordHasher.swift in Sources */ = {isa = PBXBuildFile; fileRef = B621B26C2A873185001C4711 /* PasswordHasher.swift */; };
+		B621B2702A873365001C4711 /* GenderTypeEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = B621B26F2A873365001C4711 /* GenderTypeEnum.swift */; };
+		B621B2722A87338E001C4711 /* HealthStatusEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = B621B2712A87338E001C4711 /* HealthStatusEnum.swift */; };
+		B621B2742A873538001C4711 /* HealthStatusTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B621B2732A873538001C4711 /* HealthStatusTests.swift */; };
+		B621B2762A87399F001C4711 /* BMICalculatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B621B2752A87399F001C4711 /* BMICalculatorTests.swift */; };
+		B621B2792A873A89001C4711 /* UserRegisterDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = B621B2782A873A89001C4711 /* UserRegisterDto.swift */; };
+		B621B27C2A873BBB001C4711 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B621B27B2A873BBB001C4711 /* DataController.swift */; };
+		B621B27F2A873D95001C4711 /* FlashFitMobileApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B621B27D2A873D95001C4711 /* FlashFitMobileApp.xcdatamodeld */; };
+		B6D1FCF42A874FB100BD4BAC /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D1FCF32A874FB100BD4BAC /* RegistrationView.swift */; };
+		B6D1FCF62A875D1B00BD4BAC /* GradientTextFieldBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D1FCF52A875D1B00BD4BAC /* GradientTextFieldBackground.swift */; };
+		B6D1FCF92A87617800BD4BAC /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D1FCF82A87617800BD4BAC /* LoginView.swift */; };
+		B6D1FCFB2A8768F100BD4BAC /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D1FCFA2A8768F100BD4BAC /* LoginViewModel.swift */; };
+		B6D1FCFD2A876F8200BD4BAC /* IdentifiableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D1FCFC2A876F8200BD4BAC /* IdentifiableView.swift */; };
+		B6D1FD002A88731A00BD4BAC /* EntryField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D1FCFF2A88731A00BD4BAC /* EntryField.swift */; };
+		B6D1FD022A88777D00BD4BAC /* PrimaryActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D1FD012A88777D00BD4BAC /* PrimaryActionButton.swift */; };
+		B6D1FD042A88835300BD4BAC /* CustomColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D1FD032A88835300BD4BAC /* CustomColors.swift */; };
+		B6D1FD062A88842000BD4BAC /* LogoShapeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D1FD052A88842000BD4BAC /* LogoShapeView.swift */; };
+		B6D1FD082A888C3B00BD4BAC /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D1FD072A888C3B00BD4BAC /* Errors.swift */; };
+		B6D1FD0A2A88F07C00BD4BAC /* RegistrationSecondView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D1FD092A88F07C00BD4BAC /* RegistrationSecondView.swift */; };
+		B6D1FD0C2A88F80A00BD4BAC /* RegistrationThirdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D1FD0B2A88F80A00BD4BAC /* RegistrationThirdView.swift */; };
+		B6D1FD0E2A88F88300BD4BAC /* RegistrationFirstView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D1FD0D2A88F88300BD4BAC /* RegistrationFirstView.swift */; };
+		B6D1FD122A88FC1D00BD4BAC /* NumberOnlyViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D1FD112A88FC1D00BD4BAC /* NumberOnlyViewModifier.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +92,30 @@
 		B617B3CA2A7EB4E600613526 /* FlashFitMobileAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashFitMobileAppUITests.swift; sourceTree = "<group>"; };
 		B617B3CC2A7EB4E600613526 /* FlashFitMobileAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashFitMobileAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		B617B3D92A7EB7CA00613526 /* HomeScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenView.swift; sourceTree = "<group>"; };
+		B621B2662A85C712001C4711 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserModel.swift; path = FlashFitMobileApp/UserModel.swift; sourceTree = SOURCE_ROOT; };
+		B621B2682A85C736001C4711 /* RegistrationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewModel.swift; sourceTree = "<group>"; };
+		B621B26C2A873185001C4711 /* PasswordHasher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordHasher.swift; sourceTree = "<group>"; };
+		B621B26F2A873365001C4711 /* GenderTypeEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderTypeEnum.swift; sourceTree = "<group>"; };
+		B621B2712A87338E001C4711 /* HealthStatusEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthStatusEnum.swift; sourceTree = "<group>"; };
+		B621B2732A873538001C4711 /* HealthStatusTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthStatusTests.swift; sourceTree = "<group>"; };
+		B621B2752A87399F001C4711 /* BMICalculatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BMICalculatorTests.swift; sourceTree = "<group>"; };
+		B621B2782A873A89001C4711 /* UserRegisterDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRegisterDto.swift; sourceTree = "<group>"; };
+		B621B27B2A873BBB001C4711 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
+		B621B27E2A873D95001C4711 /* FlashFitMobileApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FlashFitMobileApp.xcdatamodel; sourceTree = "<group>"; };
+		B6D1FCF32A874FB100BD4BAC /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
+		B6D1FCF52A875D1B00BD4BAC /* GradientTextFieldBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientTextFieldBackground.swift; sourceTree = "<group>"; };
+		B6D1FCF82A87617800BD4BAC /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		B6D1FCFA2A8768F100BD4BAC /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		B6D1FCFC2A876F8200BD4BAC /* IdentifiableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifiableView.swift; sourceTree = "<group>"; };
+		B6D1FCFF2A88731A00BD4BAC /* EntryField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryField.swift; sourceTree = "<group>"; };
+		B6D1FD012A88777D00BD4BAC /* PrimaryActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryActionButton.swift; sourceTree = "<group>"; };
+		B6D1FD032A88835300BD4BAC /* CustomColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomColors.swift; sourceTree = "<group>"; };
+		B6D1FD052A88842000BD4BAC /* LogoShapeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoShapeView.swift; sourceTree = "<group>"; };
+		B6D1FD072A888C3B00BD4BAC /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
+		B6D1FD092A88F07C00BD4BAC /* RegistrationSecondView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationSecondView.swift; sourceTree = "<group>"; };
+		B6D1FD0B2A88F80A00BD4BAC /* RegistrationThirdView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationThirdView.swift; sourceTree = "<group>"; };
+		B6D1FD0D2A88F88300BD4BAC /* RegistrationFirstView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationFirstView.swift; sourceTree = "<group>"; };
+		B6D1FD112A88FC1D00BD4BAC /* NumberOnlyViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberOnlyViewModifier.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +146,9 @@
 		72732F342A7F715B009B80AA /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				B6D1FCFE2A88730400BD4BAC /* SharedViews */,
+				B6D1FCF72A87616B00BD4BAC /* Login */,
+				B621B26A2A85C742001C4711 /* Registration */,
 				72AA624A2A7FC94F00AD9A04 /* PredictionView */,
 				72AA62432A7FAC6F00AD9A04 /* HelpView */,
 				72732F412A7F727F009B80AA /* ReportView */,
@@ -113,6 +164,7 @@
 		72732F352A7F7177009B80AA /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				B621B2662A85C712001C4711 /* UserModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -216,6 +268,10 @@
 		B617B3AE2A7EB4E400613526 /* FlashFitMobileApp */ = {
 			isa = PBXGroup;
 			children = (
+				B621B27A2A873B89001C4711 /* CoreData */,
+				B621B2772A873A74001C4711 /* DTO */,
+				B621B26E2A873354001C4711 /* Enumz */,
+				B621B26B2A873166001C4711 /* Utilities */,
 				72732F352A7F7177009B80AA /* Models */,
 				72732F342A7F715B009B80AA /* Views */,
 				B617B3AF2A7EB4E400613526 /* FlashFitMobileAppApp.swift */,
@@ -238,6 +294,8 @@
 			isa = PBXGroup;
 			children = (
 				B617B3C02A7EB4E600613526 /* FlashFitMobileAppTests.swift */,
+				B621B2732A873538001C4711 /* HealthStatusTests.swift */,
+				B621B2752A87399F001C4711 /* BMICalculatorTests.swift */,
 			);
 			path = FlashFitMobileAppTests;
 			sourceTree = "<group>";
@@ -249,6 +307,76 @@
 				B617B3CC2A7EB4E600613526 /* FlashFitMobileAppUITestsLaunchTests.swift */,
 			);
 			path = FlashFitMobileAppUITests;
+			sourceTree = "<group>";
+		};
+		B621B26A2A85C742001C4711 /* Registration */ = {
+			isa = PBXGroup;
+			children = (
+				B621B2682A85C736001C4711 /* RegistrationViewModel.swift */,
+				B6D1FCF32A874FB100BD4BAC /* RegistrationView.swift */,
+				B6D1FD092A88F07C00BD4BAC /* RegistrationSecondView.swift */,
+				B6D1FD0B2A88F80A00BD4BAC /* RegistrationThirdView.swift */,
+				B6D1FD0D2A88F88300BD4BAC /* RegistrationFirstView.swift */,
+			);
+			path = Registration;
+			sourceTree = "<group>";
+		};
+		B621B26B2A873166001C4711 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				B621B26C2A873185001C4711 /* PasswordHasher.swift */,
+				B6D1FCFC2A876F8200BD4BAC /* IdentifiableView.swift */,
+				B6D1FD032A88835300BD4BAC /* CustomColors.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		B621B26E2A873354001C4711 /* Enumz */ = {
+			isa = PBXGroup;
+			children = (
+				B621B26F2A873365001C4711 /* GenderTypeEnum.swift */,
+				B621B2712A87338E001C4711 /* HealthStatusEnum.swift */,
+				B6D1FD072A888C3B00BD4BAC /* Errors.swift */,
+			);
+			path = Enumz;
+			sourceTree = "<group>";
+		};
+		B621B2772A873A74001C4711 /* DTO */ = {
+			isa = PBXGroup;
+			children = (
+				B621B2782A873A89001C4711 /* UserRegisterDto.swift */,
+			);
+			path = DTO;
+			sourceTree = "<group>";
+		};
+		B621B27A2A873B89001C4711 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				B621B27B2A873BBB001C4711 /* DataController.swift */,
+				B621B27D2A873D95001C4711 /* FlashFitMobileApp.xcdatamodeld */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
+		B6D1FCF72A87616B00BD4BAC /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				B6D1FCF82A87617800BD4BAC /* LoginView.swift */,
+				B6D1FCFA2A8768F100BD4BAC /* LoginViewModel.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		B6D1FCFE2A88730400BD4BAC /* SharedViews */ = {
+			isa = PBXGroup;
+			children = (
+				B6D1FCF52A875D1B00BD4BAC /* GradientTextFieldBackground.swift */,
+				B6D1FCFF2A88731A00BD4BAC /* EntryField.swift */,
+				B6D1FD012A88777D00BD4BAC /* PrimaryActionButton.swift */,
+				B6D1FD052A88842000BD4BAC /* LogoShapeView.swift */,
+				B6D1FD112A88FC1D00BD4BAC /* NumberOnlyViewModifier.swift */,
+			);
+			path = SharedViews;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -381,19 +509,41 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B6D1FD022A88777D00BD4BAC /* PrimaryActionButton.swift in Sources */,
 				727C265E2A7FE8090003AD5B /* EditProfileView.swift in Sources */,
+				B621B26D2A873185001C4711 /* PasswordHasher.swift in Sources */,
+				B6D1FCF42A874FB100BD4BAC /* RegistrationView.swift in Sources */,
+				B6D1FD062A88842000BD4BAC /* LogoShapeView.swift in Sources */,
+				B621B27F2A873D95001C4711 /* FlashFitMobileApp.xcdatamodeld in Sources */,
 				B617B3DA2A7EB7CA00613526 /* HomeScreenView.swift in Sources */,
+				B621B2722A87338E001C4711 /* HealthStatusEnum.swift in Sources */,
+				B621B2702A873365001C4711 /* GenderTypeEnum.swift in Sources */,
 				72732F3D2A7F724D009B80AA /* WorkoutHomeView.swift in Sources */,
+				B6D1FCFB2A8768F100BD4BAC /* LoginViewModel.swift in Sources */,
+				B6D1FD0C2A88F80A00BD4BAC /* RegistrationThirdView.swift in Sources */,
 				72732F402A7F7274009B80AA /* MealHomeView.swift in Sources */,
+				B621B27C2A873BBB001C4711 /* DataController.swift in Sources */,
+				B621B2792A873A89001C4711 /* UserRegisterDto.swift in Sources */,
 				72AA62452A7FAC8400AD9A04 /* HelpView.swift in Sources */,
 				72732F3A2A7F71FC009B80AA /* ProfileHomeView.swift in Sources */,
+				B6D1FCF92A87617800BD4BAC /* LoginView.swift in Sources */,
+				B6D1FD042A88835300BD4BAC /* CustomColors.swift in Sources */,
 				72AA62402A7FABAC00AD9A04 /* ProfileSectionView.swift in Sources */,
 				72732F432A7F728E009B80AA /* ReportView.swift in Sources */,
+				B6D1FD0A2A88F07C00BD4BAC /* RegistrationSecondView.swift in Sources */,
 				72AA624C2A7FC96500AD9A04 /* PredictionView.swift in Sources */,
+				B6D1FD122A88FC1D00BD4BAC /* NumberOnlyViewModifier.swift in Sources */,
 				72AA62422A7FABEB00AD9A04 /* WeeklyChartView.swift in Sources */,
+				B6D1FD0E2A88F88300BD4BAC /* RegistrationFirstView.swift in Sources */,
+				B6D1FD082A888C3B00BD4BAC /* Errors.swift in Sources */,
+				B6D1FCF62A875D1B00BD4BAC /* GradientTextFieldBackground.swift in Sources */,
 				72AA62472A7FADFD00AD9A04 /* PredictionSectionView.swift in Sources */,
 				72AA62492A7FBB0000AD9A04 /* PlanTodayView.swift in Sources */,
 				B617B3B22A7EB4E400613526 /* ContentView.swift in Sources */,
+				B621B2692A85C736001C4711 /* RegistrationViewModel.swift in Sources */,
+				B621B2672A85C712001C4711 /* UserModel.swift in Sources */,
+				B6D1FD002A88731A00BD4BAC /* EntryField.swift in Sources */,
+				B6D1FCFD2A876F8200BD4BAC /* IdentifiableView.swift in Sources */,
 				B617B3B02A7EB4E400613526 /* FlashFitMobileAppApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -403,6 +553,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				B617B3C12A7EB4E600613526 /* FlashFitMobileAppTests.swift in Sources */,
+				B621B2742A873538001C4711 /* HealthStatusTests.swift in Sources */,
+				B621B2762A87399F001C4711 /* BMICalculatorTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -719,6 +871,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		B621B27D2A873D95001C4711 /* FlashFitMobileApp.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				B621B27E2A873D95001C4711 /* FlashFitMobileApp.xcdatamodel */,
+			);
+			currentVersion = B621B27E2A873D95001C4711 /* FlashFitMobileApp.xcdatamodel */;
+			path = FlashFitMobileApp.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = B617B3A42A7EB4E400613526 /* Project object */;
 }

@@ -9,9 +9,12 @@ import SwiftUI
 
 @main
 struct FlashFitMobileAppApp: App {
+    @StateObject private var dataController = DataController()
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            LoginView()
+                .environment(\.managedObjectContext, dataController.container.viewContext)
         }
     }
 }
