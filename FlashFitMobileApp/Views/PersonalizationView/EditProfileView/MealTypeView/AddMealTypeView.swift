@@ -13,16 +13,21 @@ struct AddMealTypeView: View {
     var body: some View {
         NavigationStack {
             VStack(alignment: .leading) {
-                    Text("Add Meals")
-                    Divider()
-                    ScrollView {
-                        
-                        
-                        
-                    }
+                VStack(alignment: .leading){
+                    Image("morning-workout")
+                        .resizable()
+                        .frame(width: 200, height: 200)
+                    
+                }
+                .background(Color.white)
+                .clipShape(RoundedRectangle(cornerRadius: 24.0))
+                .shadow(radius: 8)
                 
                 
-            }.padding(30)
+            }
+            .clipShape(RoundedRectangle(cornerRadius: 24.0))
+            .shadow(radius: 8)
+            .padding(30)
                 .navigationTitle("Add Meal Type")
                 .toolbar(content: {
                     ToolbarItem(placement: .navigationBarTrailing) {
