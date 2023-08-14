@@ -20,7 +20,7 @@ struct MealTypeView: View {
     var body: some View {
         NavigationStack {
             
-            VStack {
+            VStack(alignment: .center) {
                 Group{
                     if !myMealTypes.isEmpty{
                         
@@ -35,6 +35,7 @@ struct MealTypeView: View {
                             }
                         })
                         .buttonStyle(.borderedProminent)
+                        .padding()
                     }
                 }
                 
