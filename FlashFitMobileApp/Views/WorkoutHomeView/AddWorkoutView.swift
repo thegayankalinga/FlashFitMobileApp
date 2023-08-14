@@ -32,11 +32,10 @@ struct AddWorkoutView: View {
                     DatePicker("Select a date", selection: $date, displayedComponents: .date)
                         .accentColor(.orange)
                     
-                    TextField("Workout Type Name", text: $wType)
-                        .padding(.leading)
-                        .frame(height: 40)
-                        .background(Color.gray.opacity(0.2))
-                        .cornerRadius(10)
+                    EntryField(bindingField: $wType, placeholder: "Workout Type Name", promptText: "", isSecure: false)
+                        .textFieldStyle(GradientTextFieldBackground(systemImageString: "figure.run", colorList: [.blue, .green]))
+                        .padding(.bottom)
+                    
                     TextField("Duration", text: $duration)
                         .padding(.leading)
                         .frame(height: 40)
@@ -53,22 +52,14 @@ struct AddWorkoutView: View {
                         .background(.gray.opacity(0.2))
                         .cornerRadius(10)
                     
-                    Button(action: {
+                    PrimaryActionButton(actionName: "Add Workout", icon: "plus.circle", disabled: false){
                         workoutVm.addWorkout(moc: moc, type: wType, duration: duration, date: date, calories: calories, weight: weight)
                         wType = ""
                         duration = ""
                         date = Date()
                         calories = ""
                         weight = ""
-                    }, label: {
-                        Text("Add")
-                            .font(.headline)
-                            .foregroundColor(.black)
-                            .frame(height: 40)
-                            .frame(maxWidth: .infinity)
-                            .background(.orange)
-                            .cornerRadius(10)
-                    })
+                    }
                     
                 }
                 .padding()

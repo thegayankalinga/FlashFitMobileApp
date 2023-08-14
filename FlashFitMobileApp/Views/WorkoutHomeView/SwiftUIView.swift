@@ -17,7 +17,7 @@ struct SwiftUIView: View {
                 
                     .edgesIgnoringSafeArea(.top)
                 
-                    .frame(width: .infinity, height: 280)
+                    .frame(width: .infinity, height: 200)
                 
             }
             .frame(width: proxy.size.width, height:proxy.size.height , alignment: .topLeading)
