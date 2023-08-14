@@ -68,6 +68,8 @@
 		B6D1FD372A8A66CF00BD4BAC /* AddMealView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D1FD362A8A66CF00BD4BAC /* AddMealView.swift */; };
 		B6D1FD392A8A677400BD4BAC /* AddMealTypeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D1FD382A8A677400BD4BAC /* AddMealTypeViewModel.swift */; };
 		B6D1FD3B2A8A706800BD4BAC /* SheetCloseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D1FD3A2A8A706800BD4BAC /* SheetCloseButton.swift */; };
+		B6D1FD3D2A8A87A700BD4BAC /* MealsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D1FD3C2A8A87A700BD4BAC /* MealsExtension.swift */; };
+		B6D1FD3F2A8A884E00BD4BAC /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D1FD3E2A8A884E00BD4BAC /* ImagePicker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -152,6 +154,8 @@
 		B6D1FD362A8A66CF00BD4BAC /* AddMealView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMealView.swift; sourceTree = "<group>"; };
 		B6D1FD382A8A677400BD4BAC /* AddMealTypeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMealTypeViewModel.swift; sourceTree = "<group>"; };
 		B6D1FD3A2A8A706800BD4BAC /* SheetCloseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetCloseButton.swift; sourceTree = "<group>"; };
+		B6D1FD3C2A8A87A700BD4BAC /* MealsExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MealsExtension.swift; path = FlashFitMobileApp/Views/SharedViews/MealsExtension.swift; sourceTree = SOURCE_ROOT; };
+		B6D1FD3E2A8A884E00BD4BAC /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -203,6 +207,7 @@
 			children = (
 				B621B2662A85C712001C4711 /* UserModel.swift */,
 				B6D1FD292A89C8F200BD4BAC /* WorkoutModel.swift */,
+				B6D1FD3C2A8A87A700BD4BAC /* MealsExtension.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -384,6 +389,7 @@
 				B621B26C2A873185001C4711 /* PasswordHasher.swift */,
 				B6D1FCFC2A876F8200BD4BAC /* IdentifiableView.swift */,
 				B6D1FD032A88835300BD4BAC /* CustomColors.swift */,
+				B6D1FD3E2A8A884E00BD4BAC /* ImagePicker.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -589,6 +595,7 @@
 				B6D1FD282A89C76800BD4BAC /* SplashScreenView.swift in Sources */,
 				B621B27F2A873D95001C4711 /* FlashFitMobileApp.xcdatamodeld in Sources */,
 				B6D1FD332A8A66AB00BD4BAC /* MealListView.swift in Sources */,
+				B6D1FD3D2A8A87A700BD4BAC /* MealsExtension.swift in Sources */,
 				B6D1FD3B2A8A706800BD4BAC /* SheetCloseButton.swift in Sources */,
 				B6D1FD2A2A89C8F200BD4BAC /* WorkoutModel.swift in Sources */,
 				B617B3DA2A7EB7CA00613526 /* HomeScreenView.swift in Sources */,
@@ -623,6 +630,7 @@
 				B6D1FD372A8A66CF00BD4BAC /* AddMealView.swift in Sources */,
 				B6D1FD2D2A8A650100BD4BAC /* MealTypeView.swift in Sources */,
 				B6D1FD0E2A88F88300BD4BAC /* RegistrationFirstView.swift in Sources */,
+				B6D1FD3F2A8A884E00BD4BAC /* ImagePicker.swift in Sources */,
 				B6D1FD082A888C3B00BD4BAC /* Errors.swift in Sources */,
 				B6D1FCF62A875D1B00BD4BAC /* GradientTextFieldBackground.swift in Sources */,
 				72AA62472A7FADFD00AD9A04 /* PredictionSectionView.swift in Sources */,

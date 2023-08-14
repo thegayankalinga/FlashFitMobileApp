@@ -6,27 +6,60 @@
 //
 
 import SwiftUI
+import PhotosUI
 
 struct MealTypeView: View {
+    @FetchRequest(sortDescriptors: [SortDescriptor(\.mealTypeName)])
+    private var myMealTypes: FetchedResults<MealTypeEntity>
+    
+    @StateObject private var imagePicker = ImagePicker()
+    
     
     @ObservedObject var mealTypeVM = MealTypeViewModel()
     
     var body: some View {
-        ZStack{
-            Text("List of meal types")
+        NavigationStack {
             
+            VStack {
+                Group{
+                    if !myMealTypes.isEmpty{
+                        
+                    }else{
+                        Text("No Meal Types Yet...")
+                        Button(action: {
+                            mealTypeVM.showAddMealSheet.toggle()
+                        }, label:{
+                            HStack{
+                                Image(systemName: "plus")
+                                Text("Add Meal")
+                            }
+                        })
+                        .buttonStyle(.borderedProminent)
+                    }
+                }
+                
+            }
+            .navigationTitle("Meals")
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing){
+                    Button(action: {
+                        mealTypeVM.showAddMealSheet.toggle()
+                        
+                    }, label:{
+                        if !myMealTypes.isEmpty{
+                            Text("Add")
+                        }
+                    })
+                    .sheet(isPresented: $mealTypeVM.showAddMealSheet, content: {
+                        AddMealTypeView(viewModel: AddMealTypeViewModel(UIImage(systemName: "photo")!))
+                    })
+                }
+//                ToolbarItem(placement: .navigationBarTrailing){
+//                    PhotosPicker("New Image", selection: $imagePicker.imageSelection, matching: .images, photoLibrary: .shared())
+//                }
+                
+                
         }
-        .navigationTitle("Meals")
-        .toolbar {
-            Button(action: {
-                mealTypeVM.showAddMealSheet.toggle()
-            }, label:{
-                Text("Add")
-            })
-            .sheet(isPresented: $mealTypeVM.showAddMealSheet, content: {
-                AddMealTypeView()
-            })
-            
         }
     }
 }
