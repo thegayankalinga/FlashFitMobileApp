@@ -13,10 +13,10 @@ struct MealTypeView: View {
     
     var body: some View {
         ZStack{
-            Text("List of workout types")
+            Text("List of meal types")
             
         }
-        .navigationTitle("Workout Types")
+        .navigationTitle("Meals")
         .toolbar {
             Button(action: {
                 mealTypeVM.showAddMealSheet.toggle()

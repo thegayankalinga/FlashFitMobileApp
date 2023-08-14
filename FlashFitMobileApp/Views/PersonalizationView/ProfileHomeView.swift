@@ -31,7 +31,7 @@ struct ProfileHomeView: View {
                 WorkoutTypeView()
             case 2:
                 //todo
-                HomeScreenView()
+                MealTypeView()
             default:
                 EmptyView()
             }

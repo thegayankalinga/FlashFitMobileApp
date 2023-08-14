@@ -8,8 +8,30 @@
 import SwiftUI
 
 struct AddMealTypeView: View {
+    @Environment(\.dismiss) var dismiss
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationStack {
+            VStack(alignment: .leading) {
+                    Text("Add Meals")
+                    Divider()
+                    ScrollView {
+                        
+                        
+                        
+                    }
+                
+                
+            }.padding(30)
+                .navigationTitle("Add Meal Type")
+                .toolbar(content: {
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        SheetCloseButton(disabled: false){
+                                    dismiss()
+                                }
+                    }
+            })
+        }
     }
 }
 
@@ -18,3 +40,4 @@ struct AddMealTypeView_Previews: PreviewProvider {
         AddMealTypeView()
     }
 }
+
