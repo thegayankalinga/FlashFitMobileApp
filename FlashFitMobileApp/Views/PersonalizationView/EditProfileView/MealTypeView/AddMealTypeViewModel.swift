@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import CoreData
 
 class AddMealTypeViewModel: ObservableObject{
     @Published var mealName = ""
@@ -14,6 +15,8 @@ class AddMealTypeViewModel: ObservableObject{
     @Published var mealImage: UIImage
     @Published var userEmail = ""
     @Published var isAddMoreChecked = false
+    
+    @Published var myMealTypes: [MealTypeEntity] = []
     
     var id: String?
     
@@ -27,6 +30,7 @@ class AddMealTypeViewModel: ObservableObject{
         mealName = mealTypeEntity.mealType
         id = mealTypeEntity.imageId
         mealImage = mealTypeEntity.uiImage
+        caloriesGainPerPotion = String(mealTypeEntity.caloriesGained)
         userEmail = mealTypeEntity.userId
     }
     
@@ -59,5 +63,20 @@ class AddMealTypeViewModel: ObservableObject{
     
     func isValidCaloriesGained() -> Bool{
         (Double(caloriesGainPerPotion) ?? 0.00) > 0
+    }
+    
+    
+    func getAllMealTypes(email: String, moc: NSManagedObjectContext){
+        let fetchRequest: NSFetchRequest<MealTypeEntity> = MealTypeEntity.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "userEmail == %@", email)
+        
+        do {
+           
+            myMealTypes = try moc.fetch(fetchRequest)
+            
+        } catch {
+            print("Error checking for value existence: \(error)")
+         
+        }
     }
 }

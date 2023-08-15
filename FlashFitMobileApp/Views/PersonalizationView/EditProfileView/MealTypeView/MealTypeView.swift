@@ -7,13 +7,15 @@
 
 import SwiftUI
 import PhotosUI
+import UIKit
 
 struct MealTypeView: View {
+    //TODO: filter by email
     @FetchRequest(sortDescriptors: [SortDescriptor(\.mealTypeName)])
     private var myMealTypes: FetchedResults<MealTypeEntity>
-    
+    let column = [GridItem(.adaptive(minimum: 150))]
     @StateObject private var imagePicker = ImagePicker()
-    
+    @State private var formType: FormType?
     
     @ObservedObject var mealTypeVM = MealTypeViewModel()
     
@@ -23,6 +25,24 @@ struct MealTypeView: View {
             VStack(alignment: .center) {
                 Group{
                     if !myMealTypes.isEmpty{
+                        //TODO: Onapear call the function
+                        ScrollView{
+                            LazyVGrid(columns: column, spacing: 20){
+                                ForEach(myMealTypes){ mealType in
+                                    Button{
+                                        
+                                        formType = .update(mealType)
+                                    }label: {
+                                        TypeCardView(
+                                            image: mealType.uiImage,
+                                            headingText: mealType.mealType,
+                                            iconName: "clock.arrow.circlepath",
+                                            subtitleText: "\(mealType.caloriesGain) calorie")
+                                    }
+                                }
+                            }
+                        }
+                        .padding(.horizontal)
                         
                     }else{
                         Text("No Meal Types Yet...")
@@ -61,12 +81,60 @@ struct MealTypeView: View {
                 
                 
         }
+            .onChange(of: imagePicker.uiImage){ newImage in
+                if let newImage {
+                    formType = .new(newImage)
+                }
+            }
+            .sheet(item: $formType){ formType in
+                formType
+            }
         }
     }
 }
 
 struct MealTypeView_Previews: PreviewProvider {
     static var previews: some View {
-        MealTypeView()
+        MealTypeView(mealTypeVM: MealTypeViewModel())
+    }
+}
+
+struct TypeCardView: View{
+    
+    var image: UIImage
+    var headingText: String
+    var iconName: String
+    var subtitleText: String
+    
+    var body: some View{
+        VStack(alignment: .leading, spacing: 16){
+            Image(uiImage: image)
+                .resizable()
+                .frame(width: 150 , height: 100)
+            cardText.padding(.horizontal, 8)
+        }
+        .background(Color.white)
+        .clipShape(RoundedRectangle(cornerRadius: 24.0))
+        .shadow(radius: 8)
+    }
+    
+    
+    var cardText: some View{
+        VStack(alignment: .leading){
+            Text(headingText)
+                .font(.headline)
+            HStack(spacing: 4.0){
+                Image(systemName: iconName)
+                Text(subtitleText)
+                    .font(.caption2)
+            }.foregroundColor(.gray)
+                .padding(.bottom, 16)
+        }
+    }
+}
+
+struct TypeCardView_Previews: PreviewProvider {
+    static var previews: some View {
+        TypeCardView(image: UIImage(systemName: "photo")!, headingText: "Running", iconName: "clock.arrow.circlepath", subtitleText: "50 Calories")
     }
 }
