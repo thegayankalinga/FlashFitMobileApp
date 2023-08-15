@@ -8,9 +8,12 @@
 import Foundation
 
 class LoggedInUserModel: ObservableObject {
-    @Published var user: UserModel
+    @Published var email: String
+    @Published var name: String
     
-    init(user: UserModel) {
-        self.user = user
+    init(email: String, name: String) {
+        self.email = email
+        self.name = name
     }
+
 }

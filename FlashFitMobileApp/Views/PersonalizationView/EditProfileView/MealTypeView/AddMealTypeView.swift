@@ -14,15 +14,7 @@ struct AddMealTypeView: View {
     @EnvironmentObject var user: LoggedInUserModel
     @Environment(\.dismiss) var dismiss
     @Environment(\.managedObjectContext) var moc
-    //@FetchRequest var fetchRequest: FetchedResults<MealTypeEntity>
-    
-//    init(filter: String) {
-//        _fetchRequest = FetchRequest<MealTypeEntity>(sortDescriptors: [], predicate: NSPredicate(format: "email == %@", user.user.email))
-//    }
    
-//    @FetchRequest(sortDescriptors: [], predicate: NSPredicate(format: "email == %@", email))
-//    private var myMeals: FetchedResults<MealTypeEntity>
-    
     
     @ObservedObject var viewModel: AddMealTypeViewModel
     @StateObject var imagePicker  = ImagePicker()
@@ -38,7 +30,7 @@ struct AddMealTypeView: View {
             VStack{
                 ScrollView{
                     VStack(alignment: .leading, spacing: 0.0){
-                        Text(user.user.email)
+       
                         Image("cake-image")
                             .resizable()
                             .aspectRatio(contentMode: .fill)
@@ -111,11 +103,34 @@ struct AddMealTypeView: View {
                 }
                 PrimaryActionButton(actionName: "Save", icon: "checkmark", disabled: viewModel.incomplete){
                     isFocused = nil
-                    
-//                    if viewModel.updating{
-//                        if let id = viewModel.id,
-//                            let selectedImage =
-//                    }
+                    viewModel.getAllMealTypes(email: user.email, moc: moc)
+                    if viewModel.updating{
+                        if let id = viewModel.id,
+                           let selectedItem = viewModel.myMealTypes.first(where: {$0.imageId == id}){
+                            selectedItem.mealTypeName = viewModel.mealName
+                            selectedItem.caloriesGained = Double(viewModel.caloriesGainPerPotion) ?? 0
+                            selectedItem.userEmail = user.email
+                            FileManager().saveImage(with: id, image: viewModel.mealImage)
+                            if moc.hasChanges{
+                                try? moc.save()
+                            }
+                        }
+                    }else{
+                        let newMeal = MealTypeEntity(context: moc)
+                        newMeal.mealTypeName = viewModel.mealName
+                        newMeal.caloriesGained = Double(viewModel.caloriesGainPerPotion) ?? 0
+                        newMeal.userEmail = user.email
+                        newMeal.imageID = UUID().uuidString
+                        try? moc.save()
+                        FileManager().saveImage(with: newMeal.imageId, image: viewModel.mealImage)
+                    }
+                    if(!viewModel.isAddMoreChecked){
+                        dismiss()
+                    }else{
+                        viewModel.mealName = ""
+                        viewModel.caloriesGainPerPotion = ""
+                        viewModel.mealImage = UIImage(systemName: "photo")!
+                    }
                     
                     print("saved")
                 }

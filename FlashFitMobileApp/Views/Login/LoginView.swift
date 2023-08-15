@@ -10,16 +10,19 @@ import SwiftUI
 struct LoginView: View {
     @Environment(\.managedObjectContext) var moc
     
-    //@StateObject var loggedInUser: LoggedInUserModel
+    @StateObject var loggedInUser: LoggedInUserModel
     @ObservedObject var loginVM = LoginViewModel()
     @State private var nextView: IdentifiableView? = nil
     @FocusState private var isFocused: FocusedField?
     @State private var showingAlert = false
+    @State var data: UserModel
     
     enum FocusedField{
         case email, password
         
     }
+    
+   
     
     var body: some View {
         NavigationStack{
@@ -54,8 +57,9 @@ struct LoginView: View {
                 PrimaryActionButton(actionName: "Login", icon: "chevron.forward", disabled: false){
                     print("Login Clicked")
                     do{
-                        let user = try loginVM.login(email: loginVM.email, password: loginVM.password, moc: moc)
-                        //loggedInUser = LoggedInUserModel(user: user)
+                        data = try loginVM.login(email: loginVM.email, password: loginVM.password, moc: moc)
+
+                        
                         print("successfull login")
                         self.nextView = IdentifiableView(view: AnyView(ContentView()))
                     }catch LoginError.invalidCredentials{
@@ -90,7 +94,10 @@ struct LoginView: View {
                 Spacer(minLength: 50)
                 
             }
-//            .environmentObject(loggedInUser)
+            .environmentObject(LoggedInUserModel(
+                email: data.email,
+                name: data.name
+                                        ))
             .alert(isPresented: $showingAlert) { () -> Alert in
                 Alert(title: Text("Invalid User Details"), message: Text("Please re-tr with correct user details"))
             }
@@ -115,6 +122,6 @@ struct LoginView: View {
 
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
-        LoginView()
+        LoginView(loggedInUser: LoggedInUserModel(email: "bg15407@gmail.com", name: "Gayan Kalinga"), data: UserModel(email: "bg15407@gmail.com", name: "Gayan Kalinga", passwordSalt: "", passwordHash: "", genderType: GenderTypeEnum.Male, weightInKilos: 62, heightInCentiMeter: 165, bodyMassIndex: 20, healthStatus: HealthStatusEnum.Normalweight, createdDate: Date.now))
     }
 }
