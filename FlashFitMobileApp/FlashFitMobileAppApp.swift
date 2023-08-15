@@ -15,6 +15,9 @@ struct FlashFitMobileAppApp: App {
         WindowGroup {
             LoginView()
                 .environment(\.managedObjectContext, dataController.container.viewContext)
+                .onAppear{
+                    print(URL.documentsDirectory.path)
+                }
         }
     }
 }

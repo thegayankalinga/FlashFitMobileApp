@@ -7,10 +7,22 @@
 
 import SwiftUI
 import PhotosUI
+import CoreData
 
 
 struct AddMealTypeView: View {
+    @EnvironmentObject var user: LoggedInUserModel
     @Environment(\.dismiss) var dismiss
+    @Environment(\.managedObjectContext) var moc
+    //@FetchRequest var fetchRequest: FetchedResults<MealTypeEntity>
+    
+//    init(filter: String) {
+//        _fetchRequest = FetchRequest<MealTypeEntity>(sortDescriptors: [], predicate: NSPredicate(format: "email == %@", user.user.email))
+//    }
+   
+//    @FetchRequest(sortDescriptors: [], predicate: NSPredicate(format: "email == %@", email))
+//    private var myMeals: FetchedResults<MealTypeEntity>
+    
     
     @ObservedObject var viewModel: AddMealTypeViewModel
     @StateObject var imagePicker  = ImagePicker()
@@ -26,6 +38,7 @@ struct AddMealTypeView: View {
             VStack{
                 ScrollView{
                     VStack(alignment: .leading, spacing: 0.0){
+                        Text(user.user.email)
                         Image("cake-image")
                             .resizable()
                             .aspectRatio(contentMode: .fill)
@@ -99,6 +112,10 @@ struct AddMealTypeView: View {
                 PrimaryActionButton(actionName: "Save", icon: "checkmark", disabled: viewModel.incomplete){
                     isFocused = nil
                     
+//                    if viewModel.updating{
+//                        if let id = viewModel.id,
+//                            let selectedImage =
+//                    }
                     
                     print("saved")
                 }
@@ -135,7 +152,7 @@ struct AddMealTypeView: View {
 
 struct AddMealTypeView_Previews: PreviewProvider {
     static var previews: some View {
-        AddMealTypeView( viewModel: AddMealTypeViewModel(UIImage(systemName: "photo")!))
+        AddMealTypeView(viewModel: AddMealTypeViewModel(UIImage(systemName: "photo")!))
     }
 }
 

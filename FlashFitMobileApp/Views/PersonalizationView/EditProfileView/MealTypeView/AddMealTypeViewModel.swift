@@ -12,6 +12,7 @@ class AddMealTypeViewModel: ObservableObject{
     @Published var mealName = ""
     @Published var caloriesGainPerPotion = ""
     @Published var mealImage: UIImage
+    @Published var userEmail = ""
     @Published var isAddMoreChecked = false
     
     var id: String?
@@ -22,14 +23,17 @@ class AddMealTypeViewModel: ObservableObject{
         self.mealImage = uiImage
     }
     
-    init(_ myImage: MealTypeEntity){
-        mealName = myImage.mealType
-        id = myImage.imageId
-        mealImage = UIImage(systemName: "photo")!
+    init(_ mealTypeEntity: MealTypeEntity){
+        mealName = mealTypeEntity.mealType
+        id = mealTypeEntity.imageId
+        mealImage = mealTypeEntity.uiImage
+        userEmail = mealTypeEntity.userId
     }
     
     var incomplete: Bool{
-        mealName.isEmpty || mealImage == UIImage(systemName: "photo")!
+        mealName.isEmpty ||
+        mealImage == UIImage(systemName: "photo")! ||
+        caloriesGainPerPotion.isEmpty
     }
     
     var mealTypeNamePrompt: String{

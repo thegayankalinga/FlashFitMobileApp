@@ -4,6 +4,7 @@
         <attribute name="caloriesGained" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="imageID" optional="YES" attributeType="String"/>
         <attribute name="mealTypeName" optional="YES" attributeType="String"/>
+        <attribute name="userEmail" optional="YES" attributeType="String"/>
     </entity>
     <entity name="UserModelEntity" representedClassName="UserModelEntity" syncable="YES" codeGenerationType="class">
         <attribute name="bmi" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>

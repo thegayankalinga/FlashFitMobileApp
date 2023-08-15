@@ -29,6 +29,8 @@
 		B617B3CB2A7EB4E600613526 /* FlashFitMobileAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B617B3CA2A7EB4E600613526 /* FlashFitMobileAppUITests.swift */; };
 		B617B3CD2A7EB4E600613526 /* FlashFitMobileAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B617B3CC2A7EB4E600613526 /* FlashFitMobileAppUITestsLaunchTests.swift */; };
 		B617B3DA2A7EB7CA00613526 /* HomeScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B617B3D92A7EB7CA00613526 /* HomeScreenView.swift */; };
+		B61BBE652A8BCA1A0014E9C5 /* MeaTypeEnumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61BBE642A8BCA1A0014E9C5 /* MeaTypeEnumView.swift */; };
+		B61BBE672A8BCB5C0014E9C5 /* FileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61BBE662A8BCB5C0014E9C5 /* FileManager.swift */; };
 		B621B2672A85C712001C4711 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B621B2662A85C712001C4711 /* UserModel.swift */; };
 		B621B2692A85C736001C4711 /* RegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B621B2682A85C736001C4711 /* RegistrationViewModel.swift */; };
 		B621B26D2A873185001C4711 /* PasswordHasher.swift in Sources */ = {isa = PBXBuildFile; fileRef = B621B26C2A873185001C4711 /* PasswordHasher.swift */; };
@@ -39,6 +41,7 @@
 		B621B2792A873A89001C4711 /* UserRegisterDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = B621B2782A873A89001C4711 /* UserRegisterDto.swift */; };
 		B621B27C2A873BBB001C4711 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B621B27B2A873BBB001C4711 /* DataController.swift */; };
 		B621B27F2A873D95001C4711 /* FlashFitMobileApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B621B27D2A873D95001C4711 /* FlashFitMobileApp.xcdatamodeld */; };
+		B66CCD3C2A8BD7BD009AC532 /* LoggedInUserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B66CCD3B2A8BD7BD009AC532 /* LoggedInUserModel.swift */; };
 		B6D1FCF42A874FB100BD4BAC /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D1FCF32A874FB100BD4BAC /* RegistrationView.swift */; };
 		B6D1FCF62A875D1B00BD4BAC /* GradientTextFieldBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D1FCF52A875D1B00BD4BAC /* GradientTextFieldBackground.swift */; };
 		B6D1FCF92A87617800BD4BAC /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D1FCF82A87617800BD4BAC /* LoginView.swift */; };
@@ -115,6 +118,8 @@
 		B617B3CA2A7EB4E600613526 /* FlashFitMobileAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashFitMobileAppUITests.swift; sourceTree = "<group>"; };
 		B617B3CC2A7EB4E600613526 /* FlashFitMobileAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashFitMobileAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		B617B3D92A7EB7CA00613526 /* HomeScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenView.swift; sourceTree = "<group>"; };
+		B61BBE642A8BCA1A0014E9C5 /* MeaTypeEnumView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeaTypeEnumView.swift; sourceTree = "<group>"; };
+		B61BBE662A8BCB5C0014E9C5 /* FileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManager.swift; sourceTree = "<group>"; };
 		B621B2662A85C712001C4711 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserModel.swift; path = FlashFitMobileApp/UserModel.swift; sourceTree = SOURCE_ROOT; };
 		B621B2682A85C736001C4711 /* RegistrationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewModel.swift; sourceTree = "<group>"; };
 		B621B26C2A873185001C4711 /* PasswordHasher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordHasher.swift; sourceTree = "<group>"; };
@@ -125,6 +130,7 @@
 		B621B2782A873A89001C4711 /* UserRegisterDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRegisterDto.swift; sourceTree = "<group>"; };
 		B621B27B2A873BBB001C4711 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		B621B27E2A873D95001C4711 /* FlashFitMobileApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FlashFitMobileApp.xcdatamodel; sourceTree = "<group>"; };
+		B66CCD3B2A8BD7BD009AC532 /* LoggedInUserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoggedInUserModel.swift; path = FlashFitMobileApp/Utilities/LoggedInUserModel.swift; sourceTree = SOURCE_ROOT; };
 		B6D1FCF32A874FB100BD4BAC /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
 		B6D1FCF52A875D1B00BD4BAC /* GradientTextFieldBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientTextFieldBackground.swift; sourceTree = "<group>"; };
 		B6D1FCF82A87617800BD4BAC /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
@@ -208,6 +214,7 @@
 				B621B2662A85C712001C4711 /* UserModel.swift */,
 				B6D1FD292A89C8F200BD4BAC /* WorkoutModel.swift */,
 				B6D1FD3C2A8A87A700BD4BAC /* MealsExtension.swift */,
+				B66CCD3B2A8BD7BD009AC532 /* LoggedInUserModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -390,6 +397,7 @@
 				B6D1FCFC2A876F8200BD4BAC /* IdentifiableView.swift */,
 				B6D1FD032A88835300BD4BAC /* CustomColors.swift */,
 				B6D1FD3E2A8A884E00BD4BAC /* ImagePicker.swift */,
+				B61BBE662A8BCB5C0014E9C5 /* FileManager.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -451,6 +459,7 @@
 				B6D1FD2E2A8A652400BD4BAC /* MealTypeViewModel.swift */,
 				B6D1FD302A8A662F00BD4BAC /* AddMealTypeView.swift */,
 				B6D1FD382A8A677400BD4BAC /* AddMealTypeViewModel.swift */,
+				B61BBE642A8BCA1A0014E9C5 /* MeaTypeEnumView.swift */,
 			);
 			path = MealTypeView;
 			sourceTree = "<group>";
@@ -593,8 +602,10 @@
 				7294D1292A8937950070E3A3 /* CustomTextField.swift in Sources */,
 				B6D1FD062A88842000BD4BAC /* LogoShapeView.swift in Sources */,
 				B6D1FD282A89C76800BD4BAC /* SplashScreenView.swift in Sources */,
+				B61BBE652A8BCA1A0014E9C5 /* MeaTypeEnumView.swift in Sources */,
 				B621B27F2A873D95001C4711 /* FlashFitMobileApp.xcdatamodeld in Sources */,
 				B6D1FD332A8A66AB00BD4BAC /* MealListView.swift in Sources */,
+				B61BBE672A8BCB5C0014E9C5 /* FileManager.swift in Sources */,
 				B6D1FD3D2A8A87A700BD4BAC /* MealsExtension.swift in Sources */,
 				B6D1FD3B2A8A706800BD4BAC /* SheetCloseButton.swift in Sources */,
 				B6D1FD2A2A89C8F200BD4BAC /* WorkoutModel.swift in Sources */,
@@ -617,6 +628,7 @@
 				B6D1FD042A88835300BD4BAC /* CustomColors.swift in Sources */,
 				72AA62402A7FABAC00AD9A04 /* ProfileSectionView.swift in Sources */,
 				72732F432A7F728E009B80AA /* ReportView.swift in Sources */,
+				B66CCD3C2A8BD7BD009AC532 /* LoggedInUserModel.swift in Sources */,
 				B6D1FD0A2A88F07C00BD4BAC /* RegistrationSecondView.swift in Sources */,
 				72AA624C2A7FC96500AD9A04 /* PredictionView.swift in Sources */,
 				7294D12E2A893AA10070E3A3 /* AddWorkoutTypeView.swift in Sources */,

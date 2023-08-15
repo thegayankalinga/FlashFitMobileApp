@@ -9,6 +9,8 @@ import SwiftUI
 
 struct LoginView: View {
     @Environment(\.managedObjectContext) var moc
+    
+    //@StateObject var loggedInUser: LoggedInUserModel
     @ObservedObject var loginVM = LoginViewModel()
     @State private var nextView: IdentifiableView? = nil
     @FocusState private var isFocused: FocusedField?
@@ -20,6 +22,7 @@ struct LoginView: View {
     }
     
     var body: some View {
+        NavigationStack{
             VStack {
                 
                 LogoShapeView()
@@ -47,11 +50,12 @@ struct LoginView: View {
                 .padding(.bottom, 50)
                 .padding(25)
                 
- 
+                
                 PrimaryActionButton(actionName: "Login", icon: "chevron.forward", disabled: false){
                     print("Login Clicked")
                     do{
                         let user = try loginVM.login(email: loginVM.email, password: loginVM.password, moc: moc)
+                        //loggedInUser = LoggedInUserModel(user: user)
                         print("successfull login")
                         self.nextView = IdentifiableView(view: AnyView(ContentView()))
                     }catch LoginError.invalidCredentials{
@@ -64,8 +68,8 @@ struct LoginView: View {
                         showingAlert.toggle()
                         print("Something went wrong")
                     }
-                            
-                   
+                    
+                    
                 }.fullScreenCover(item: self.$nextView, onDismiss: { nextView = nil}) { view in
                     view.view
                 }
@@ -78,18 +82,19 @@ struct LoginView: View {
                     }
                     .fullScreenCover(item: self.$nextView, onDismiss: { nextView = nil}) { view in
                         view.view
-                    
                         
-                                }
+                        
+                    }
                 }
                 
                 Spacer(minLength: 50)
                 
             }
+//            .environmentObject(loggedInUser)
             .alert(isPresented: $showingAlert) { () -> Alert in
-                        Alert(title: Text("Invalid User Details"), message: Text("Please re-tr with correct user details"))
-                    }
-        
+                Alert(title: Text("Invalid User Details"), message: Text("Please re-tr with correct user details"))
+            }
+            
             .toolbar {
                 ToolbarItem(placement: .keyboard) {
                     Button("Dismiss") {
@@ -99,6 +104,7 @@ struct LoginView: View {
                 }
             }
             .background(LinearGradient(colors: [CustomColors.backgroundGray, CustomColors.gradientLower], startPoint: .topLeading, endPoint: .bottomTrailing))
+        }
         
     }
             

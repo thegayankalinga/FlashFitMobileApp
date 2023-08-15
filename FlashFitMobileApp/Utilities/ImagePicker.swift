@@ -9,6 +9,7 @@ import Foundation
 import SwiftUI
 import PhotosUI
 
+@MainActor
 class ImagePicker: ObservableObject{
     @Published var imageSelection: PhotosPickerItem?{
         didSet{
