@@ -27,7 +27,7 @@ struct PrimaryActionButton: View {
         .frame(width: 300, alignment: .center)
         .padding()
         .background(Color(red: 1, green: 0.749, blue: 0.12))
-        .foregroundStyle(.black)
+        .foregroundStyle(Color.black)
         .clipShape(Capsule())
         .disabled(disabled)
     }

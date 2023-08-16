@@ -9,7 +9,7 @@ import SwiftUI
 
 enum WorkoutFormType: Identifiable, View{
     case new(UIImage)
-    case update(MealTypeEntity)
+    case update(WorkoutTypeEntity)
     
     var id: String{
         switch self{
@@ -23,9 +23,9 @@ enum WorkoutFormType: Identifiable, View{
     var body: some View{
         switch self{
         case .new(let uiImage):
-            return AddMealTypeView(viewModel: AddMealTypeViewModel(uiImage))
-        case .update(let mealTypeEntity):
-            return AddMealTypeView(viewModel: AddMealTypeViewModel(mealTypeEntity))
+            return AddWorkoutTypeView(viewModel: AddWorkoutTypeViewModel(uiImage))
+        case .update(let workoutTypeEntity):
+            return AddWorkoutTypeView(viewModel: AddWorkoutTypeViewModel(workoutTypeEntity))
         }
     }
 }

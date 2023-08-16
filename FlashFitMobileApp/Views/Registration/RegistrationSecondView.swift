@@ -89,8 +89,10 @@ struct RegistrationSecondView: View {
             }
         .toolbar {
             ToolbarItem(placement: .keyboard) {
-                Button("Dismiss") {
+                Button{
                     isFocused = nil
+                }label: {
+                    Image(systemName: "keyboard.chevron.compact.down")
                 }
                 
             }

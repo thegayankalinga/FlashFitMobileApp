@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 extension WorkoutTypeEntity{
-    var mealType: String{
+    var workoutName: String{
         workoutTypeName ?? ""
     }
     
@@ -17,7 +17,7 @@ extension WorkoutTypeEntity{
         imageID ?? ""
     }
     
-    var caloriesGain: Double{
+    var caloriesBurned: Double{
         calorieBurnPerMin
     }
     

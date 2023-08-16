@@ -6,3 +6,7 @@
 //
 
 import Foundation
+class WorkoutTypeViewModel: ObservableObject{
+    
+    @Published var showAddWorkoutSheet = false
+}
