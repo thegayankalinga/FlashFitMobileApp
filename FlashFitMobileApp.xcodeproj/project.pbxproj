@@ -45,6 +45,11 @@
 		B621B27C2A873BBB001C4711 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B621B27B2A873BBB001C4711 /* DataController.swift */; };
 		B621B27F2A873D95001C4711 /* FlashFitMobileApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B621B27D2A873D95001C4711 /* FlashFitMobileApp.xcdatamodeld */; };
 		B66CCD3C2A8BD7BD009AC532 /* LoggedInUserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B66CCD3B2A8BD7BD009AC532 /* LoggedInUserModel.swift */; };
+		B6B7AE4F2A8D2F5B009B0D36 /* TypeCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B7AE4E2A8D2F5B009B0D36 /* TypeCardView.swift */; };
+		B6B7AE512A8D2FA6009B0D36 /* AddWorkoutTypeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B7AE502A8D2FA6009B0D36 /* AddWorkoutTypeViewModel.swift */; };
+		B6B7AE532A8D2FB7009B0D36 /* WorkoutTypeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B7AE522A8D2FB7009B0D36 /* WorkoutTypeViewModel.swift */; };
+		B6B7AE552A8D2FDB009B0D36 /* WorkoutTypeEnumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B7AE542A8D2FDB009B0D36 /* WorkoutTypeEnumView.swift */; };
+		B6B7AE572A8D3035009B0D36 /* WorkoutExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B7AE562A8D3035009B0D36 /* WorkoutExtension.swift */; };
 		B6D1FCF42A874FB100BD4BAC /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D1FCF32A874FB100BD4BAC /* RegistrationView.swift */; };
 		B6D1FCF62A875D1B00BD4BAC /* GradientTextFieldBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D1FCF52A875D1B00BD4BAC /* GradientTextFieldBackground.swift */; };
 		B6D1FCF92A87617800BD4BAC /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D1FCF82A87617800BD4BAC /* LoginView.swift */; };
@@ -137,6 +142,11 @@
 		B621B27B2A873BBB001C4711 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		B621B27E2A873D95001C4711 /* FlashFitMobileApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FlashFitMobileApp.xcdatamodel; sourceTree = "<group>"; };
 		B66CCD3B2A8BD7BD009AC532 /* LoggedInUserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoggedInUserModel.swift; path = FlashFitMobileApp/Utilities/LoggedInUserModel.swift; sourceTree = SOURCE_ROOT; };
+		B6B7AE4E2A8D2F5B009B0D36 /* TypeCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeCardView.swift; sourceTree = "<group>"; };
+		B6B7AE502A8D2FA6009B0D36 /* AddWorkoutTypeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWorkoutTypeViewModel.swift; sourceTree = "<group>"; };
+		B6B7AE522A8D2FB7009B0D36 /* WorkoutTypeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutTypeViewModel.swift; sourceTree = "<group>"; };
+		B6B7AE542A8D2FDB009B0D36 /* WorkoutTypeEnumView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutTypeEnumView.swift; sourceTree = "<group>"; };
+		B6B7AE562A8D3035009B0D36 /* WorkoutExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WorkoutExtension.swift; path = FlashFitMobileApp/Views/PersonalizationView/EditProfileView/WorkoutTypeView/WorkoutExtension.swift; sourceTree = SOURCE_ROOT; };
 		B6D1FCF32A874FB100BD4BAC /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
 		B6D1FCF52A875D1B00BD4BAC /* GradientTextFieldBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientTextFieldBackground.swift; sourceTree = "<group>"; };
 		B6D1FCF82A87617800BD4BAC /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
@@ -229,6 +239,7 @@
 				B6D1FD292A89C8F200BD4BAC /* WorkoutModel.swift */,
 				B6D1FD3C2A8A87A700BD4BAC /* MealsExtension.swift */,
 				B66CCD3B2A8BD7BD009AC532 /* LoggedInUserModel.swift */,
+				B6B7AE562A8D3035009B0D36 /* WorkoutExtension.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -308,6 +319,9 @@
 			children = (
 				7294D12D2A893AA10070E3A3 /* AddWorkoutTypeView.swift */,
 				7294D12F2A893ACA0070E3A3 /* WorkoutTypeView.swift */,
+				B6B7AE502A8D2FA6009B0D36 /* AddWorkoutTypeViewModel.swift */,
+				B6B7AE522A8D2FB7009B0D36 /* WorkoutTypeViewModel.swift */,
+				B6B7AE542A8D2FDB009B0D36 /* WorkoutTypeEnumView.swift */,
 			);
 			path = WorkoutTypeView;
 			sourceTree = "<group>";
@@ -465,6 +479,7 @@
 				B6D1FD112A88FC1D00BD4BAC /* NumberOnlyViewModifier.swift */,
 				B6D1FD272A89C76800BD4BAC /* SplashScreenView.swift */,
 				B6D1FD3A2A8A706800BD4BAC /* SheetCloseButton.swift */,
+				B6B7AE4E2A8D2F5B009B0D36 /* TypeCardView.swift */,
 			);
 			path = SharedViews;
 			sourceTree = "<group>";
@@ -617,9 +632,11 @@
 				B621B26D2A873185001C4711 /* PasswordHasher.swift in Sources */,
 				B6D1FCF42A874FB100BD4BAC /* RegistrationView.swift in Sources */,
 				7294D1292A8937950070E3A3 /* CustomTextField.swift in Sources */,
+				B6B7AE4F2A8D2F5B009B0D36 /* TypeCardView.swift in Sources */,
 				722BB9472A8D1EA70073E239 /* PredictionCalcViewModel.swift in Sources */,
 				B6D1FD062A88842000BD4BAC /* LogoShapeView.swift in Sources */,
 				B6D1FD282A89C76800BD4BAC /* SplashScreenView.swift in Sources */,
+				B6B7AE532A8D2FB7009B0D36 /* WorkoutTypeViewModel.swift in Sources */,
 				B61BBE652A8BCA1A0014E9C5 /* MeaTypeEnumView.swift in Sources */,
 				B621B27F2A873D95001C4711 /* FlashFitMobileApp.xcdatamodeld in Sources */,
 				B6D1FD332A8A66AB00BD4BAC /* MealListView.swift in Sources */,
@@ -636,6 +653,7 @@
 				B6D1FD2F2A8A652400BD4BAC /* MealTypeViewModel.swift in Sources */,
 				B6D1FD0C2A88F80A00BD4BAC /* RegistrationThirdView.swift in Sources */,
 				72732F402A7F7274009B80AA /* MealHomeView.swift in Sources */,
+				B6B7AE552A8D2FDB009B0D36 /* WorkoutTypeEnumView.swift in Sources */,
 				B621B27C2A873BBB001C4711 /* DataController.swift in Sources */,
 				B621B2792A873A89001C4711 /* UserRegisterDto.swift in Sources */,
 				72AA62452A7FAC8400AD9A04 /* HelpView.swift in Sources */,
@@ -652,6 +670,7 @@
 				7294D12E2A893AA10070E3A3 /* AddWorkoutTypeView.swift in Sources */,
 				B6D1FD122A88FC1D00BD4BAC /* NumberOnlyViewModifier.swift in Sources */,
 				B6D1FD262A89C70C00BD4BAC /* AddWorkoutView.swift in Sources */,
+				B6B7AE512A8D2FA6009B0D36 /* AddWorkoutTypeViewModel.swift in Sources */,
 				B6D1FD1E2A89C64600BD4BAC /* WorkoutViewModel.swift in Sources */,
 				B6D1FD202A89C66800BD4BAC /* WorkoutListView.swift in Sources */,
 				72AA62422A7FABEB00AD9A04 /* WeeklyChartView.swift in Sources */,
@@ -666,6 +685,7 @@
 				722BB9452A8D1E530073E239 /* PredictionViewModel.swift in Sources */,
 				B6D1FCF62A875D1B00BD4BAC /* GradientTextFieldBackground.swift in Sources */,
 				72AA62472A7FADFD00AD9A04 /* PredictionSectionView.swift in Sources */,
+				B6B7AE572A8D3035009B0D36 /* WorkoutExtension.swift in Sources */,
 				72AA62492A7FBB0000AD9A04 /* PlanTodayView.swift in Sources */,
 				B617B3B22A7EB4E400613526 /* ContentView.swift in Sources */,
 				B621B2692A85C736001C4711 /* RegistrationViewModel.swift in Sources */,
