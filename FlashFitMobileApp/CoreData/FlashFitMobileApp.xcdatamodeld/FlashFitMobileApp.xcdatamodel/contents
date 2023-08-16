@@ -28,4 +28,10 @@
         <attribute name="weight" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="workoutType" optional="YES" attributeType="String"/>
     </entity>
+    <entity name="WorkoutTypeEntity" representedClassName="WorkoutTypeEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="calorieBurnPerMin" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="imageID" optional="YES" attributeType="String"/>
+        <attribute name="userEmail" optional="YES" attributeType="String"/>
+        <attribute name="workoutTypeName" optional="YES" attributeType="String"/>
+    </entity>
 </model>
