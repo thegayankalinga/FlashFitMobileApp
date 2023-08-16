@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		722BB9432A8D0EE20073E239 /* PredicWeightModel.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 722BB9422A8D0EE20073E239 /* PredicWeightModel.mlmodel */; };
+		722BB9452A8D1E530073E239 /* PredictionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722BB9442A8D1E530073E239 /* PredictionViewModel.swift */; };
+		722BB9472A8D1EA70073E239 /* PredictionCalcViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722BB9462A8D1EA70073E239 /* PredictionCalcViewModel.swift */; };
 		72732F3A2A7F71FC009B80AA /* ProfileHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72732F392A7F71FC009B80AA /* ProfileHomeView.swift */; };
 		72732F3D2A7F724D009B80AA /* WorkoutHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72732F3C2A7F724D009B80AA /* WorkoutHomeView.swift */; };
 		72732F402A7F7274009B80AA /* MealHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72732F3F2A7F7274009B80AA /* MealHomeView.swift */; };
@@ -93,6 +96,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		722BB9422A8D0EE20073E239 /* PredicWeightModel.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = PredicWeightModel.mlmodel; sourceTree = "<group>"; };
+		722BB9442A8D1E530073E239 /* PredictionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictionViewModel.swift; sourceTree = "<group>"; };
+		722BB9462A8D1EA70073E239 /* PredictionCalcViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictionCalcViewModel.swift; sourceTree = "<group>"; };
 		72732F392A7F71FC009B80AA /* ProfileHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHomeView.swift; sourceTree = "<group>"; };
 		72732F3C2A7F724D009B80AA /* WorkoutHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutHomeView.swift; sourceTree = "<group>"; };
 		72732F3F2A7F7274009B80AA /* MealHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealHomeView.swift; sourceTree = "<group>"; };
@@ -189,6 +195,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		722BB9412A8D0EC90073E239 /* MLModel */ = {
+			isa = PBXGroup;
+			children = (
+				722BB9422A8D0EE20073E239 /* PredicWeightModel.mlmodel */,
+			);
+			path = MLModel;
+			sourceTree = "<group>";
+		};
 		72732F342A7F715B009B80AA /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -310,6 +324,8 @@
 			isa = PBXGroup;
 			children = (
 				72AA624B2A7FC96500AD9A04 /* PredictionView.swift */,
+				722BB9442A8D1E530073E239 /* PredictionViewModel.swift */,
+				722BB9462A8D1EA70073E239 /* PredictionCalcViewModel.swift */,
 			);
 			path = PredictionView;
 			sourceTree = "<group>";
@@ -337,6 +353,7 @@
 		B617B3AE2A7EB4E400613526 /* FlashFitMobileApp */ = {
 			isa = PBXGroup;
 			children = (
+				722BB9412A8D0EC90073E239 /* MLModel */,
 				B621B27A2A873B89001C4711 /* CoreData */,
 				B621B2772A873A74001C4711 /* DTO */,
 				B621B26E2A873354001C4711 /* Enumz */,
@@ -600,6 +617,7 @@
 				B621B26D2A873185001C4711 /* PasswordHasher.swift in Sources */,
 				B6D1FCF42A874FB100BD4BAC /* RegistrationView.swift in Sources */,
 				7294D1292A8937950070E3A3 /* CustomTextField.swift in Sources */,
+				722BB9472A8D1EA70073E239 /* PredictionCalcViewModel.swift in Sources */,
 				B6D1FD062A88842000BD4BAC /* LogoShapeView.swift in Sources */,
 				B6D1FD282A89C76800BD4BAC /* SplashScreenView.swift in Sources */,
 				B61BBE652A8BCA1A0014E9C5 /* MeaTypeEnumView.swift in Sources */,
@@ -639,11 +657,13 @@
 				72AA62422A7FABEB00AD9A04 /* WeeklyChartView.swift in Sources */,
 				B6D1FD312A8A662F00BD4BAC /* AddMealTypeView.swift in Sources */,
 				7294D1302A893ACA0070E3A3 /* WorkoutTypeView.swift in Sources */,
+				722BB9432A8D0EE20073E239 /* PredicWeightModel.mlmodel in Sources */,
 				B6D1FD372A8A66CF00BD4BAC /* AddMealView.swift in Sources */,
 				B6D1FD2D2A8A650100BD4BAC /* MealTypeView.swift in Sources */,
 				B6D1FD0E2A88F88300BD4BAC /* RegistrationFirstView.swift in Sources */,
 				B6D1FD3F2A8A884E00BD4BAC /* ImagePicker.swift in Sources */,
 				B6D1FD082A888C3B00BD4BAC /* Errors.swift in Sources */,
+				722BB9452A8D1E530073E239 /* PredictionViewModel.swift in Sources */,
 				B6D1FCF62A875D1B00BD4BAC /* GradientTextFieldBackground.swift in Sources */,
 				72AA62472A7FADFD00AD9A04 /* PredictionSectionView.swift in Sources */,
 				72AA62492A7FBB0000AD9A04 /* PlanTodayView.swift in Sources */,
