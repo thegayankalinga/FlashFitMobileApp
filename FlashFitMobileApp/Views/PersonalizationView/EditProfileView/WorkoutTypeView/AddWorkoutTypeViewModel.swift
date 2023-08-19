@@ -6,7 +6,6 @@
 //
 
 import Foundation
-<<<<<<< HEAD
 import SwiftUI
 import CoreData
 
@@ -79,5 +78,3 @@ class AddWorkoutTypeViewModel: ObservableObject{
         }
     }
 }
-=======
->>>>>>> weight-predict-model
