@@ -8,7 +8,10 @@
 import SwiftUI
 
 struct WorkoutListView: View {
+    
+    @EnvironmentObject var user: LoggedInUserModel
     @Environment(\.managedObjectContext) var moc
+    
     @ObservedObject var workoutVm =  WorkoutViewModel()
 
     var body: some View {
@@ -20,6 +23,15 @@ struct WorkoutListView: View {
                             VStack{
                                 Text("\(dateFormatted(date: entity.date ?? Date.now))")
                                 VStack (alignment: .leading, spacing: 5) {
+                                    
+                                    HStack (spacing: 4){ // calories
+                                        Text("Workout Type")
+                                        Spacer()
+                                        HStack {
+                                            Text(entity.workoutType ?? "Unknown")
+                                        }
+                                    }
+                                    
                                     HStack(spacing: 4) { // duration
                                         Text("Duration")
                                         
@@ -59,7 +71,7 @@ struct WorkoutListView: View {
                 
             }
             .onDelete(perform: { indexSet in
-                workoutVm.deleteWorkout(moc, indexSet: indexSet)
+                workoutVm.deleteWorkout(moc, indexSet: indexSet, userId: user.email)
                 
             })
             
@@ -114,7 +126,7 @@ struct WorkoutListView: View {
             .onDelete(perform: workoutVm.deleteWorkout)*/
         }
         .onAppear(perform : {
-            workoutVm.getWorkouts(moc)
+            workoutVm.getWorkouts(moc, userId: user.email)
         })
             
         var groupedWorkouts: [String: [WorkoutEntity]] {

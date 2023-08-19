@@ -10,8 +10,12 @@ import Charts
 
 struct WeeklyChartView: View {
     
+//    @EnvironmentObject var user: LoggedInUserModel
+//    @Environment(\.managedObjectContext) var moc
+//    @ObservedObject var workoutVm =  WorkoutViewModel()
+//
     // todo: fetch from DB
-    let dayByContent: [WeeklyActivity] = [
+    var dayByContent1: [WeeklyActivity] = [
         .init(date: Date.from(year: 2023, month: 1, day: 1), workoutDuration: 10),
         .init(date: Date.from(year: 2023, month: 1, day: 2), workoutDuration: 14),
         .init(date: Date.from(year: 2023, month: 1, day: 3), workoutDuration: 40),
@@ -21,8 +25,33 @@ struct WeeklyChartView: View {
         .init(date: Date.from(year: 2023, month: 1, day: 7), workoutDuration: 10)
     ]
     
+    /*var dayByContent: [WorkoutEntity]
+    var weeklyWorkouts: [Date: TimeInterval] = [:]*/
+    
+   /* mutating func getTotalDuration () {
+        workoutVm.getWeeklyWorkouts(moc, userId: user.email)
+        dayByContent  = workoutVm.savedWeeklyWorkouts
+        
+        let calendar = Calendar.current
+     
+        for workout in dayByContent {
+            if let workoutDate = workout.date {
+                let components = calendar.dateComponents([.year, .month, .day], from: workoutDate)
+                let truncatedDate = calendar.date(from: components)!
+                
+                if let existingDuration = weeklyWorkouts[truncatedDate] {
+                    weeklyWorkouts[truncatedDate] = existingDuration + workout.duration
+                } else {
+                    weeklyWorkouts[truncatedDate] = workout.duration
+                }
+            }
+        }
+        
+        dayByContent = weeklyWorkouts.map { WeeklyActivity(date: $0.key, workoutDuration: $0.value) }
+    }*/
+    
     var body: some View {
-        VStack (alignment: .leading){
+        VStack (alignment: .leading) {
             
             HStack{
                 Image(systemName: "flame.fill")
@@ -31,8 +60,8 @@ struct WeeklyChartView: View {
                     .padding(.bottom, 1)
             }
             
-            let total = dayByContent.reduce(0) {$0 + $1.workoutDuration}
-            
+            let total = dayByContent1.reduce(0) {$0 + $1.workoutDuration}
+             
             HStack(spacing: 4) {
                     Text("\(Int(total) / 60)")
                         .font(.subheadline)
@@ -58,7 +87,7 @@ struct WeeklyChartView: View {
             }
             
             Chart {
-                ForEach(dayByContent) { day in
+                ForEach(dayByContent1) { day in
                     BarMark(x: .value("Day of Week", day.date, unit: .day),
                             y: .value("Duration (m)", day.workoutDuration)
                     )
@@ -68,7 +97,7 @@ struct WeeklyChartView: View {
             }
             .frame(height: 150)
             .chartXAxis {
-                AxisMarks(values: dayByContent.map {$0.date}) { date in
+                AxisMarks(values: dayByContent1.map {$0.date}) { date in
                     AxisValueLabel(format: .dateTime.weekday(.narrow), centered: true)
                 }
             }
