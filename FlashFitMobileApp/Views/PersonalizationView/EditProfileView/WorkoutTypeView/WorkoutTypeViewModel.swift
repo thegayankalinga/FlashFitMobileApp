@@ -6,7 +6,10 @@
 //
 
 import Foundation
+<<<<<<< HEAD
 class WorkoutTypeViewModel: ObservableObject{
     
     @Published var showAddWorkoutSheet = false
 }
+=======
+>>>>>>> weight-predict-model

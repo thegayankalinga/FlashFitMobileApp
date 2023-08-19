@@ -9,7 +9,11 @@ import Foundation
 import UIKit
 
 extension WorkoutTypeEntity{
+<<<<<<< HEAD
     var workoutName: String{
+=======
+    var mealType: String{
+>>>>>>> weight-predict-model
         workoutTypeName ?? ""
     }
     
@@ -17,7 +21,11 @@ extension WorkoutTypeEntity{
         imageID ?? ""
     }
     
+<<<<<<< HEAD
     var caloriesBurned: Double{
+=======
+    var caloriesGain: Double{
+>>>>>>> weight-predict-model
         calorieBurnPerMin
     }
     
