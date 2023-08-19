@@ -103,7 +103,8 @@ struct AddMealTypeView: View {
                 }
                 PrimaryActionButton(actionName: "Save", icon: "checkmark", disabled: viewModel.incomplete){
                     isFocused = nil
-                    viewModel.getAllMealTypes(email: user.email, moc: moc)
+                    //TODO: Optional force unwrap
+                    viewModel.getAllMealTypes(email: user.email!, moc: moc)
                     if viewModel.updating{
                         if let id = viewModel.id,
                            let selectedItem = viewModel.myMealTypes.first(where: {$0.imageId == id}){

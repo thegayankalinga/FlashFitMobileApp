@@ -71,7 +71,8 @@ struct WorkoutListView: View {
                 
             }
             .onDelete(perform: { indexSet in
-                workoutVm.deleteWorkout(moc, indexSet: indexSet, userId: user.email)
+                //TODO: Optional force unwrap
+                workoutVm.deleteWorkout(moc, indexSet: indexSet, userId: user.email!)
                 
             })
             
@@ -126,7 +127,8 @@ struct WorkoutListView: View {
             .onDelete(perform: workoutVm.deleteWorkout)*/
         }
         .onAppear(perform : {
-            workoutVm.getWorkouts(moc, userId: user.email)
+            //TODO: Optional force unwrap
+            workoutVm.getWorkouts(moc, userId: user.email!)
         })
             
         var groupedWorkouts: [String: [WorkoutEntity]] {

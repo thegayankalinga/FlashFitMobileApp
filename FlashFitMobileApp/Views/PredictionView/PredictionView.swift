@@ -60,10 +60,12 @@ struct PredictionView: View {
             let minute = (components.minute ?? 0) * 60
             
             // predicted calories
-            let calories = calculateAvgCaloriesConsumption(userId: user)
+            //TODO: Optional force unwrap
+            let calories = calculateAvgCaloriesConsumption(userId: user!)
             
             // user has exercised more than 20 mins
-            let exercised = userHasExercised(userId: user)
+            //TODO: Optional force unwrap
+            let exercised = userHasExercised(userId: user!)
             
             let prediction = try model.prediction(Date: String(Double(hour + minute)), calories: calories, walk: Double(exercised))
             
@@ -71,7 +73,8 @@ struct PredictionView: View {
             predictedWeight = prediction.weight_oz / 35.27 // oz to kg
             
             // calculate BMI
-            BMI = calculateBMI(userId: user, weight: predictedWeight)
+            //TODO: Optional force unwrap
+            BMI = calculateBMI(userId: user!, weight: predictedWeight)
             
             // health status
             let status = calculateHealthStatus(BMI: BMI)

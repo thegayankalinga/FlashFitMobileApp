@@ -104,7 +104,9 @@ struct AddWorkoutTypeView: View {
                 
                 PrimaryActionButton(actionName: "Save", icon: "checkmark", disabled: viewModel.incomplete){
                     isFocused = nil
-                    viewModel.getAllWorkoutTypes(email: user.email, moc: moc)
+                    
+                    //TODO: optional force unwrap
+                    viewModel.getAllWorkoutTypes(email: user.email!, moc: moc)
                     if viewModel.updating{
                         if let id = viewModel.id,
                            let selectedItem = viewModel.myWorkoutTypes.first(where: {$0.imageId == id}){

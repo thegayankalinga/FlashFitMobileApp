@@ -55,7 +55,9 @@ struct AddWorkoutView: View {
                         .cornerRadius(10)
                     
                     PrimaryActionButton(actionName: "Add Workout", icon: "plus.circle", disabled: false){
-                        workoutVm.addWorkout(moc: moc, type: wType, duration: duration, date: date, calories: calories, weight: weight, userId: user.email)
+                        
+                        //TODO: Optional force unwrap
+                        workoutVm.addWorkout(moc: moc, type: wType, duration: duration, date: date, calories: calories, weight: weight, userId: user.email!)
                         wType = ""
                         duration = ""
                         date = Date()

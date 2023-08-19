@@ -8,12 +8,16 @@
 import Foundation
 
 class LoggedInUserModel: ObservableObject {
-    @Published var email: String
-    @Published var name: String
+    @Published var email: String?
+    @Published var name: String?
     
     init(email: String, name: String) {
         self.email = email
         self.name = name
+    }
+    
+    init(){
+        
     }
 
 }

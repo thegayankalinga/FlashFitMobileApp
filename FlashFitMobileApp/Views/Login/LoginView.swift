@@ -9,13 +9,13 @@ import SwiftUI
 
 struct LoginView: View {
     @Environment(\.managedObjectContext) var moc
-    
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @StateObject var loggedInUser: LoggedInUserModel
     @ObservedObject var loginVM = LoginViewModel()
     @State private var nextView: IdentifiableView? = nil
     @FocusState private var isFocused: FocusedField?
     @State private var showingAlert = false
-    @State var data: UserModel
+    @State var data: UserModel?
     
     enum FocusedField{
         case email, password
@@ -26,7 +26,7 @@ struct LoginView: View {
     
     var body: some View {
         NavigationStack{
-            VStack(alignment: .trailing) {
+            VStack(alignment: .center) {
                 
                 LogoShapeView()
                 
@@ -59,6 +59,9 @@ struct LoginView: View {
                     do{
                         data = try loginVM.login(email: loginVM.email, password: loginVM.password, moc: moc)
 
+                        if data == nil || data?.email == nil || data?.name == nil{
+                            self.presentationMode.wrappedValue.dismiss()
+                        }
                         
                         print("successfull login")
                         self.nextView = IdentifiableView(view: AnyView(ContentView()))
@@ -94,10 +97,12 @@ struct LoginView: View {
                 Spacer(minLength: 50)
                 
             }
-            .environmentObject(LoggedInUserModel(
-                email: data.email,
-                name: data.name
-                                        ))
+            .environmentObject(
+                LoggedInUserModel(
+                email: data?.email ?? "",
+                name: data?.name ?? "")
+                )
+            
             .alert(isPresented: $showingAlert) { () -> Alert in
                 Alert(title: Text("Invalid User Details"), message: Text("Please re-tr with correct user details"))
             }
