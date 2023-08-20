@@ -28,11 +28,19 @@ class WorkoutViewModel : ObservableObject {
     // fetch data for current week
     func getWeeklyWorkouts(_ moc: NSManagedObjectContext, userId: String) {
         let calendar = Calendar.current
-        let today = Date()
-        let sevenDaysAgo = calendar.date(byAdding: .day, value: -7, to: today)!
+        var dateComponents = calendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: Date())
+        
+        // Find the weekday of the current day
+        let weekday = calendar.component(.weekday, from: Date())
+        
+        // From monday to sunday
+        let daysToSubtract = (weekday + 5) % 7
+        let startOfWeek = calendar.date(byAdding: .day, value: -daysToSubtract, to: Date())!
+        let endOfWeek = calendar.date(byAdding: .day, value: 6, to: startOfWeek)!
+        
         
         let request = NSFetchRequest<WorkoutEntity>(entityName: "WorkoutEntity")
-        request.predicate = NSPredicate(format: "userID == %@ AND date >= %@ AND date <= %@", userId, sevenDaysAgo as NSDate, today as NSDate)
+        request.predicate = NSPredicate(format: "userID == %@ AND date >= %@ AND date <= %@", userId, startOfWeek as NSDate, endOfWeek as NSDate)
         
         do {
             savedWeeklyWorkouts = try moc.fetch(request)
@@ -40,26 +48,6 @@ class WorkoutViewModel : ObservableObject {
             print("Error fetching.")
         }
     }
-    
-    
-    /*func getWeeklyWorkoutsByDay() -> [WeeklyActivity] {
-        let calendar = Calendar.current
-        var weeklyWorkouts: [Date: TimeInterval] = [:]
-        
-//        for workout in savedWeeklyWorkouts {
-//            if let workoutDate = workout.date {
-//                let components = calendar.dateComponents([.year, .month, .day], from: workoutDate)
-//                let truncatedDate = calendar.date(from: components)!
-//
-//                if let existingDuration = weeklyWorkouts[truncatedDate] {
-//                    weeklyWorkouts[truncatedDate] = existingDuration + workout.duration
-//                } else {
-//                    weeklyWorkouts[truncatedDate] = workout.duration
-//                }
-//            }
-//        }
-        return weeklyWorkouts.map { WeeklyActivity(date: $0.key, workoutDuration: $0.value) }
-    }*/
     
     // save data
     func addWorkout(moc: NSManagedObjectContext, type: String, duration: String, date: Date, calories:String, weight: String, userId: String) {
