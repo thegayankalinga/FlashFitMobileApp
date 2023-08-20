@@ -18,31 +18,8 @@ struct HomeScreenView: View {
     @State var dayByContent: [WeeklyActivity] = []
     @State var weeklyWorkouts: [Date: TimeInterval] = [:]
     
-    func getTotalDuration () {
-        workoutVm.getWeeklyWorkouts(moc, userId: user.email!)
-        
-        let data  = workoutVm.savedWeeklyWorkouts
-        
-        let calendar = Calendar.current
-        
-        for workout in data {
-            if let workoutDate = workout.date {
-                let components = calendar.dateComponents([.year, .month, .day], from: workoutDate)
-                let truncatedDate = calendar.date(from: components)!
-                
-                if let existingDuration = weeklyWorkouts[truncatedDate] {
-                    weeklyWorkouts[truncatedDate] = existingDuration + workout.duration
-                } else {
-                    weeklyWorkouts[truncatedDate] = workout.duration
-                }
-            }
-        }
-        
-        let sortedByDate = weeklyWorkouts.sorted { $0.key < $1.key }
-        
-        dayByContent = sortedByDate.map { WeeklyActivity(date: $0.key, workoutDuration: $0.value) }
-    }
- 
+    @State private var total = 0.0
+    
     var body: some View {
         
         VStack{
@@ -71,7 +48,6 @@ struct HomeScreenView: View {
                 // weekly chart
                 ZStack{
                     Color(hex:0xF4F4F4)
-                    // WeeklyChartView()
                     VStack (alignment: .leading) {
                         
                         HStack{
@@ -80,8 +56,6 @@ struct HomeScreenView: View {
                                 .font(.footnote)
                                 .padding(.bottom, 1)
                         }
-                        
-                        let total = dayByContent.reduce(0) {$0 + $1.workoutDuration}
                         
                         HStack(spacing: 4) {
                             Text("\(Int(total) / 60)")
@@ -122,6 +96,7 @@ struct HomeScreenView: View {
                                 AxisValueLabel(format: .dateTime.weekday(.narrow), centered: true)
                             }
                         }
+                        
                     }
                     .padding()
                     .cornerRadius(10)
@@ -134,6 +109,55 @@ struct HomeScreenView: View {
         .onAppear{
             getTotalDuration()
         }
+    }
+    
+    func getTotalDuration () {
+        // Clear the existing data
+        weeklyWorkouts = [:]
+        dayByContent = []
+
+        workoutVm.getWeeklyWorkouts(moc, userId: user.email!)
+        let data  = workoutVm.savedWeeklyWorkouts
+        
+        // group data by day
+        let calendar = Calendar.current
+        for workout in data {
+            if let workoutDate = workout.date {
+                let components = calendar.dateComponents([.year, .month, .day], from: workoutDate)
+                let truncatedDate = calendar.date(from: components)!
+                
+                if let existingDuration = weeklyWorkouts[truncatedDate] {
+                    weeklyWorkouts[truncatedDate] = existingDuration + workout.duration
+                } else {
+                    weeklyWorkouts[truncatedDate] = workout.duration
+                }
+            }
+        }
+        
+        // Set default values if no values present for a day
+        // Find the weekday of the current day
+        let weekday = calendar.component(.weekday, from: Date())
+        
+        // From monday to sunday
+        let daysToSubtract = (weekday + 5) % 7
+        let startOfWeek = calendar.date(byAdding: .day, value: -daysToSubtract, to: Date())!
+        let endOfWeek = calendar.date(byAdding: .day, value: 6, to: startOfWeek)!
+        
+        var currentDate = startOfWeek
+        while currentDate <= endOfWeek {
+            let truncatedDate = calendar.date(bySettingHour: 0, minute: 0, second: 0, of: currentDate)!
+            if weeklyWorkouts[truncatedDate] == nil {
+                weeklyWorkouts[truncatedDate] = 0.0
+            }
+            currentDate = calendar.date(byAdding: .day, value: 1, to: currentDate)!
+        }
+        
+        // weekly data
+        let sortedByDate = weeklyWorkouts.sorted { $0.key < $1.key }
+        dayByContent = sortedByDate.map { WeeklyActivity(date: $0.key, workoutDuration: $0.value) }
+        
+        // get weekly total
+        total = dayByContent.reduce(0) {$0 + $1.workoutDuration}
     }
 }
 

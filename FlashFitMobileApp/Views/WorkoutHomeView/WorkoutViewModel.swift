@@ -20,6 +20,7 @@ class WorkoutViewModel : ObservableObject {
         
         do {
             savedWorkouts = try moc.fetch(request)
+            savedWorkouts.sort(by: { $0.date! > $1.date! })
         } catch let error {
             print("Error fetching. \(error)")
         }
@@ -28,7 +29,6 @@ class WorkoutViewModel : ObservableObject {
     // fetch data for current week
     func getWeeklyWorkouts(_ moc: NSManagedObjectContext, userId: String) {
         let calendar = Calendar.current
-        var dateComponents = calendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: Date())
         
         // Find the weekday of the current day
         let weekday = calendar.component(.weekday, from: Date())
@@ -48,7 +48,7 @@ class WorkoutViewModel : ObservableObject {
             print("Error fetching.")
         }
     }
-    
+        
     // save data
     func addWorkout(moc: NSManagedObjectContext, type: String, duration: String, date: Date, calories:String, weight: String, userId: String) {
         let workoutObj = WorkoutEntity(context: moc)
