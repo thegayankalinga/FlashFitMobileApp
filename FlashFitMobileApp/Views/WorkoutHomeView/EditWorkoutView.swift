@@ -9,11 +9,15 @@ import SwiftUI
 
 struct EditWorkoutView: View {
 
-    @ObservedObject var workoutVm =  WorkoutViewModel()
-    //@EnvironmentObject private var workoutVm: WorkoutViewModel
+    
+    @EnvironmentObject var user: LoggedInUserModel
+    @Environment(\.managedObjectContext) var moc
     @Environment(\.dismiss) var dismiss
     
+    @ObservedObject var workoutVm =  WorkoutViewModel()
+    
     @State private var id: UUID
+    @State private var userId: String = ""
     @State private var wType: String = ""
     @State private var duration: String = ""
     @State private var date: Date = Date.now
@@ -25,6 +29,7 @@ struct EditWorkoutView: View {
     init(entity: WorkoutEntity) {
         self.entity = entity
         _id = State(initialValue: entity.id ?? UUID())
+        //_userId = State(initialValue: entity.userID ?? "")
         _wType = State(initialValue: entity.workoutType ?? "")
         _duration = State(initialValue: String(entity.duration))
         _date = State(initialValue: entity.date ?? Date())
@@ -72,6 +77,7 @@ struct EditWorkoutView: View {
                 //let updatedEntity = WorkoutEntity(context:workoutVm.container.viewContext)
                 
                 entity.id = id
+                entity.userID = userId
                 entity.duration = Double(duration) ?? 0.0
                 entity.date = date
                 entity.workoutType = wType
