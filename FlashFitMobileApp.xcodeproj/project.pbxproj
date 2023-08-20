@@ -47,6 +47,7 @@
 		B6B7059B2A91C18800EFFAFD /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B7059A2A91C18800EFFAFD /* UserModel.swift */; };
 		B6B7059D2A91C41600EFFAFD /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B7059C2A91C41600EFFAFD /* UserService.swift */; };
 		B6B7059F2A91DF4B00EFFAFD /* UserUpdateDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B7059E2A91DF4B00EFFAFD /* UserUpdateDto.swift */; };
+		B6B705A12A92189000EFFAFD /* MealRecordExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B705A02A92189000EFFAFD /* MealRecordExtension.swift */; };
 		B6B7AE4F2A8D2F5B009B0D36 /* TypeCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B7AE4E2A8D2F5B009B0D36 /* TypeCardView.swift */; };
 		B6B7AE512A8D2FA6009B0D36 /* AddWorkoutTypeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B7AE502A8D2FA6009B0D36 /* AddWorkoutTypeViewModel.swift */; };
 		B6B7AE532A8D2FB7009B0D36 /* WorkoutTypeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B7AE522A8D2FB7009B0D36 /* WorkoutTypeViewModel.swift */; };
@@ -145,6 +146,7 @@
 		B6B7059A2A91C18800EFFAFD /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		B6B7059C2A91C41600EFFAFD /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		B6B7059E2A91DF4B00EFFAFD /* UserUpdateDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserUpdateDto.swift; sourceTree = "<group>"; };
+		B6B705A02A92189000EFFAFD /* MealRecordExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealRecordExtension.swift; sourceTree = "<group>"; };
 		B6B7AE4E2A8D2F5B009B0D36 /* TypeCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeCardView.swift; sourceTree = "<group>"; };
 		B6B7AE502A8D2FA6009B0D36 /* AddWorkoutTypeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWorkoutTypeViewModel.swift; sourceTree = "<group>"; };
 		B6B7AE522A8D2FB7009B0D36 /* WorkoutTypeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutTypeViewModel.swift; sourceTree = "<group>"; };
@@ -242,6 +244,7 @@
 				B66CCD3B2A8BD7BD009AC532 /* LoggedInUserModel.swift */,
 				B6B705982A91C15E00EFFAFD /* WorkoutExtension.swift */,
 				B6B7059A2A91C18800EFFAFD /* UserModel.swift */,
+				B6B705A02A92189000EFFAFD /* MealRecordExtension.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -697,6 +700,7 @@
 				B6D1FCFD2A876F8200BD4BAC /* IdentifiableView.swift in Sources */,
 				B6B7059D2A91C41600EFFAFD /* UserService.swift in Sources */,
 				B617B3B02A7EB4E400613526 /* FlashFitMobileAppApp.swift in Sources */,
+				B6B705A12A92189000EFFAFD /* MealRecordExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
