@@ -6,12 +6,12 @@
 //
 
 import SwiftUI
-
+import CoreData
 struct WorkoutTypeView: View {
     //TODO: filter by email
 
-    @FetchRequest(sortDescriptors: [])
-    private var myWorkoutTypes: FetchedResults<WorkoutTypeEntity>
+    @EnvironmentObject var user: LoggedInUserModel
+    @Environment(\.managedObjectContext) var moc
     
     let column = [GridItem(.adaptive(minimum: 150))]
     @StateObject private var imagePicker = ImagePicker()
@@ -24,11 +24,11 @@ struct WorkoutTypeView: View {
             
             VStack(alignment: .center) {
                 Group{
-                    if !myWorkoutTypes.isEmpty{
+                    if !viewModel.myWorkoutTypes.isEmpty{
                         //TODO: Onapear call the function
                         ScrollView{
                             LazyVGrid(columns: column, spacing: 20){
-                                ForEach(myWorkoutTypes){ type in
+                                ForEach(viewModel.myWorkoutTypes){ type in
                                     Button{
                                         
                                         formType = .update(type)
@@ -42,7 +42,7 @@ struct WorkoutTypeView: View {
                                 }
                             }
                         }
-                        .padding(.horizontal)
+                        //.padding(.horizontal)
                         
                     }else{
                         Text("No Workout Types Yet...")
@@ -60,6 +60,7 @@ struct WorkoutTypeView: View {
                 }
                 
             }
+            .onAppear(perform: loadWorkoutData)
             .navigationTitle("Workout")
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing){
@@ -67,7 +68,7 @@ struct WorkoutTypeView: View {
                         viewModel.showAddWorkoutSheet.toggle()
                         
                     }, label:{
-                        if !myWorkoutTypes.isEmpty{
+                        if !viewModel.myWorkoutTypes.isEmpty{
                             Text("Add")
                         }
                     })
@@ -81,6 +82,7 @@ struct WorkoutTypeView: View {
                 
                 
         }
+    
             .onChange(of: imagePicker.uiImage){ newImage in
                 if let newImage {
                     formType = .new(newImage)
@@ -91,8 +93,33 @@ struct WorkoutTypeView: View {
             }
         }
     }
+    
+    
+    func loadWorkoutData(){
+       
+        print("Loading workout data")
+        
+        let fetchRequest: NSFetchRequest<WorkoutTypeEntity> = WorkoutTypeEntity.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "userEmail == %@", user.email!)
+        
+        do {
+            let context = moc // Replace with your actual managed object context
+            let data = try context.fetch(fetchRequest)
+            
+
+                viewModel.myWorkoutTypes = data.map{$0}
+
+            
+        } catch {
+            print("Error checking for value existence: \(error)")
+        }
+        
+    }
 
 }
+
+
+
 
 
 struct WorkoutTypeView_Previews: PreviewProvider {
