@@ -10,6 +10,10 @@ import UIKit
 import CoreData
 
 extension WorkoutTypeEntity{
+    var workoutTypeID: UUID{
+        typeID ?? UUID()
+    }
+    
     var workoutName: String{
         workoutTypeName ?? ""
     }

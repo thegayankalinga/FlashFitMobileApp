@@ -10,6 +10,11 @@ import UIKit
 import CoreData
 
 extension MealTypeEntity{
+    
+    var mealTypeID: UUID{
+        typeID ?? UUID()
+    }
+    
     var mealType: String{
         mealTypeName ?? ""
     }

@@ -123,6 +123,7 @@ struct AddWorkoutTypeView: View {
                         }
                     }else{
                         let newItem = WorkoutTypeEntity(context: moc)
+                        newItem.typeID = UUID()
                         newItem.workoutTypeName = viewModel.workoutName
                         newItem.calorieBurnPerMin = Double(viewModel.caloriesBurnedPerMin) ?? 0
                         newItem.userEmail = user.email

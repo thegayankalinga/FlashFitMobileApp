@@ -118,6 +118,7 @@ struct AddMealTypeView: View {
                         }
                     }else{
                         let newMeal = MealTypeEntity(context: moc)
+                        newMeal.typeID = UUID()
                         newMeal.mealTypeName = viewModel.mealName
                         newMeal.caloriesGained = Double(viewModel.caloriesGainPerPotion) ?? 0
                         newMeal.userEmail = user.email
