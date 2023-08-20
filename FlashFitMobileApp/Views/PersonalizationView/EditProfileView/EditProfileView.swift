@@ -29,20 +29,18 @@ struct EditProfileView: View {
   
                    DatePicker("Birthdate", selection: $viewModel.dob, displayedComponents: [.date])
                        .accentColor(.orange)
-                   
-                   
-                   
-                   Section (header: Text("Gender")){
-                       Picker("", selection: $viewModel.selectedGender) {
-                           ForEach(GenderTypeEnum.allCases) { option in
-                               // 2
-                               Text(String(describing: option))
-                           }
-                       }
-                       .frame(height: 50)
-                       .pickerStyle(.segmented)
-                   }
+
                  
+               }
+               Section (header: Text("Gender")){
+                   Picker("", selection: $viewModel.selectedGender) {
+                       ForEach(GenderTypeEnum.allCases) { option in
+                           // 2
+                           Text(String(describing: option))
+                       }
+                   }
+                   .frame(height: 50)
+                   .pickerStyle(.segmented)
                }
                
                Section(header: Text("Height in Centi Meters")) {
@@ -55,6 +53,8 @@ struct EditProfileView: View {
                    //EntryField("Weight (Kg)", text: $viewModel.weight)
                }
            }
+           .tint(.pink)
+
            
             Spacer()
             PrimaryActionButton(actionName: "Update", icon: "pencil.line", disabled: false){
