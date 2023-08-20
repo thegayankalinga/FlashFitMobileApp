@@ -72,18 +72,24 @@ class WorkoutViewModel : ObservableObject {
     }
     
     // update data
-    func updateWorkout(entity: WorkoutEntity) {
+    func updateWorkout(_ moc: NSManagedObjectContext, entity: WorkoutEntity) {
         let id = entity.id
+        let userId = entity.userID
         let wType = entity.workoutType ?? ""
         let duration = entity.duration
         let date = entity.date
+        let calories = entity.calories
 
         if let existingWorkout = savedWorkouts.first(where: { $0.id == id }) {
             existingWorkout.id = id
+            existingWorkout.userID = userId
             existingWorkout.workoutType = wType
             existingWorkout.duration = duration
             existingWorkout.date = date
+            existingWorkout.calories = calories
         }
+        saveData(moc, userId: userId!)
+        
     }
     
     // remove data
