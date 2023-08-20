@@ -1,3 +1,4 @@
+
 //
 //  UserModel.swift
 //  FlashFitMobileApp
@@ -38,6 +39,7 @@ class UserModel: Identifiable, ObservableObject{
     
     
 }
+
 
 
 

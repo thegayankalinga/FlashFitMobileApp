@@ -1,8 +1,8 @@
 //
-//  MealsExtension.swift
+//  WorkoutExtension.swift
 //  FlashFitMobileApp
 //
-//  Created by Gayan Kalinga on 2023-08-14.
+//  Created by Gayan Kalinga on 2023-08-20.
 //
 
 import Foundation
@@ -33,3 +33,4 @@ extension WorkoutTypeEntity{
         }
     }
 }
+
