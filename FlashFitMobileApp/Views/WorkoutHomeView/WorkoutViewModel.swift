@@ -93,6 +93,32 @@ class WorkoutViewModel : ObservableObject {
         return total
     }
     
+    // fetch total time in a given date
+    func getWorkoutTimeByDay(_ moc: NSManagedObjectContext, userId: String, date: Date) -> Double {
+        let request = NSFetchRequest<WorkoutEntity>(entityName: "WorkoutEntity")
+        
+        let calendar = Calendar.current
+        let startDate = calendar.startOfDay(for: date)
+        let endDate = calendar.date(byAdding: .day, value: 1, to: startDate)!
+        
+        request.predicate = NSPredicate(format: "userID == %@ AND date >= %@ AND date < %@", userId, startDate as NSDate, endDate as NSDate)
+        
+        var total: Double = 0.0
+        
+        do {
+            let results  = try moc.fetch(request)
+            
+            if !results.isEmpty {
+                for workout in results {
+                    total = total + workout.duration
+                }
+            }
+        } catch let error {
+            print("Error fetching. \(error)")
+        }
+        return total
+    }
+    
     // save data
     func addWorkout(moc: NSManagedObjectContext, type: String, duration: String, date: Date, calories:String, weight: String, userId: String) {
         let workoutObj = WorkoutEntity(context: moc)
