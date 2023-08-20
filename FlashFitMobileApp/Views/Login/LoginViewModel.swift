@@ -39,6 +39,7 @@ class LoginViewModel: ObservableObject{
                     name: (data?.name)!,
                     passwordSalt: (data?.passwordSalt)!,
                     passwordHash: (data?.passwordHash)!,
+                    dateOfBirth: data?.dateOfBirth ?? Date.now,
                     genderType: GenderTypeEnum(rawValue: (data?.genderType)!)!,
                     weightInKilos: (data?.weight)!,
                     heightInCentiMeter: (data?.height)!,
@@ -48,8 +49,6 @@ class LoginViewModel: ObservableObject{
                 )
             }
             
-            
-            print(user)
         } catch {
             print("Error checking for value existence: \(error)")
             throw LoginError.invalidUser

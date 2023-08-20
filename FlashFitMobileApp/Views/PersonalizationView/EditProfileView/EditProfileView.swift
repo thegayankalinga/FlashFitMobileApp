@@ -9,48 +9,107 @@ import SwiftUI
 
 struct EditProfileView: View {
     
-    @State private var name = ""
-    @State private var dob = Date()
-    @State private var height = ""
-    @State private var weight = ""
-    @State private var selectedGender = 0 // 0 - Male, 1 - Female
+    
+    @EnvironmentObject var user: LoggedInUserModel
+    @Environment(\.dismiss) var dismiss
+    @Environment(\.managedObjectContext) var moc
+    
+    @StateObject var viewModel = EditProfileViewModel()
+    @State private var showingAlert = false
+    
+    @State private var alertHeading = ""
+    @State private var alertMessage = ""
     
     var body: some View {
         VStack {
             
            Form {
                Section (header: Text("Personal Details")){
-                   TextField("Full Name", text: $name)
+                   TextField("Full Name", text: $viewModel.name)
   
-                   DatePicker("Birthdate", selection: $dob, displayedComponents: [.date])
+                   DatePicker("Birthdate", selection: $viewModel.dob, displayedComponents: [.date])
                        .accentColor(.orange)
                    
-                   Picker(selection: $selectedGender, label: Text("Gender")) {
-                       Text("Male").tag(0)
-                       Text("Female").tag(1)
+                   
+                   
+                   Section (header: Text("Gender")){
+                       Picker("", selection: $viewModel.selectedGender) {
+                           ForEach(GenderTypeEnum.allCases) { option in
+                               // 2
+                               Text(String(describing: option))
+                           }
+                       }
+                       .frame(height: 50)
+                       .pickerStyle(.segmented)
                    }
-                   .pickerStyle(SegmentedPickerStyle())
-                   .frame(width: 350)
+                 
                }
                
-               Section(header: Text("Body Measurements")) {
-                   TextField("Height (cm)", text: $height)
-                   TextField("Weight (Kg)", text: $weight)
+               Section(header: Text("Height in Centi Meters")) {
+                   EntryField(bindingField: $viewModel.height, placeholder: "Heigh in CM", promptText: "", isSecure: false)
+                       .numberOnly($viewModel.height, includeDecimal: true)
                }
-           }.frame(height: 400)
-            Button(action: {
-                
-            }, label: {
-                Text("Update")
-                    .frame(width: 350, height: 50, alignment: .center)
-                    .background(Color.orange)
-                    .cornerRadius(15)
-                    .overlay(RoundedRectangle(cornerRadius: 15)
-                        .stroke(Color.gray.opacity(0.2), lineWidth: 1))
-                    .foregroundColor(.black)
-                
-            })
+               Section(header: Text("Weight in Kilo Grams")) {
+                   EntryField(bindingField: $viewModel.weight, placeholder: "Weight in KG", promptText: "", isSecure: false)
+                       .numberOnly($viewModel.weight, includeDecimal: true)
+                   //EntryField("Weight (Kg)", text: $viewModel.weight)
+               }
+           }
+           
             Spacer()
+            PrimaryActionButton(actionName: "Update", icon: "pencil.line", disabled: false){
+                do{
+                    let response = try viewModel.update(email: user.email ?? "", moc: moc)
+                    if(response == 201){
+                        alertHeading = "Update Successful"
+                        alertMessage = "\(viewModel.name) Updated Successful"
+                        showingAlert.toggle()
+                        print("\(viewModel.name) Updated Successful")
+                    }
+                }catch UpdateError.UpdateFailed{
+                    alertHeading = "Update Failed"
+                    alertMessage = "Update Failed, Please re-try later"
+                    showingAlert.toggle()
+                    print("Update Failed")
+                }catch UpdateError.UserNotFound{
+                    alertHeading = "User not found for update"
+                    alertMessage = "User details not found, please re-try later"
+                    showingAlert.toggle()
+                    print("User not found")
+                    
+                }catch{
+                    alertHeading = "Unknown Error"
+                    alertMessage = "Please re-try later, update unsuccessful"
+                    showingAlert.toggle()
+                    print("Something went wrong")
+                }
+            }
+        }
+        .onAppear(perform: setUserDataAtLoad)
+        .environmentObject(user)
+        .alert(isPresented: $showingAlert) { () -> Alert in
+            Alert(title: Text(alertHeading), message: Text(alertMessage))
+        }
+    }
+    
+    
+    func setUserDataAtLoad(){
+       
+        print("Loading")
+        var localUser: UserModel
+        
+        do{
+            if let email = user.email{
+                localUser = try UserService.getUserData(email: email, moc: moc)
+                viewModel.email = localUser.email
+                viewModel.name = localUser.name
+                viewModel.height = String(format: "%.2f", localUser.heightInCentiMeter)
+                viewModel.dob = localUser.dateOfBirth
+                viewModel.weight = String(format: "%.2f", localUser.weightInKilos)
+                viewModel.selectedGender = localUser.genderType
+            }
+        }catch{
+            print(error.localizedDescription)
         }
     }
 }
@@ -59,5 +118,6 @@ struct EditProfileView: View {
 struct EditProfileView_Previews: PreviewProvider {
     static var previews: some View {
         EditProfileView()
+            .environmentObject(LoggedInUserModel(email: "bg15407@gmail.com", name: "Gayan"))
     }
 }

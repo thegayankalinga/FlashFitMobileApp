@@ -210,10 +210,8 @@ class RegistrationViewModel: ObservableObject{
     
     //MARK: REGISTRATION FUNCTION
     public func register(moc: NSManagedObjectContext)throws -> Int{
-        
-        
-        
-        if(valueExists(email: email, moc: moc)){
+  
+        if(UserService.valueExists(email: email, moc: moc)){
             print("User alredy exists")
             throw RegistrationError.userExist
         }else{
@@ -222,8 +220,8 @@ class RegistrationViewModel: ObservableObject{
             
             let kg: Double = Double(weight) ?? 0.0
             let cm: Double = Double(height) ?? 0.0
-            let bmi: Double = calculateBmi(weight: kg, height: cm)
-            let hs: HealthStatusEnum = getHealthStatus(bodyMassIndexValue: bmi)
+            let bmi: Double = UserService.calculateBmi(weight: kg, height: cm)
+            let hs: HealthStatusEnum = UserService.getHealthStatus(bodyMassIndexValue: bmi)
             let pslt = PasswordHasher.generateSalt()
             
             let psh = PasswordHasher.computeHash(
@@ -235,6 +233,7 @@ class RegistrationViewModel: ObservableObject{
             //Saving the User
             let user = UserModelEntity(context: moc)
             user.id = UUID()
+            user.dateOfBirth = dateOfBirth
             user.email = email
             user.name = name
             user.passwordSalt = pslt
@@ -258,46 +257,46 @@ class RegistrationViewModel: ObservableObject{
            
     }
     
-    func valueExists(email: String, moc: NSManagedObjectContext) -> Bool {
-        let fetchRequest: NSFetchRequest<UserModelEntity> = UserModelEntity.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "email == %@", email)
-        
-        do {
-            let context = moc // Replace with your actual managed object context
-            let count = try context.count(for: fetchRequest)
-            return count > 0
-        } catch {
-            print("Error checking for value existence: \(error)")
-            return false
-        }
-    }
+//    func valueExists(email: String, moc: NSManagedObjectContext) -> Bool {
+//        let fetchRequest: NSFetchRequest<UserModelEntity> = UserModelEntity.fetchRequest()
+//        fetchRequest.predicate = NSPredicate(format: "email == %@", email)
+//
+//        do {
+//            let context = moc // Replace with your actual managed object context
+//            let count = try context.count(for: fetchRequest)
+//            return count > 0
+//        } catch {
+//            print("Error checking for value existence: \(error)")
+//            return false
+//        }
+//    }
 
+//
+//    func getHealthStatus(bodyMassIndexValue: Double) -> HealthStatusEnum {
+//
+//        switch bodyMassIndexValue {
+//        case ...18.5:
+//            return .Underweight
+//        case 18.5...24.9:
+//            return .Normalweight
+//        case 25...29.9:
+//            return .Overweight
+//        case 30...:
+//            return .Obesity
+//        default:
+//            return .None
+//        }
+//    }
     
-    func getHealthStatus(bodyMassIndexValue: Double) -> HealthStatusEnum {
-        
-        switch bodyMassIndexValue {
-        case ...18.5:
-            return .Underweight
-        case 18.5...24.9:
-            return .Normalweight
-        case 25...29.9:
-            return .Overweight
-        case 30...:
-            return .Obesity
-        default:
-            return .None
-        }
-    }
-    
-    func calculateBmi(weight: Double, height: Double) -> Double {
-
-        var bmi: Double = 0.0
-        
-        var heightMeters = height / 100
-        heightMeters = heightMeters * heightMeters
-
-        bmi = weight / heightMeters
-
-        return bmi
-    }
+//    func calculateBmi(weight: Double, height: Double) -> Double {
+//
+//        var bmi: Double = 0.0
+//
+//        var heightMeters = height / 100
+//        heightMeters = heightMeters * heightMeters
+//
+//        bmi = weight / heightMeters
+//
+//        return bmi
+//    }
 }

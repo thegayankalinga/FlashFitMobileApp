@@ -10,6 +10,9 @@ import SwiftUI
 struct ProfileHomeView: View {
     
     @State private var tabIndex = 0
+    @EnvironmentObject var user: LoggedInUserModel
+
+ 
     
     var body: some View {
         
@@ -39,6 +42,7 @@ struct ProfileHomeView: View {
       
                 Spacer(minLength: 0)
             }
+            .environmentObject(user)
             .navigationTitle("Profile")
             .navigationBarTitleDisplayMode(.inline)
             .padding(.top, 20)

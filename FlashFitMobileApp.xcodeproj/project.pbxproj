@@ -45,6 +45,8 @@
 		B6A4E98A2A91BE22007CC664 /* EditProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A4E9892A91BE22007CC664 /* EditProfileViewModel.swift */; };
 		B6B705992A91C15E00EFFAFD /* WorkoutExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B705982A91C15E00EFFAFD /* WorkoutExtension.swift */; };
 		B6B7059B2A91C18800EFFAFD /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B7059A2A91C18800EFFAFD /* UserModel.swift */; };
+		B6B7059D2A91C41600EFFAFD /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B7059C2A91C41600EFFAFD /* UserService.swift */; };
+		B6B7059F2A91DF4B00EFFAFD /* UserUpdateDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B7059E2A91DF4B00EFFAFD /* UserUpdateDto.swift */; };
 		B6B7AE4F2A8D2F5B009B0D36 /* TypeCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B7AE4E2A8D2F5B009B0D36 /* TypeCardView.swift */; };
 		B6B7AE512A8D2FA6009B0D36 /* AddWorkoutTypeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B7AE502A8D2FA6009B0D36 /* AddWorkoutTypeViewModel.swift */; };
 		B6B7AE532A8D2FB7009B0D36 /* WorkoutTypeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B7AE522A8D2FB7009B0D36 /* WorkoutTypeViewModel.swift */; };
@@ -141,6 +143,8 @@
 		B6A4E9892A91BE22007CC664 /* EditProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewModel.swift; sourceTree = "<group>"; };
 		B6B705982A91C15E00EFFAFD /* WorkoutExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutExtension.swift; sourceTree = "<group>"; };
 		B6B7059A2A91C18800EFFAFD /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		B6B7059C2A91C41600EFFAFD /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
+		B6B7059E2A91DF4B00EFFAFD /* UserUpdateDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserUpdateDto.swift; sourceTree = "<group>"; };
 		B6B7AE4E2A8D2F5B009B0D36 /* TypeCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeCardView.swift; sourceTree = "<group>"; };
 		B6B7AE502A8D2FA6009B0D36 /* AddWorkoutTypeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWorkoutTypeViewModel.swift; sourceTree = "<group>"; };
 		B6B7AE522A8D2FB7009B0D36 /* WorkoutTypeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutTypeViewModel.swift; sourceTree = "<group>"; };
@@ -426,6 +430,7 @@
 				B6D1FD032A88835300BD4BAC /* CustomColors.swift */,
 				B6D1FD3E2A8A884E00BD4BAC /* ImagePicker.swift */,
 				B61BBE662A8BCB5C0014E9C5 /* FileManager.swift */,
+				B6B7059C2A91C41600EFFAFD /* UserService.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -444,6 +449,7 @@
 			isa = PBXGroup;
 			children = (
 				B621B2782A873A89001C4711 /* UserRegisterDto.swift */,
+				B6B7059E2A91DF4B00EFFAFD /* UserUpdateDto.swift */,
 			);
 			path = DTO;
 			sourceTree = "<group>";
@@ -634,6 +640,7 @@
 				B6D1FD062A88842000BD4BAC /* LogoShapeView.swift in Sources */,
 				B6D1FD282A89C76800BD4BAC /* SplashScreenView.swift in Sources */,
 				B6B7059B2A91C18800EFFAFD /* UserModel.swift in Sources */,
+				B6B7059F2A91DF4B00EFFAFD /* UserUpdateDto.swift in Sources */,
 				B6B7AE532A8D2FB7009B0D36 /* WorkoutTypeViewModel.swift in Sources */,
 				B61BBE652A8BCA1A0014E9C5 /* MeaTypeEnumView.swift in Sources */,
 				B621B27F2A873D95001C4711 /* FlashFitMobileApp.xcdatamodeld in Sources */,
@@ -688,6 +695,7 @@
 				B621B2692A85C736001C4711 /* RegistrationViewModel.swift in Sources */,
 				B6D1FD002A88731A00BD4BAC /* EntryField.swift in Sources */,
 				B6D1FCFD2A876F8200BD4BAC /* IdentifiableView.swift in Sources */,
+				B6B7059D2A91C41600EFFAFD /* UserService.swift in Sources */,
 				B617B3B02A7EB4E400613526 /* FlashFitMobileAppApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

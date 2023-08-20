@@ -16,6 +16,7 @@ class UserModel: Identifiable, ObservableObject{
     @Published var name: String
     @Published var passwordSalt: String
     @Published var passwordHash: String
+    @Published var dateOfBirth: Date
     @Published var genderType: GenderTypeEnum
     @Published var weightInKilos: Double
     @Published var heightInCentiMeter: Double
@@ -23,12 +24,13 @@ class UserModel: Identifiable, ObservableObject{
     @Published var healthStatus: HealthStatusEnum
     @Published var createdDate: Date
     
-    init(id: UUID = UUID(), email: String, name: String, passwordSalt: String, passwordHash: String, genderType: GenderTypeEnum, weightInKilos: Double, heightInCentiMeter: Double, bodyMassIndex: Double, healthStatus: HealthStatusEnum, createdDate: Date) {
+    init(id: UUID = UUID(), email: String, name: String, passwordSalt: String, passwordHash: String, dateOfBirth: Date, genderType: GenderTypeEnum, weightInKilos: Double, heightInCentiMeter: Double, bodyMassIndex: Double, healthStatus: HealthStatusEnum, createdDate: Date) {
         self.id = id
         self.email = email
         self.name = name
         self.passwordSalt = passwordSalt
         self.passwordHash = passwordHash
+        self.dateOfBirth = dateOfBirth
         self.genderType = genderType
         self.weightInKilos = weightInKilos
         self.heightInCentiMeter = heightInCentiMeter

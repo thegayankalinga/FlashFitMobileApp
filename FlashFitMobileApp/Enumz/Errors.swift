@@ -15,3 +15,8 @@ enum RegistrationError: Error{
     case creationFailed
     case userExist
 }
+
+enum UpdateError: Error{
+    case UserNotFound
+    case UpdateFailed
+}
