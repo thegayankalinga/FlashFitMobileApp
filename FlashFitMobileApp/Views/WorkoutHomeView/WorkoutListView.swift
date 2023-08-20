@@ -54,7 +54,7 @@ struct WorkoutListView: View {
                                         Text("Caories Burnt")
                                         Spacer()
                                         HStack {
-                                            Text("\((entity.duration), specifier: "%.2f")")
+                                            Text("\((entity.calories), specifier: "%.2f")")
                                             Text("K/Cal")
                                                 .font(.footnote)
                                                 .foregroundColor(.secondary)
