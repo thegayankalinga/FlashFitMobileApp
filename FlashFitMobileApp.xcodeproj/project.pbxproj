@@ -22,6 +22,8 @@
 		72AA62472A7FADFD00AD9A04 /* PredictionSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72AA62462A7FADFD00AD9A04 /* PredictionSectionView.swift */; };
 		72AA62492A7FBB0000AD9A04 /* PlanTodayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72AA62482A7FBB0000AD9A04 /* PlanTodayView.swift */; };
 		72AA624C2A7FC96500AD9A04 /* PredictionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72AA624B2A7FC96500AD9A04 /* PredictionView.swift */; };
+		72D865662A92694D008762F2 /* WorkoutReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72D865652A92694D008762F2 /* WorkoutReportView.swift */; };
+		72D865682A92695B008762F2 /* MealsReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72D865672A92695B008762F2 /* MealsReportView.swift */; };
 		B617B3B02A7EB4E400613526 /* FlashFitMobileAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B617B3AF2A7EB4E400613526 /* FlashFitMobileAppApp.swift */; };
 		B617B3B22A7EB4E400613526 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B617B3B12A7EB4E400613526 /* ContentView.swift */; };
 		B617B3B42A7EB4E600613526 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B617B3B32A7EB4E600613526 /* Assets.xcassets */; };
@@ -118,6 +120,8 @@
 		72AA62462A7FADFD00AD9A04 /* PredictionSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictionSectionView.swift; sourceTree = "<group>"; };
 		72AA62482A7FBB0000AD9A04 /* PlanTodayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanTodayView.swift; sourceTree = "<group>"; };
 		72AA624B2A7FC96500AD9A04 /* PredictionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictionView.swift; sourceTree = "<group>"; };
+		72D865652A92694D008762F2 /* WorkoutReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutReportView.swift; sourceTree = "<group>"; };
+		72D865672A92695B008762F2 /* MealsReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealsReportView.swift; sourceTree = "<group>"; };
 		B617B3AC2A7EB4E400613526 /* FlashFitMobileApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlashFitMobileApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B617B3AF2A7EB4E400613526 /* FlashFitMobileAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashFitMobileAppApp.swift; sourceTree = "<group>"; };
 		B617B3B12A7EB4E400613526 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -307,6 +311,8 @@
 			isa = PBXGroup;
 			children = (
 				72732F422A7F728E009B80AA /* ReportView.swift */,
+				72D865652A92694D008762F2 /* WorkoutReportView.swift */,
+				72D865672A92695B008762F2 /* MealsReportView.swift */,
 			);
 			path = ReportView;
 			sourceTree = "<group>";
@@ -678,6 +684,7 @@
 				7294D12E2A893AA10070E3A3 /* AddWorkoutTypeView.swift in Sources */,
 				B6D1FD122A88FC1D00BD4BAC /* NumberOnlyViewModifier.swift in Sources */,
 				B6D1FD262A89C70C00BD4BAC /* AddWorkoutView.swift in Sources */,
+				72D865662A92694D008762F2 /* WorkoutReportView.swift in Sources */,
 				B6B7AE512A8D2FA6009B0D36 /* AddWorkoutTypeViewModel.swift in Sources */,
 				B6D1FD1E2A89C64600BD4BAC /* WorkoutViewModel.swift in Sources */,
 				B6D1FD202A89C66800BD4BAC /* WorkoutListView.swift in Sources */,
@@ -690,6 +697,7 @@
 				B6B705992A91C15E00EFFAFD /* WorkoutExtension.swift in Sources */,
 				B6D1FD0E2A88F88300BD4BAC /* RegistrationFirstView.swift in Sources */,
 				B6D1FD3F2A8A884E00BD4BAC /* ImagePicker.swift in Sources */,
+				72D865682A92695B008762F2 /* MealsReportView.swift in Sources */,
 				B6D1FD082A888C3B00BD4BAC /* Errors.swift in Sources */,
 				B6D1FCF62A875D1B00BD4BAC /* GradientTextFieldBackground.swift in Sources */,
 				72AA62472A7FADFD00AD9A04 /* PredictionSectionView.swift in Sources */,
