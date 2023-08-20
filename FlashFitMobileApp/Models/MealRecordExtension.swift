@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 import CoreData
+import SwiftUI
 
 extension MealRecordEntity{
     
@@ -21,6 +22,19 @@ extension MealRecordEntity{
     
     var mealType: UUID{
         mealTypeID ?? UUID()
+    }
+    
+    var mealObject: MealTypeEntity{
+        @Environment(\.managedObjectContext) var moc
+        do{
+            let type = try moc.fetch(MealTypeEntity.getMealTypeByID(id: mealType)).first!
+            return type
+        }catch{
+            print(error.localizedDescription)
+ 
+        }
+        return MealTypeEntity()
+        
     }
     
     var userID: String{

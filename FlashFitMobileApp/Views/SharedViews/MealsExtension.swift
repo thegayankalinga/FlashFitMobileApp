@@ -53,4 +53,16 @@ extension MealTypeEntity{
 
           return request
     }
+    
+    static func getMealTypeByID(id: UUID) -> NSFetchRequest<MealTypeEntity> {
+
+        
+        let request: NSFetchRequest<MealTypeEntity> = MealTypeEntity.fetchRequest()
+        let findDescriptor = NSPredicate(format: "%K == %@", "typeID", id as CVarArg)
+        //let findDescriptor = NSPredicate(format: "typeID == %@", id)
+        
+        request.predicate = findDescriptor
+        
+        return request
+    }
 }
