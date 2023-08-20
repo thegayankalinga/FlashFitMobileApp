@@ -33,6 +33,10 @@ struct WorkoutReportView: View {
         
         VStack (alignment: .leading, spacing: 20){
             
+            DatePicker("Pick a date", selection: $date, displayedComponents: .date)
+                .accentColor(.orange)
+                .padding()
+            
             LazyVGrid(columns: [GridItem(.adaptive(minimum: 170))], spacing: 20) {
                 ZStack{
                     Rectangle()
