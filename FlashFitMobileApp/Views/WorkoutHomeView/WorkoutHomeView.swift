@@ -7,6 +7,7 @@
 
 import SwiftUI
 import CoreData
+import Charts
 
 struct WorkoutHomeView: View {
     
@@ -17,6 +18,7 @@ struct WorkoutHomeView: View {
     
     @State var date: Date = Date()
     @State private var totalCaloriesForSelectedDate: Double = 0.0
+    @State var dailyData: [WorkoutEntity] = []
     
     var height:CGFloat = 130
     var width:CGFloat = 130
@@ -25,21 +27,29 @@ struct WorkoutHomeView: View {
     // this value can be changed to let the user to set the target
     var avgCaloryBurnPerDay = 2000.0
     
+    var columns = Array(repeating: GridItem(.flexible(), spacing: 20), count: 2)
+    
     var body: some View {
         
         let percent  = (totalCaloriesForSelectedDate / avgCaloryBurnPerDay) * 100
         let progress = 1 - (percent / 100)
         
-        // progress
-        VStack{
+        VStack (alignment: .leading){
             DatePicker("Pick a date", selection: $date, displayedComponents: .date)
                 .accentColor(.orange)
                 .padding()
             
-            ZStack {
-                Color(hex:0xFDB137)
+            // progress
+            VStack(alignment: .leading){
+                HStack{
+                    Image(systemName: "flame.fill")
+                    Text("Burned Calories")
+                        .font(.footnote)
+                        .padding(.bottom, 1)
+                }
                 
-                HStack {
+                ZStack {
+                    Color(hex:0xFDB137)
                     ZStack{
                         Circle()
                             .stroke(Color.white ,style: StrokeStyle(lineWidth: 10))
@@ -55,30 +65,55 @@ struct WorkoutHomeView: View {
                             Text("K/Cal").font(.caption).bold().padding(0.5)
                         }
                     }
-                }.padding()
+                    
+                }
+                .frame(height: 200)
+                .cornerRadius(10)
+                .padding(.bottom, 10)
                 
             }
-            .frame(height: 200)
-            .cornerRadius(10)
-            .padding(.bottom, 10)
-            
             // summary
-            ZStack {
-                Color(hex:0xFDB137)
-                Text("Summary")
+            VStack (alignment: .leading){
+                HStack{
+                    Image(systemName: "flame.fill")
+                    Text("Daily Activity")
+                        .font(.footnote)
+                        .padding(.bottom, 1)
+                }
+                
+                ZStack {
+                    Color(hex:0xF5F5F5)
+                    Chart {
+                        ForEach(workoutVm.savedDailyWorkouts) { day in
+                            BarMark(x: .value("Workout", day.workoutType ?? ""),
+                                    y: .value("Duration (m)", day.duration)
+                            )
+                            .foregroundStyle(Color.orange)
+                            .cornerRadius(6)
+                        }
+                    }
+                    .frame(height: 150)
+                    .chartXAxis {
+                        AxisMarks(values: workoutVm.savedDailyWorkouts.map {$0.workoutType ?? "Unknown"}) { type in
+                            AxisValueLabel()
+                        }
+                    }
+                }
+                .frame(height: 200)
+                .cornerRadius(10)
+                .padding(.bottom, 10)
             }
-            .frame(height: 200)
-            .cornerRadius(10)
-            .padding(.bottom, 10)
             
             NavigationLink("Update Recorded Workouts", destination: WorkoutListView()).accentColor(.orange)
         }
         .navigationTitle("Workout")
         .onAppear {
             getTotalCalories()
+            getSummaryData()
         }
         .onChange(of: date) { newValue in
             getTotalCalories()
+            getSummaryData()
         }
     }
     
@@ -88,6 +123,9 @@ struct WorkoutHomeView: View {
         print("Calories", totalCaloriesForSelectedDate)
     }
     
+    func getSummaryData() {
+        workoutVm.getDailyWorkouts(moc, userId: user.email!, date: date)
+    }
 }
 
 struct WorkoutHomeView_Previews: PreviewProvider {

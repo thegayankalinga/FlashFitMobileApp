@@ -12,6 +12,7 @@ class WorkoutViewModel : ObservableObject {
     
     @Published var savedWorkouts: [WorkoutEntity] = []
     @Published var savedWeeklyWorkouts: [WorkoutEntity] = []
+    @Published var savedDailyWorkouts: [WorkoutEntity] = []
        
     // fetch data
     func getWorkouts(_ moc: NSManagedObjectContext, userId: String) {
@@ -44,6 +45,23 @@ class WorkoutViewModel : ObservableObject {
         
         do {
             savedWeeklyWorkouts = try moc.fetch(request)
+        } catch {
+            print("Error fetching.")
+        }
+    }
+    
+    // fetch data for current week
+    func getDailyWorkouts(_ moc: NSManagedObjectContext, userId: String, date: Date) {
+        let request = NSFetchRequest<WorkoutEntity>(entityName: "WorkoutEntity")
+        
+        let calendar = Calendar.current
+        let startDate = calendar.startOfDay(for: date)
+        let endDate = calendar.date(byAdding: .day, value: 1, to: startDate)!
+        
+        request.predicate = NSPredicate(format: "userID == %@ AND date >= %@ AND date < %@", userId, startDate as NSDate, endDate as NSDate)
+        
+        do {
+            savedDailyWorkouts = try moc.fetch(request)
         } catch {
             print("Error fetching.")
         }
