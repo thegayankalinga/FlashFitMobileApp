@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import CoreData
 
 extension MealTypeEntity{
     var mealType: String{
@@ -31,5 +32,20 @@ extension MealTypeEntity{
         }else{
             return UIImage(systemName: "photo")!
         }
+    }
+    
+    static func getSpecifiedMealsTypes(findEmail: String) -> NSFetchRequest<MealTypeEntity> {
+
+        
+        let request: NSFetchRequest<MealTypeEntity> = MealTypeEntity.fetchRequest()
+
+          let findDescriptor = NSPredicate(format: "userEmail == %@", findEmail)
+          request.predicate = findDescriptor
+
+          // Add a sort descriptor for "calorieBurnPerMin" in ascending order
+          let sortDescriptor = NSSortDescriptor(key: "caloriesGained", ascending: true)
+          request.sortDescriptors = [sortDescriptor]
+
+          return request
     }
 }

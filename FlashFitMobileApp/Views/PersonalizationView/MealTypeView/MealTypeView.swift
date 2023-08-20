@@ -11,8 +11,17 @@ import UIKit
 
 struct MealTypeView: View {
     //TODO: filter by email
-    @FetchRequest(sortDescriptors: [SortDescriptor(\.mealTypeName)])
-    private var myMealTypes: FetchedResults<MealTypeEntity>
+    
+    var email: String
+
+    @FetchRequest(fetchRequest: MealTypeEntity.fetchRequest()) var fetchedMealTypes: FetchedResults<MealTypeEntity>
+
+    init(userEmail: String) {
+        self.email = userEmail
+        _fetchedMealTypes = FetchRequest<MealTypeEntity>(fetchRequest: MealTypeEntity.getSpecifiedMealsTypes(findEmail: email))
+    }
+
+    
     let column = [GridItem(.adaptive(minimum: 150))]
     @StateObject private var imagePicker = ImagePicker()
     @State private var formType: FormType?
@@ -24,11 +33,11 @@ struct MealTypeView: View {
             
             VStack(alignment: .center) {
                 Group{
-                    if !myMealTypes.isEmpty{
+                    if !fetchedMealTypes.isEmpty{
                         //TODO: Onapear call the function
                         ScrollView{
                             LazyVGrid(columns: column, spacing: 20){
-                                ForEach(myMealTypes){ mealType in
+                                ForEach(fetchedMealTypes){ mealType in
                                     Button{
                                         
                                         formType = .update(mealType)
@@ -67,7 +76,7 @@ struct MealTypeView: View {
                         mealTypeVM.showAddMealSheet.toggle()
                         
                     }, label:{
-                        if !myMealTypes.isEmpty{
+                        if !fetchedMealTypes.isEmpty{
                             Text("Add")
                         }
                     })
@@ -95,7 +104,7 @@ struct MealTypeView: View {
 
 struct MealTypeView_Previews: PreviewProvider {
     static var previews: some View {
-        MealTypeView(mealTypeVM: MealTypeViewModel())
+        MealTypeView(userEmail: "bg15407@gmail.com")
     }
 }
 

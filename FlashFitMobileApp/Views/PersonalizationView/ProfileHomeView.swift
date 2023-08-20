@@ -34,7 +34,7 @@ struct ProfileHomeView: View {
                     WorkoutTypeView(userEmail: user.email!)
                 case 2:
                     //todo
-                    MealTypeView()
+                    MealTypeView(userEmail: user.email!)
                 default:
                     EmptyView()
                 }

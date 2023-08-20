@@ -22,10 +22,7 @@ struct WorkoutTypeView: View {
         _fetchedWorkoutTypes = FetchRequest<WorkoutTypeEntity>(fetchRequest: WorkoutTypeEntity.getSpecifiedWorkoutTypes(findEmail: email))
     }
 
-    var userEmail: String {
-        return user.email!
-    }
-    
+
     @Environment(\.managedObjectContext) var moc
     @EnvironmentObject var user: LoggedInUserModel
     let column = [GridItem(.adaptive(minimum: 150))]
@@ -34,12 +31,6 @@ struct WorkoutTypeView: View {
     
     @StateObject var viewModel = WorkoutTypeViewModel()
     
-//
-//    @FetchRequest(
-//        entity: WorkoutTypeEntity.entity(),
-//        sortDescriptors: [NSSortDescriptor(key: "calorieBurnPerMin", ascending: true)],
-//        predicate: NSPredicate(format: "userEmail == %@", viewModel.predicateEmail())
-//    ) var myWorkoutTypes: FetchedResults<WorkoutTypeEntity>
 
     
     var body: some View {
