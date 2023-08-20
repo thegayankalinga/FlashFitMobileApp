@@ -23,6 +23,9 @@ struct AddWorkoutTypeView: View {
         
     }
     
+    
+    
+    
     var body: some View {
         NavigationStack{
             VStack{

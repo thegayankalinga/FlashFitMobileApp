@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import CoreData
 
 extension WorkoutTypeEntity{
     var workoutName: String{
@@ -32,5 +33,22 @@ extension WorkoutTypeEntity{
             return UIImage(systemName: "photo")!
         }
     }
+    
+
+        static func getSpecifiedWorkoutTypes(findEmail: String) -> NSFetchRequest<WorkoutTypeEntity> {
+
+            
+            let request: NSFetchRequest<WorkoutTypeEntity> = WorkoutTypeEntity.fetchRequest()
+
+              let findDescriptor = NSPredicate(format: "userEmail == %@", findEmail)
+              request.predicate = findDescriptor
+
+              // Add a sort descriptor for "calorieBurnPerMin" in ascending order
+              let sortDescriptor = NSSortDescriptor(key: "calorieBurnPerMin", ascending: true)
+              request.sortDescriptors = [sortDescriptor]
+
+              return request
+        }
+
 }
 

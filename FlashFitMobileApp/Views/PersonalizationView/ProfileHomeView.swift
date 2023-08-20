@@ -12,8 +12,7 @@ struct ProfileHomeView: View {
     @State private var tabIndex = 0
     @EnvironmentObject var user: LoggedInUserModel
 
- 
-    
+
     var body: some View {
         
         NavigationStack {
@@ -32,7 +31,7 @@ struct ProfileHomeView: View {
                     EditProfileView()
                 case 1:
                    // todo
-                    WorkoutTypeView()
+                    WorkoutTypeView(userEmail: user.email!)
                 case 2:
                     //todo
                     MealTypeView()

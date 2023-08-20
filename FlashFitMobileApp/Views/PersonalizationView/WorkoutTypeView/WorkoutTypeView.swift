@@ -7,38 +7,64 @@
 
 import SwiftUI
 import CoreData
+
+
 struct WorkoutTypeView: View {
     //TODO: filter by email
-
-    @EnvironmentObject var user: LoggedInUserModel
-    @Environment(\.managedObjectContext) var moc
     
+    var email: String
+
+  
+    @FetchRequest(fetchRequest: WorkoutTypeEntity.fetchRequest()) var fetchedWorkoutTypes: FetchedResults<WorkoutTypeEntity>
+
+    init(userEmail: String) {
+        self.email = userEmail
+        _fetchedWorkoutTypes = FetchRequest<WorkoutTypeEntity>(fetchRequest: WorkoutTypeEntity.getSpecifiedWorkoutTypes(findEmail: email))
+    }
+
+    var userEmail: String {
+        return user.email!
+    }
+    
+    @Environment(\.managedObjectContext) var moc
+    @EnvironmentObject var user: LoggedInUserModel
     let column = [GridItem(.adaptive(minimum: 150))]
     @StateObject private var imagePicker = ImagePicker()
     @State private var formType: WorkoutFormType?
     
-    @ObservedObject var viewModel = WorkoutTypeViewModel()
+    @StateObject var viewModel = WorkoutTypeViewModel()
+    
+//
+//    @FetchRequest(
+//        entity: WorkoutTypeEntity.entity(),
+//        sortDescriptors: [NSSortDescriptor(key: "calorieBurnPerMin", ascending: true)],
+//        predicate: NSPredicate(format: "userEmail == %@", viewModel.predicateEmail())
+//    ) var myWorkoutTypes: FetchedResults<WorkoutTypeEntity>
+
     
     var body: some View {
+       
         NavigationStack {
             
             VStack(alignment: .center) {
                 Group{
-                    if !viewModel.myWorkoutTypes.isEmpty{
-                        //TODO: Onapear call the function
+                    
+                    if !fetchedWorkoutTypes.isEmpty{
                         ScrollView{
                             LazyVGrid(columns: column, spacing: 20){
-                                ForEach(viewModel.myWorkoutTypes){ type in
-                                    Button{
-                                        
-                                        formType = .update(type)
-                                    }label: {
-                                        TypeCardView(
-                                            image: type.uiImage,
-                                            headingText: type.workoutName,
-                                            iconName: "clock.arrow.circlepath",
-                                            subtitleText: "\(type.caloriesBurned) calorie")
-                                    }
+                                ForEach(fetchedWorkoutTypes){ type in
+                                  
+                                        Button{
+                                            
+                                            formType = .update(type)
+                                        }label: {
+                                            TypeCardView(
+                                                image: type.uiImage,
+                                                headingText: type.workoutName,
+                                                iconName: "clock.arrow.circlepath",
+                                                subtitleText: "\(type.caloriesBurned) calorie")
+                                        }
+                                 
                                 }
                             }
                         }
@@ -60,7 +86,13 @@ struct WorkoutTypeView: View {
                 }
                 
             }
-            .onAppear(perform: loadWorkoutData)
+//            .onAppear(perform: {
+//                @FetchRequest(
+//                    entity: WorkoutTypeEntity.entity(),
+//                    sortDescriptors: [NSSortDescriptor(key: "calorieBurnPerMin", ascending: true)],
+//                    predicate: NSPredicate(format: "userEmail == %@", userEmail)
+//                ) var myWorkoutTypes: FetchedResults<WorkoutTypeEntity>
+//            })
             .navigationTitle("Workout")
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing){
@@ -68,7 +100,7 @@ struct WorkoutTypeView: View {
                         viewModel.showAddWorkoutSheet.toggle()
                         
                     }, label:{
-                        if !viewModel.myWorkoutTypes.isEmpty{
+                        if !fetchedWorkoutTypes.isEmpty{
                             Text("Add")
                         }
                     })
@@ -86,6 +118,7 @@ struct WorkoutTypeView: View {
             .onChange(of: imagePicker.uiImage){ newImage in
                 if let newImage {
                     formType = .new(newImage)
+                    
                 }
             }
             .sheet(item: $formType){ formType in
@@ -94,28 +127,6 @@ struct WorkoutTypeView: View {
         }
     }
     
-    
-    func loadWorkoutData(){
-       
-        print("Loading workout data")
-        
-        let fetchRequest: NSFetchRequest<WorkoutTypeEntity> = WorkoutTypeEntity.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "userEmail == %@", user.email!)
-        
-        do {
-            let context = moc // Replace with your actual managed object context
-            let data = try context.fetch(fetchRequest)
-            
-
-                viewModel.myWorkoutTypes = data.map{$0}
-
-            
-        } catch {
-            print("Error checking for value existence: \(error)")
-        }
-        
-    }
-
 }
 
 
@@ -124,6 +135,6 @@ struct WorkoutTypeView: View {
 
 struct WorkoutTypeView_Previews: PreviewProvider {
     static var previews: some View {
-        WorkoutTypeView()
+        WorkoutTypeView(userEmail: "bg15407@gmail.com")
     }
 }
