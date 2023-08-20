@@ -35,6 +35,10 @@ struct WorkoutHomeView: View {
         let progress = 1 - (percent / 100)
         
         VStack (alignment: .leading){
+            Text("Workout Summary")
+                .font(.title3).bold()
+                .padding(.leading)
+            
             DatePicker("Pick a date", selection: $date, displayedComponents: .date)
                 .accentColor(.orange)
                 .padding()
