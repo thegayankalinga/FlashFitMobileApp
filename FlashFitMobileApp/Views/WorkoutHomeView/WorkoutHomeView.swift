@@ -56,11 +56,11 @@ struct WorkoutHomeView: View {
                     Color(hex:0xFDB137)
                     ZStack{
                         Circle()
-                            .stroke(Color.white ,style: StrokeStyle(lineWidth: 10))
+                            .stroke(Color.white ,style: StrokeStyle(lineWidth: 8))
                             .frame(width: width, height: height)
                         Circle()
                             .trim(from: CGFloat(progress), to: 1)
-                            .stroke(Color.orange, style: StrokeStyle(lineWidth: 10, lineCap: .round, lineJoin: .round, miterLimit: .infinity, dash: [20,0], dashPhase: 0))
+                            .stroke(Color.orange, style: StrokeStyle(lineWidth: 8, lineCap: .round, lineJoin: .round, miterLimit: .infinity, dash: [20,0], dashPhase: 0))
                             .rotationEffect(.degrees(90))
                             .rotation3DEffect(.degrees(180), axis: (x: 1, y: 0, z: 0))
                             .frame(width: width, height: height)
