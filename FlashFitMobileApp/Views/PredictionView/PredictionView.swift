@@ -9,7 +9,7 @@ import CoreML
 import SwiftUI
 
 struct PredictionView: View {
-        
+    
     @EnvironmentObject var user: LoggedInUserModel
     @Environment(\.managedObjectContext) var moc
     @ObservedObject var workoutVm =  WorkoutViewModel()
@@ -20,29 +20,72 @@ struct PredictionView: View {
     @State private var healthStatus = ""
     @State private var predictedCalories = 0.0
     @State private var hasExercised = 0
+    @State private var suggestion = "No Data Found"
     
     var body: some View {
-        VStack{
-            DatePicker("Pick a Date", selection: $selectedDate, displayedComponents: .date)
-                .padding()
-
-            if predictedWeight != 0 {                
-                HStack {
-                    Text("Predicted Weight:")
-                    Text(String(format: "%.2f", predictedWeight))
-                }
-                HStack{
-                    Text("BMI Value:")
-                    Text(String(format: "%.2f", BMI))
-                }
-                HStack{
-                    Text("Predicted Health Status:")
-                    Text(healthStatus)
-                }
-            }
+        VStack {
+            Text("Predictions")
+                .font(.title3).bold()
+                .padding(.leading)
+                .padding(.top)
+                .frame(alignment: .leading)
             
-            Button("Calculate", action: calculateHealthStatus)
+            DatePicker("Select a Date", selection: $selectedDate, displayedComponents: .date)
                 .padding()
+                .accentColor(.orange)
+            
+            ZStack {
+                RoundedRectangle(cornerRadius: 20)
+                    .foregroundColor(.orange)
+                    .frame(height: 150)
+                
+                VStack(alignment: .leading, spacing: 10) {
+                    Text("Predicted Weight (Kg)")
+                        .font(.body)
+                    Text("Predicted BMI")
+                        .font(.body)
+                    Text("Health Status")
+                        .font(.body)
+                }
+                .offset(x: -60, y: 0)
+                
+                VStack(alignment: .trailing, spacing: 10) {
+                    Text("\(predictedWeight != 0 ? String(format: "%.1f", predictedWeight) : "0.0")")
+                        .font(.headline)
+                    Text("\(predictedWeight != 0 ? String(format: "%.1f", BMI) : "0.0")")
+                        .font(.headline)
+                    Text("\(predictedWeight != 0 ? healthStatus : "0.0")")
+                        .font(.headline)
+                }
+                .offset(x: 110, y: 0)
+            }
+            .padding()
+            
+            ZStack {
+                RoundedRectangle(cornerRadius: 20)
+                    .foregroundColor(.orange)
+                    .frame(height: 250)
+                
+                VStack(alignment: .leading, spacing: 10) {
+                    HStack{
+                        Image(systemName: "stethoscope").padding(5).bold()
+                        Text("Suggestions")
+                            .font(.headline)
+                    }.padding(.bottom)
+                    
+                    Text("\(suggestion)")
+                        .font(.body)
+                        .padding(.leading)
+                }
+                .offset(x: 0, y: -60)
+            }
+            .padding()
+            
+            
+            Spacer()
+            
+            PrimaryActionButton(actionName: "Calculate", icon: "chevron.forward", disabled: false, onClick: calculateHealthStatus)
+            
         }
     }
     
@@ -76,6 +119,9 @@ struct PredictionView: View {
             //TODO: Optional force unwrap
             BMI = calculateBMI(userId: user!, weight: predictedWeight)
             
+            // get suggestions
+            suggestion = getSuggestions(BMI: BMI)
+            
             // health status
             let status = calculateHealthStatus(BMI: BMI)
             healthStatus = status.rawValue
@@ -86,6 +132,20 @@ struct PredictionView: View {
             // error
         }
         
+    }
+    
+    // TODO: this can be move to DB
+    func getSuggestions(BMI: Double) -> String {
+        if BMI < 18.5 {
+            suggestion = "Consider increasing your calorie intake and engaging in muscle-building exercises"
+        } else if 18.5 <= BMI && BMI < 25 {
+            suggestion = "Maintain a balanced diet and regular physical activity"
+        } else if 25 <= BMI && BMI <= 40 {
+            suggestion = "Focus on portion control, balanced diet, and regular exercise"
+        } else if BMI >= 40.0 {
+            suggestion = "Consult a healthcare professional for personalized advice on diet and exercise"
+        }
+        return suggestion
     }
     
     // get avg calories consumption for a day
@@ -99,7 +159,7 @@ struct PredictionView: View {
         let groupedByDate = Dictionary(grouping: meals) { $0.date }
         
         var averageCaloriesPerDay: [Date: Double] = [:]
-
+        
         for (date, meals) in groupedByDate {
             let totalCalories = meals.map(\.calories).reduce(0, +)
             let averageCalories = totalCalories / Double(meals.count)
@@ -149,7 +209,7 @@ struct PredictionView: View {
         print("Predicted Calories == \(predictedCaloryConsumption)")
         return predictedCaloryConsumption
     }
-
+    
     // check if the avg workout time is more than 20 mins
     // walk = 1 if avg workout time above 20mins
     func userHasExercised(userId: String) -> Int{
@@ -162,7 +222,7 @@ struct PredictionView: View {
         let groupedByDate = Dictionary(grouping: workouts) { $0.date }
         
         var averageTimePerDay: [Date: Double] = [:]
-
+        
         for (date, workouts) in groupedByDate {
             let totalTime = workouts.map(\.duration).reduce(0, +)
             let averageTime = totalTime / Double(workouts.count)
@@ -220,11 +280,11 @@ struct PredictionView: View {
         }
         return hasExercised;
     }
-
+    
     // calculate health status by the BMI
     func calculateHealthStatus(BMI: Double) -> HealthStatusEnum {
         if BMI < 18.5 {
-          return .Underweight
+            return .Underweight
         } else if 18.5 <= BMI && BMI < 25 {
             return .Normalweight
         } else if 25 <= BMI && BMI <= 40 {
@@ -241,10 +301,10 @@ struct PredictionView: View {
         // todo : fetch user details
         // height
         let height = 164.0 / 100
-
+        
         // calculate BMI
         let BMI = weight / (height * height)
-
+        
         return BMI
     }
     
