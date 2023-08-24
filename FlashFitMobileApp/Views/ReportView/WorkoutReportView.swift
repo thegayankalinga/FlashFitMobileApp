@@ -75,7 +75,7 @@ struct WorkoutReportView: View {
                     
                     VStack (alignment: .leading, spacing: 30){
                         HStack {
-                            Image(systemName: "dumbbell.fill")
+                            Image(systemName: "figure.walk")
                             Text("Workout Duration")
                                 .font(.footnote)
                         }
