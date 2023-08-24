@@ -94,7 +94,7 @@ class MealViewModel : ObservableObject {
     }
     
     // fetch total time in a given date
-    /*func getWorkoutTimeByDay(_ moc: NSManagedObjectContext, userId: String, date: Date) -> Double {
+    func getTotalMealsByDay(_ moc: NSManagedObjectContext, userId: String, date: Date) -> Int {
         let request = NSFetchRequest<MealRecordEntity>(entityName: "MealRecordEntity")
         
         let calendar = Calendar.current
@@ -103,21 +103,19 @@ class MealViewModel : ObservableObject {
         
         request.predicate = NSPredicate(format: "userEmail == %@ AND recordDate >= %@ AND recordDate < %@", userId, startDate as NSDate, endDate as NSDate)
         
-        var total: Double = 0.0
+        var total: Int = 0
         
         do {
             let results  = try moc.fetch(request)
             
             if !results.isEmpty {
-                for workout in results {
-                    total = total + workout.duration
-                }
+                total = results.count
             }
         } catch let error {
             print("Error fetching. \(error)")
         }
         return total
-    }*/
+    }
     
     // save data
     func addMeal(moc: NSManagedObjectContext, type: UUID, potions: Int16, date: Date, calories:String, weight: String, userId: String) {

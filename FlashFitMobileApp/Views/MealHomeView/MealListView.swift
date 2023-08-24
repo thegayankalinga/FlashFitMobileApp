@@ -32,28 +32,10 @@ struct MealListView: View {
                                         Text("Meal Type")
                                         Spacer()
                                         HStack {
-                                            Text("meal type id") //TODO: set meal type
+                                            Text("set meal type id") //TODO: set meal type
                                         }
                                     }
-                                    
-                                    HStack(spacing: 4) { // potions
-                                        Text("No of Potions")
-                                        
-                                        Spacer()
-                                        
-                                        Text("\(Int(entity.noOfPotions) / 60)")
-                                        Text("hrs")
-                                            .font(.footnote)
-                                            .foregroundColor(.secondary)
-                                            .fontWeight(.semibold)
-                                        
-                                        Text("\(Int(entity.totalCaloriesGained) % 60)")
-                                        Text("mins")
-                                            .font(.footnote)
-                                            .foregroundColor(.secondary)
-                                            .fontWeight(.semibold)
-                                    }
-                                    
+                                                                    
                                     HStack (spacing: 4){ // calories
                                         Text("Caories Gained")
                                         Spacer()
@@ -66,6 +48,12 @@ struct MealListView: View {
                                         }
                                     }
                                     .padding(.bottom, 2)
+                                    
+                                    HStack(spacing: 4) { // potions
+                                        Text("No of Potions")
+                                        Spacer()
+                                        Text("\(Int(entity.noOfPotions))")
+                                    }
                                 }
                             }
                             .font(.caption)
