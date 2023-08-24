@@ -55,7 +55,8 @@ struct PopoverView: View {
     @Binding var selectedOption: String?
     
     var body: some View {
-        AddWorkoutView()
+        //AddWorkoutView()
+        AddMealView()
       /*  VStack {
             HStack{
                 Button(action: {
