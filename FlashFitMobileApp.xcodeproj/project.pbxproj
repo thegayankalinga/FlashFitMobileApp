@@ -81,7 +81,6 @@
 		B6D1FD2D2A8A650100BD4BAC /* MealTypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D1FD2C2A8A650100BD4BAC /* MealTypeView.swift */; };
 		B6D1FD312A8A662F00BD4BAC /* AddMealTypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D1FD302A8A662F00BD4BAC /* AddMealTypeView.swift */; };
 		B6D1FD332A8A66AB00BD4BAC /* MealListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D1FD322A8A66AB00BD4BAC /* MealListView.swift */; };
-		B6D1FD352A8A66C000BD4BAC /* EditMealView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D1FD342A8A66C000BD4BAC /* EditMealView.swift */; };
 		B6D1FD372A8A66CF00BD4BAC /* AddMealView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D1FD362A8A66CF00BD4BAC /* AddMealView.swift */; };
 		B6D1FD392A8A677400BD4BAC /* AddMealTypeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D1FD382A8A677400BD4BAC /* AddMealTypeViewModel.swift */; };
 		B6D1FD3B2A8A706800BD4BAC /* SheetCloseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D1FD3A2A8A706800BD4BAC /* SheetCloseButton.swift */; };
@@ -184,7 +183,6 @@
 		B6D1FD2C2A8A650100BD4BAC /* MealTypeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealTypeView.swift; sourceTree = "<group>"; };
 		B6D1FD302A8A662F00BD4BAC /* AddMealTypeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMealTypeView.swift; sourceTree = "<group>"; };
 		B6D1FD322A8A66AB00BD4BAC /* MealListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealListView.swift; sourceTree = "<group>"; };
-		B6D1FD342A8A66C000BD4BAC /* EditMealView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditMealView.swift; sourceTree = "<group>"; };
 		B6D1FD362A8A66CF00BD4BAC /* AddMealView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMealView.swift; sourceTree = "<group>"; };
 		B6D1FD382A8A677400BD4BAC /* AddMealTypeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMealTypeViewModel.swift; sourceTree = "<group>"; };
 		B6D1FD3A2A8A706800BD4BAC /* SheetCloseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetCloseButton.swift; sourceTree = "<group>"; };
@@ -306,7 +304,6 @@
 			children = (
 				72732F3F2A7F7274009B80AA /* MealHomeView.swift */,
 				B6D1FD322A8A66AB00BD4BAC /* MealListView.swift */,
-				B6D1FD342A8A66C000BD4BAC /* EditMealView.swift */,
 				B6D1FD362A8A66CF00BD4BAC /* AddMealView.swift */,
 				72F791B82A9791BA006FB4A4 /* MealViewModel.swift */,
 				B6B705AA2A986B8A00EFFAFD /* AddMealRecordViewModel.swift */,
@@ -667,7 +664,6 @@
 				B6D1FD2A2A89C8F200BD4BAC /* WorkoutModel.swift in Sources */,
 				B617B3DA2A7EB7CA00613526 /* HomeScreenView.swift in Sources */,
 				B621B2722A87338E001C4711 /* HealthStatusEnum.swift in Sources */,
-				B6D1FD352A8A66C000BD4BAC /* EditMealView.swift in Sources */,
 				B621B2702A873365001C4711 /* GenderTypeEnum.swift in Sources */,
 				72732F3D2A7F724D009B80AA /* WorkoutHomeView.swift in Sources */,
 				B6D1FCFB2A8768F100BD4BAC /* LoginViewModel.swift in Sources */,

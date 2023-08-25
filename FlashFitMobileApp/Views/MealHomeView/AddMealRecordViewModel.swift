@@ -35,9 +35,9 @@ class AddMealRecordViewModel: ObservableObject{
     }
 
     init(_ mealRecordEntity: MealRecordEntity){
+        print(mealRecordEntity.mealRecordID)
         recordID = mealRecordEntity.mealRecordID
         id = recordID
-        //selectedMealType =
         mealTypeID = mealRecordEntity.mealType
         noOfPotions = mealRecordEntity.noOfPotionsConsumed
         date = mealRecordEntity.recordCreatedDate
@@ -99,6 +99,21 @@ class AddMealRecordViewModel: ObservableObject{
     
     func getMealTypeByUUID(moc: NSManagedObjectContext){
         let id = self.mealTypeID
+        let fetchRequest: NSFetchRequest<MealTypeEntity> = MealTypeEntity.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "typeID == %@", id as CVarArg)
+        
+        do {
+           
+            selectedMealType = try moc.fetch(fetchRequest).first
+            
+        } catch {
+            print("Error checking for value existence: \(error)")
+         
+        }
+    }
+    
+    func getMealTypeBySpecificID(id: UUID, moc: NSManagedObjectContext){
+       
         let fetchRequest: NSFetchRequest<MealTypeEntity> = MealTypeEntity.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "typeID == %@", id as CVarArg)
         

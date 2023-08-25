@@ -13,14 +13,15 @@ struct MealListView: View {
     @Environment(\.managedObjectContext) var moc
     
     @ObservedObject var mealVm =  MealViewModel()
+    @ObservedObject var viewModel: AddMealRecordViewModel
     
     var body: some View {
         
         VStack (alignment: .center){
 
             List{
-                ForEach(mealVm.savedMeals) { entity in
-                    NavigationLink(destination: EditMealView(entity: entity)) {
+                ForEach(viewModel.myMealRecords) { entity in
+                    NavigationLink(destination: MealReocrdFormType.update(entity)) {
                         HStack {
                             VStack{
                                 Text("\(dateFormatted(date: entity.recordDate ?? Date.now))")
@@ -30,9 +31,18 @@ struct MealListView: View {
                                         Text("Meal Type")
                                         Spacer()
                                         HStack {
-                                            Text("No type name")
+                                            if let value = viewModel.selectedMealType{
+                                                
+                                                Text(value.mealType)
+                                               
+                                            }else{
+                                                Text("No Type Value")
+                                            }
                                         }
                                     }
+                                    .onAppear(perform: {
+                                        viewModel.getMealTypeBySpecificID(id: entity.mealType, moc: moc)
+                                    })
                                                                     
                                     HStack (spacing: 4){ // calories
                                         Text("Caories Gained")
@@ -53,6 +63,7 @@ struct MealListView: View {
                                         Text("\(Int(entity.noOfPotions))")
                                     }
                                 }
+                                
                             }
                             .font(.caption)
                         }
@@ -66,7 +77,8 @@ struct MealListView: View {
                 })
             }
             .onAppear(perform : {
-                mealVm.getMeals(moc, userId: user.email!)
+                //mealVm.getMeals(moc, userId: user.email!)
+                viewModel.getAllMealRecordsByEmail(email: user.email!, moc: moc)
             })
             
             var groupedWorkouts: [String: [MealRecordEntity]] {
@@ -88,7 +100,7 @@ struct MealListView: View {
 
 struct MealListView_Previews: PreviewProvider {
     static var previews: some View {
-        MealListView()
+        MealListView(viewModel: AddMealRecordViewModel())
             .environmentObject(MealViewModel())
     }
 }

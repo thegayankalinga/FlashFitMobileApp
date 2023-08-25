@@ -75,9 +75,12 @@ struct AddMealView: View {
                                 //print("Appear")
                                 //print(viewModel.selectedMealType)
                                 viewModel.getAllMealTypes(email: user.email!, moc: moc)
-                                viewModel.calTotalCalories(moc: moc)
+                                if(!viewModel.updating){
+                                    viewModel.calTotalCalories(moc: moc)
+                                }
                                 if (viewModel.updating){
                                     print("updating")
+                                    viewModel.getMealTypeByUUID(moc: moc)
                                     viewModel.getMealTypeByUUID(moc: moc)
                                     
                                 }
@@ -97,7 +100,7 @@ struct AddMealView: View {
                                 .focused($isFocused, equals: .caloriesGained)
                                 .textFieldStyle(GradientTextFieldBackground(systemImageString: "mouth", colorList: [.blue, .green]))
                                 .padding(.bottom)
-                                .disabled(true)
+                                
                             
                             Divider()
                             
@@ -107,10 +110,12 @@ struct AddMealView: View {
                                 .textFieldStyle(GradientTextFieldBackground(systemImageString: "scalemass", colorList: [.blue, .green]))
                                 .padding(.bottom)
                             
-                            Divider()
-                            Toggle("Add More", isOn: $viewModel.isAddMoreChecked.animation())
-                                .padding(.leading, 25)
-                                .padding(.trailing, 25)
+                            if(!viewModel.updating){
+                                Divider()
+                                Toggle("Add More", isOn: $viewModel.isAddMoreChecked.animation())
+                                    .padding(.leading, 25)
+                                    .padding(.trailing, 25)
+                            }
                             
                         }
                         .padding()
@@ -126,12 +131,15 @@ struct AddMealView: View {
   
                     isFocused = nil
              
-                    //viewModel.getAllMealRecordsByEmail(email: user.email!, moc: moc)
+                    viewModel.getAllMealRecordsByEmail(email: user.email!, moc: moc)
                         
                     if viewModel.updating{
                         print("updating")
-                        if let id = viewModel.id,
+                        print(viewModel.myMealRecords)
+                        if let id = viewModel.recordID,
                            let selectedItem = viewModel.myMealRecords.first(where: {$0.mealRecordID == id}){
+                            
+                            print(selectedItem)
                             selectedItem.recordDate = viewModel.date
                             selectedItem.totalCaloriesGained = Double(viewModel.totalCalories) ?? 0
                             selectedItem.userEmail = user.email
@@ -147,7 +155,7 @@ struct AddMealView: View {
                                 dismiss()
                             }
                         }else{
-                            
+                            print(viewModel.totalCalories)
                             let newRecord = MealRecordEntity(context: moc)
                             newRecord.recordID = UUID()
                             newRecord.userEmail = user.email!

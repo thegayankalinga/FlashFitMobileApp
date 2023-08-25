@@ -111,7 +111,7 @@ struct MealHomeView: View {
                 .padding(.bottom, 10)
             }
             
-            NavigationLink("Update Recorded Meals", destination: MealListView()).accentColor(.orange)
+            NavigationLink("Update Recorded Meals", destination: MealListView(viewModel: AddMealRecordViewModel()).accentColor(.orange))
         }
         .navigationTitle("Meals")
         .onAppear {
