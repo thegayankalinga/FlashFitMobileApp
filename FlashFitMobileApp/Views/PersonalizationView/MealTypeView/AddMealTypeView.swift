@@ -101,7 +101,7 @@ struct AddMealTypeView: View {
                     Spacer()
                     
                 }
-                PrimaryActionButton(actionName: "Save", icon: "checkmark", disabled: viewModel.incomplete){
+                PrimaryActionButton(actionName: "Save", icon: "checkmark", disabled: !viewModel.incomplete){
                     isFocused = nil
                     //TODO: Optional force unwrap
                     viewModel.getAllMealTypes(email: user.email!, moc: moc)
@@ -136,6 +136,7 @@ struct AddMealTypeView: View {
                     
                     print("saved")
                 }
+                .opacity(viewModel.incomplete ? 1 : 0.6)
                 .padding(.bottom, 25)
                 
             }
