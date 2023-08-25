@@ -6,6 +6,8 @@
 //
 
 import SwiftUI
+import PhotosUI
+import CoreData
 
 struct EditProfileView: View {
     
@@ -14,14 +16,37 @@ struct EditProfileView: View {
     @Environment(\.dismiss) var dismiss
     @Environment(\.managedObjectContext) var moc
     
-    @StateObject var viewModel = EditProfileViewModel()
+    @StateObject var imagePicker  = ImagePicker()
+    @StateObject var viewModel: EditProfileViewModel
     @State private var showingAlert = false
     
     @State private var alertHeading = ""
     @State private var alertMessage = ""
     
+    @FocusState private var isFocused: FocusedField?
+    
+    enum FocusedField{
+        case name, height, weight
+        
+    }
+    
     var body: some View {
         VStack {
+            
+            
+            Image(uiImage: viewModel.userImage)
+                .resizable()
+                .scaledToFill()
+                .frame(width: 64 , height: 64)
+                .clipShape(Circle())
+            HStack{
+                PhotosPicker("Select Image",
+                     selection: $imagePicker.imageSelection,
+                     matching: .images,
+                     photoLibrary: .shared())
+
+            }
+            .padding(.bottom, 15)
             
            Form {
                Section (header: Text("Personal Details")){
@@ -57,32 +82,85 @@ struct EditProfileView: View {
 
            
             Spacer()
-            PrimaryActionButton(actionName: "Update", icon: "pencil.line", disabled: false){
-                do{
-                    let response = try viewModel.update(email: user.email ?? "", moc: moc)
-                    if(response == 201){
+            
+            PrimaryActionButton(actionName: "Update", icon: "checkmark", disabled: viewModel.incomplete){
+                isFocused = nil
+                
+                viewModel.getTheUserDetailsToUpdate(email: user.email!, moc: moc)
+                if viewModel.updating{
+                    print("updating")
+                    if(viewModel.id == ""){
+                        viewModel.id = UUID().uuidString
+                    }
+                    if let id = viewModel.id,
+                       let selectedItem = viewModel.userToUpdate{
+                        let bmi = UserService.calculateBmi(weight: Double(viewModel.weight) ?? 0.0, height: Double(viewModel.height) ?? 0.0)
+                        selectedItem.name = viewModel.name
+                        selectedItem.weight = Double(viewModel.weight) ?? 0.0
+                        selectedItem.height = Double(viewModel.height) ?? 0.0
+                        selectedItem.genderType = viewModel.selectedGender.rawValue
+                        selectedItem.dateOfBirth = viewModel.dob
+                        selectedItem.bmi = bmi
+                        selectedItem.healthStatus = UserService.getHealthStatus(bodyMassIndexValue: bmi).rawValue
+                        FileManager().saveImage(with: id, image: viewModel.userImage)
+                        
+                        if moc.hasChanges{
+                            try? moc.save()
+                        }
+                        
                         alertHeading = "Update Successful"
                         alertMessage = "\(viewModel.name) Updated Successful"
                         showingAlert.toggle()
                         print("\(viewModel.name) Updated Successful")
                     }
-                }catch UpdateError.UpdateFailed{
-                    alertHeading = "Update Failed"
-                    alertMessage = "Update Failed, Please re-try later"
-                    showingAlert.toggle()
-                    print("Update Failed")
-                }catch UpdateError.UserNotFound{
-                    alertHeading = "User not found for update"
-                    alertMessage = "User details not found, please re-try later"
-                    showingAlert.toggle()
-                    print("User not found")
-                    
-                }catch{
-                    alertHeading = "Unknown Error"
-                    alertMessage = "Please re-try later, update unsuccessful"
-                    showingAlert.toggle()
-                    print("Something went wrong")
                 }
+            
+                
+               
+            }
+            .opacity(!viewModel.incomplete ? 1 : 0.6)
+            .padding(.bottom, 25)
+//            PrimaryActionButton(actionName: "Update", icon: "pencil.line", disabled: false){
+//                do{
+//                    let response = try viewModel.update(email: user.email ?? "", moc: moc)
+//                    if(response == 201){
+//                        alertHeading = "Update Successful"
+//                        alertMessage = "\(viewModel.name) Updated Successful"
+//                        showingAlert.toggle()
+//                        print("\(viewModel.name) Updated Successful")
+//                    }
+//                }catch UpdateError.UpdateFailed{
+//                    alertHeading = "Update Failed"
+//                    alertMessage = "Update Failed, Please re-try later"
+//                    showingAlert.toggle()
+//                    print("Update Failed")
+//                }catch UpdateError.UserNotFound{
+//                    alertHeading = "User not found for update"
+//                    alertMessage = "User details not found, please re-try later"
+//                    showingAlert.toggle()
+//                    print("User not found")
+//
+//                }catch{
+//                    alertHeading = "Unknown Error"
+//                    alertMessage = "Please re-try later, update unsuccessful"
+//                    showingAlert.toggle()
+//                    print("Something went wrong")
+//                }
+//            }
+        }
+        .toolbar {
+            ToolbarItem(placement: .keyboard) {
+                Button{
+                    isFocused = nil
+                }label: {
+                    Image(systemName: "keyboard.chevron.compact.down")
+                }
+                
+            }
+        }
+        .onChange(of: imagePicker.uiImage){ newImage in
+            if let newImage{
+                viewModel.userImage = newImage
             }
         }
         .onAppear(perform: setUserDataAtLoad)
@@ -102,6 +180,7 @@ struct EditProfileView: View {
             if let email = user.email{
                 localUser = try UserService.getUserData(email: email, moc: moc)
                 viewModel.email = localUser.email
+                
                 viewModel.name = localUser.name
                 viewModel.height = String(format: "%.2f", localUser.heightInCentiMeter)
                 viewModel.dob = localUser.dateOfBirth
@@ -117,7 +196,7 @@ struct EditProfileView: View {
 
 struct EditProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        EditProfileView()
-            .environmentObject(LoggedInUserModel(email: "bg15407@gmail.com", name: "Gayan", height: 160, weight: 62))
+        EditProfileView(viewModel: EditProfileViewModel(UIImage(imageLiteralResourceName: "profile picture")))
+           
     }
 }

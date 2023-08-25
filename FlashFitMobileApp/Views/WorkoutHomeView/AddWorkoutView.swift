@@ -36,17 +36,21 @@ struct AddWorkoutView: View {
                 ScrollView {
                     VStack(alignment: .leading, spacing: 0.0) {
                         
-                        LogoShapeView()
-                        VStack(alignment: .leading){
-                            Text("\(viewModel.updating ? "Updating " : "Add Workout Record")")
-                                .font(.title)
-                                .fontWeight(.bold)
-                        }
-                        .padding(.top, 25)
-                        .padding(.leading, 25)
+                        LogoShapeView(heightLimiter: 0.5)
+                            .frame(minHeight: 160)
+                        Spacer()
+                        
                         
                         
                         VStack (alignment: .leading, spacing: 20){
+                            
+                            VStack(alignment: .leading){
+                                Text("\(viewModel.updating ? "Updating " : "Add Workout Record")")
+                                    .font(.title)
+                                    .fontWeight(.bold)
+                            }
+                            .padding(.top, 25)
+    //                        .padding(.leading, 25)
                             
                             DatePicker("Select a date", selection: $viewModel.workoutDate, displayedComponents: .date)
                                 .accentColor(.orange)
@@ -90,7 +94,7 @@ struct AddWorkoutView: View {
                                 
                                 
                                 
-                                Stepper("Duration \(stepperMessage)) ", value: $viewModel.workoutDuration, in: 1...300, step: 5){ value in
+                                Stepper("Duration \(stepperMessage)", value: $viewModel.workoutDuration, in: 1...300, step: 5){ value in
                                     print(viewModel.workoutDuration)
                                     
                                     if(viewModel.workoutDuration < 60){

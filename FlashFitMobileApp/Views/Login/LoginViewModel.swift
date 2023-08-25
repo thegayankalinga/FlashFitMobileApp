@@ -19,9 +19,9 @@ class LoginViewModel: ObservableObject{
     @Published var password = "gayan"
     
     
-    func login(email: String, password: String, moc: NSManagedObjectContext)throws -> UserModel{
+    func login(email: String, password: String, moc: NSManagedObjectContext)throws -> UserModelEntity{
         
-        var user: UserModel
+        var user: UserModelEntity
         
         //Getuser from the DB
         let fetchRequest: NSFetchRequest<UserModelEntity> = UserModelEntity.fetchRequest()
@@ -34,19 +34,36 @@ class LoginViewModel: ObservableObject{
             if(data == nil){
                 throw LoginError.invalidUser
             }else{
-                user = UserModel(
-                    email: (data?.email)!,
-                    name: (data?.name)!,
-                    passwordSalt: (data?.passwordSalt)!,
-                    passwordHash: (data?.passwordHash)!,
-                    dateOfBirth: data?.dateOfBirth ?? Date.now,
-                    genderType: GenderTypeEnum(rawValue: (data?.genderType)!)!,
-                    weightInKilos: (data?.weight)!,
-                    heightInCentiMeter: (data?.height)!,
-                    bodyMassIndex: (data?.bmi)!,
-                    healthStatus: HealthStatusEnum(rawValue: (data!.healthStatus)!)!,
-                    createdDate: (data?.createdDate)!
-                )
+                
+                user = UserModelEntity(context: moc)
+                user.email = (data?.email)!
+                user.name = (data?.name)!
+                user.passwordSalt = (data?.passwordSalt)!
+                user.passwordHash = (data?.passwordHash)!
+                user.dateOfBirth = data?.dateOfBirth ?? Date.now
+                user.genderType = data?.genderType!
+                user.weight = (data?.weight)!
+                user.height = (data?.height)!
+                user.bmi = (data?.bmi)!
+                user.healthStatus = data?.healthStatus!
+                user.createdDate = (data?.createdDate)!
+                user.userImageId = (data?.userImageId)
+//                user.im = (data?.uiImage) ?? UIImage(imageLiteralResourceName: "profile picture")
+                
+//                user = UserModel(
+//                    email: (data?.email)!,
+//                    name: (data?.name)!,
+//                    passwordSalt: (data?.passwordSalt)!,
+//                    passwordHash: (data?.passwordHash)!,
+//                    dateOfBirth: data?.dateOfBirth ?? Date.now,
+//                    genderType: GenderTypeEnum(rawValue: (data?.genderType)!)!,
+//                    weightInKilos: (data?.weight)!,
+//                    heightInCentiMeter: (data?.height)!,
+//                    bodyMassIndex: (data?.bmi)!,
+//                    healthStatus: HealthStatusEnum(rawValue: (data!.healthStatus)!)!,
+//                    createdDate: (data?.createdDate)!,
+//                    image: (data?.uiImage) ?? UIImage(imageLiteralResourceName: "profile picture")
+//                )
             }
             
         } catch {
@@ -56,7 +73,7 @@ class LoginViewModel: ObservableObject{
     
         
         //Assign Salt
-        let salt: String = user.passwordSalt
+        let salt: String = user.passwordSalt!
      
         let passwordHash = PasswordHasher.computeHash(password: password, salt: salt, pepper: pepper, iteration: passwordHasherIteration)
         

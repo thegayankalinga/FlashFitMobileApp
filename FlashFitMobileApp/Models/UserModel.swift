@@ -8,12 +8,13 @@
 
 import Foundation
 import CoreData
-
+import UIKit
 class UserModel: Identifiable, ObservableObject{
     var id = UUID()
     
     @Published var email: String
     @Published var name: String
+
     @Published var passwordSalt: String
     @Published var passwordHash: String
     @Published var dateOfBirth: Date
@@ -23,8 +24,10 @@ class UserModel: Identifiable, ObservableObject{
     @Published var bodyMassIndex: Double
     @Published var healthStatus: HealthStatusEnum
     @Published var createdDate: Date
+    @Published var userImage: UIImage
     
-    init(id: UUID = UUID(), email: String, name: String, passwordSalt: String, passwordHash: String, dateOfBirth: Date, genderType: GenderTypeEnum, weightInKilos: Double, heightInCentiMeter: Double, bodyMassIndex: Double, healthStatus: HealthStatusEnum, createdDate: Date) {
+    
+    init(id: UUID = UUID(), email: String, name: String, passwordSalt: String, passwordHash: String, dateOfBirth: Date, genderType: GenderTypeEnum, weightInKilos: Double, heightInCentiMeter: Double, bodyMassIndex: Double, healthStatus: HealthStatusEnum, createdDate: Date, image: UIImage) {
         self.id = id
         self.email = email
         self.name = name
@@ -37,7 +40,10 @@ class UserModel: Identifiable, ObservableObject{
         self.bodyMassIndex = bodyMassIndex
         self.healthStatus = healthStatus
         self.createdDate = createdDate
+        self.userImage = image
     }
+    
+    
     
     
 }
