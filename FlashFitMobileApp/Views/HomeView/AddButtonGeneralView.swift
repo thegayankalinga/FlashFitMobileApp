@@ -19,7 +19,6 @@ struct AddButtonGeneralView: View{
                 
             }
         }
-        
-        
+   
     }
 }

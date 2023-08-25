@@ -10,6 +10,8 @@ import SwiftUI
 struct ContentView: View {
     
     @State private var showPopUp = false
+    @State private var showMealAddSheet = false
+    @State private var showWorkoutAddSheet = false
     //@State private var selectedOption: String? = nil
     @State private var selectedTab: String = "home"
     @State private var previousSelectedTab: String = "pd"
@@ -18,10 +20,10 @@ struct ContentView: View {
     @Environment(\.dismiss) var dismiss
     
     var body: some View {
-     
-     
+        NavigationView{
+            VStack{
                 TabView(selection: $selectedTab){
-
+                    
                     HomeScreenView()
                         .onAppear() {
                             print("home")
@@ -45,12 +47,12 @@ struct ContentView: View {
                         .tag("workouthome")
                     
                     
-                    PopoverView(selectedOption: $previousSelectedTab, userEmail: user.email!)
+                    HomeScreenView()
                         .tabItem {
                             Label("Add", systemImage: "plus.circle.fill")
                         }
                         .tag("add_button")
-
+                    
                     MealHomeView()
                         .onAppear() {
                             print("meal tapped")
@@ -69,67 +71,45 @@ struct ContentView: View {
                             Label("Report", systemImage: "doc.text.below.ecg.fill")
                         }
                         .tag("report")
-                }.onChange(of: selectedTab){ value in
+                }
+                .onChange(of: selectedTab){ value in
                     
-                    if selectedTab == "add_button"{
-                        self.showPopUp = true
+                    if (selectedTab == "add_button" && previousSelectedTab == "mealhome"){
+                        self.showMealAddSheet.toggle()
+                    }else if (selectedTab == "add_button" && previousSelectedTab == "workouthome"){
+                        self.showWorkoutAddSheet.toggle()
+                    }else if selectedTab == "add_button"{
+                        self.showPopUp.toggle()
                     }
                     print("previousSelectedTab: \(previousSelectedTab)")
                     print(value)
                     selectedTab = value
                 }
-    
-            .sheet(isPresented: $showPopUp, onDismiss: {
+            }
+            .sheet(isPresented: $showMealAddSheet, onDismiss: {
                 self.selectedTab = previousSelectedTab
             }) {
-                PopoverView(selectedOption: $previousSelectedTab, userEmail: user.email!)
+                AddMealView(userEmail: user.email!)
+            }
+            .sheet(isPresented: $showWorkoutAddSheet, onDismiss: {
+                self.selectedTab = previousSelectedTab
+                
+            }) {
+                AddWorkoutView()
+                    
+            }
+            .sheet(isPresented: $showPopUp, onDismiss: {
+                self.selectedTab = previousSelectedTab
+                
+            }) {
+                AddButtonGeneralView()
+                    .presentationDetents([.height(100), .fraction(0.2)])
             }
             .padding()
-            
-            
-    
-
+        }
     }
 }
 
-
-
-// TODO *****
-struct PopoverView: View {
-    @Binding var selectedOption: String
-    var userEmail: String
-    
-    var body: some View {
-        //AddWorkoutView()
-        if(selectedOption == "workouthome"){
-            AddWorkoutView()
-        }else if(selectedOption == "mealhome"){
-            AddMealView(userEmail: userEmail)
-        }else{
-            AddButtonGeneralView()
-        }
-      /*  VStack {
-            HStack{
-                Button(action: {
-                    selectedOption = "w"
-                    
-                }) {
-                    Text("Workout")
-                }
-               // Spacer()
-                Button(action: {
-                    selectedOption = "m"
-                }) {
-                    Text("Meal")
-                }
-            }.padding()
-        }
-        .foregroundColor(.black)
-        .frame(width: 300, height: 150)
-        .background(.orange) */
-    }
-    
-}
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
