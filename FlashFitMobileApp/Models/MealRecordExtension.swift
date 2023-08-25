@@ -24,6 +24,9 @@ extension MealRecordEntity{
         mealTypeID ?? UUID()
     }
     
+    var mealTypeNameFromRecord: String{
+        mealTypeName ?? ""
+    }
     
     var userID: String{
         userEmail ?? ""

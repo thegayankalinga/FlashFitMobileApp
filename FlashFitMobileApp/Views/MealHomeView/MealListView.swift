@@ -31,13 +31,14 @@ struct MealListView: View {
                                         Text("Meal Type")
                                         Spacer()
                                         HStack {
-                                            if let value = viewModel.selectedMealType{
-                                                
-                                                Text(value.mealType)
-                                               
-                                            }else{
-                                                Text("No Type Value")
-                                            }
+                                            Text("\(entity.mealTypeNameFromRecord)")
+//                                            if let value = viewModel.selectedMealType{
+//
+//                                                Text(value.mealType)
+//
+//                                            }else{
+//                                                Text("No Type Value")
+//                                            }
                                         }
                                     }
                                     .onAppear(perform: {
@@ -72,8 +73,7 @@ struct MealListView: View {
                     
                 }
                 .onDelete(perform: { indexSet in
-
-                    mealVm.deleteMeal(moc, indexSet: indexSet, userId: user.email!)
+                    viewModel.deleteMeal(moc, indexSet: indexSet, userId: user.email!)
                 })
             }
             .onAppear(perform : {

@@ -13,7 +13,8 @@ struct MealsReportView: View {
     @EnvironmentObject var user: LoggedInUserModel
     @Environment(\.managedObjectContext) var moc
     
-    @ObservedObject var mealVm =  MealViewModel()
+    //@ObservedObject var mealVm =  MealViewModel()
+    @ObservedObject var viewModel = AddMealRecordViewModel()
     
     @State var date: Date = Date()
     @State private var totalCaloriesForSelectedDate: Double = 0.0
@@ -105,7 +106,7 @@ struct MealsReportView: View {
             ZStack {
                 Color(hex:0xF5F5F5)
                 Chart {
-                    ForEach(mealVm.savedDailyMeals) { day in
+                    ForEach(viewModel.savedDailyMeals) { day in
                         BarMark(x: .value("Meal ", "day.mealTypeID" ?? ""), //TODO: meal type name
                                 y: .value("Calories (kcal)", day.totalCaloriesGained)
                         )
@@ -117,7 +118,7 @@ struct MealsReportView: View {
                 .chartXAxis {
                     /* AxisMarks(values: mealVm.savedDailyMeals.map {$0.mealTypeID ?? UUID}) { type in //TODO:                             AxisValueLabel()
                      } */
-                    AxisMarks(values: mealVm.savedDailyMeals.map {_ in "mealid" ?? "Unknown"}) { type in
+                    AxisMarks(values: viewModel.savedDailyMeals.map {_ in "mealid" ?? "Unknown"}) { type in
                         AxisValueLabel()
                     }
                 }
@@ -140,15 +141,15 @@ struct MealsReportView: View {
     
     // calculate total calories burnt in a given week
     func getTotalCalories() {
-        totalCaloriesForSelectedDate = mealVm.getCaloriesForByDay(moc, userId: user.email!, date: date)
+        totalCaloriesForSelectedDate = viewModel.getCaloriesForByDay(moc, userId: user.email!, date: date)
     }
     
     func getSummaryData() {
-        mealVm.getDailyMeals(moc, userId: user.email!, date: date)
+        viewModel.getDailyMeals(moc, userId: user.email!, date: date)
     }
     
     func getTotalMeals() {
-        totalMeals = mealVm.getTotalMealsByDay(moc, userId: user.email!, date: date)
+        totalMeals = viewModel.getTotalMealsByDay(moc, userId: user.email!, date: date)
     }
 }
 

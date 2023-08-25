@@ -14,8 +14,8 @@ struct MealHomeView: View {
     @EnvironmentObject var user: LoggedInUserModel
     @Environment(\.managedObjectContext) var moc
     
-    @ObservedObject var mealVm =  MealViewModel()
-    
+    //@ObservedObject var mealVm =  MealViewModel()
+    @ObservedObject var viewModel =  AddMealRecordViewModel()
     @State var date: Date = Date()
     @State private var totalCaloriesForSelectedDate: Double = 0.0
     @State var dailyData: [MealRecordEntity] = []
@@ -87,8 +87,9 @@ struct MealHomeView: View {
                 ZStack {
                     Color(hex:0xF5F5F5)
                     Chart {
-                        ForEach(mealVm.savedDailyMeals) { day in
-                            BarMark(x: .value("Meal", "day.mealTypeID!"), //TODO: map meal type
+                        ForEach(viewModel.savedDailyMeals) { day in
+                            BarMark(x: .value("Meal",
+                                              day.mealTypeNameFromRecord),
                                     y: .value("Calories (kcal)", day.totalCaloriesGained)
                             )
                             .foregroundStyle(Color.orange)
@@ -97,13 +98,13 @@ struct MealHomeView: View {
                     }
                     .frame(height: 150)
                     .chartXAxis {
-                        //TODO: map meal type
-                        /*AxisMarks(values: mealVm.savedDailyMeals.map {$0.mealTypeID ?? "Unknown"}) { type in
-                            AxisValueLabel()
-                        }*/
-                        AxisMarks(values: mealVm.savedDailyMeals.map {_ in "mealid" ?? "Unknown"}) { type in
+                     
+                        AxisMarks(values: viewModel.savedDailyMeals.map {$0.mealTypeNameFromRecord}) { type in
                             AxisValueLabel()
                         }
+//                        AxisMarks(values: viewModel.savedDailyMeals.map {_ in "mealid"}) { type in
+//                            AxisValueLabel()
+//                        }
                     }
                 }
                 .frame(height: 200)
@@ -117,6 +118,8 @@ struct MealHomeView: View {
         .onAppear {
             getTotalCalories()
             getSummaryData()
+            viewModel.getAllMealTypes(email: user.email!, moc: moc)
+           
         }
         .onChange(of: date) { newValue in
             getTotalCalories()
@@ -127,12 +130,12 @@ struct MealHomeView: View {
     
     // calculate total calories burnt in a given date
     func getTotalCalories() {
-        totalCaloriesForSelectedDate = mealVm.getCaloriesForByDay(moc, userId: user.email!, date: date)
+        totalCaloriesForSelectedDate = viewModel.getCaloriesForByDay(moc, userId: user.email!, date: date)
         print("Calories", totalCaloriesForSelectedDate)
     }
     
     func getSummaryData() {
-        mealVm.getDailyMeals(moc, userId: user.email!, date: date)
+        viewModel.getDailyMeals(moc, userId: user.email!, date: date)
     }
     
 }

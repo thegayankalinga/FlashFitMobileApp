@@ -146,6 +146,7 @@ struct AddMealView: View {
                             selectedItem.weightAtRecord = Double(viewModel.weight) ?? 0.0
                             selectedItem.noOfPotions = Int16(viewModel.noOfPotions)
                             selectedItem.mealTypeID = viewModel.selectedMealType?.mealTypeID
+                            selectedItem.mealTypeName = viewModel.selectedMealType?.mealTypeName
                             selectedItem.recordID = viewModel.recordID
                         }
                             
@@ -158,6 +159,7 @@ struct AddMealView: View {
                             print(viewModel.totalCalories)
                             let newRecord = MealRecordEntity(context: moc)
                             newRecord.recordID = UUID()
+                            newRecord.mealTypeName = viewModel.selectedMealType?.mealTypeName
                             newRecord.userEmail = user.email!
                             newRecord.weightAtRecord = Double(viewModel.weight) ?? 0.0
                             newRecord.totalCaloriesGained = Double(viewModel.totalCalories) ?? 0.0
