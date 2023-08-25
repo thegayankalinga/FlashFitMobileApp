@@ -16,8 +16,8 @@ extension WorkoutEntity{
         id ?? UUID()
     }
     
-    var workoutTypeID: String{
-        workoutType ?? ""
+    var workoutTypeID: UUID{
+        workoutTypeId ?? UUID()
     }
     
     var workoutTypeNameFromRecord: String{

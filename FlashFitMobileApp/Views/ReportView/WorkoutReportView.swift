@@ -118,7 +118,7 @@ struct WorkoutReportView: View {
                     Color(hex:0xF5F5F5)
                     Chart {
                         ForEach(workoutVm.savedDailyWorkouts) { day in
-                            BarMark(x: .value("Workout", day.workoutType ?? ""),
+                            BarMark(x: .value("Workout", day.workoutTypeNameFromRecord),
                                     y: .value("Duration (m)", day.duration)
                             )
                             .foregroundStyle(Color.orange)
@@ -127,7 +127,7 @@ struct WorkoutReportView: View {
                     }
                     .frame(height: 150)
                     .chartXAxis {
-                        AxisMarks(values: workoutVm.savedDailyWorkouts.map {$0.workoutType ?? "Unknown"}) { type in
+                        AxisMarks(values: workoutVm.savedDailyWorkouts.map {$0.workoutTypeNameFromRecord}) { type in
                             AxisValueLabel()
                         }
                     }

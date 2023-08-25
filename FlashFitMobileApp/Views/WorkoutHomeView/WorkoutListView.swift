@@ -18,7 +18,7 @@ struct WorkoutListView: View {
         List{
             ForEach(workoutVm.savedWorkouts) { entity in
                // Section(header: Text(entity.workoutType ?? "Unknown")) {
-                    NavigationLink(destination: EditWorkoutView(entity: entity)) {
+                    NavigationLink(destination: AddWorkoutView()) {
                         HStack {
                             VStack{
                                 Text("\(dateFormatted(date: entity.date ?? Date.now))")
@@ -28,7 +28,7 @@ struct WorkoutListView: View {
                                         Text("Workout Type")
                                         Spacer()
                                         HStack {
-                                            Text(entity.workoutType ?? "Unknown")
+                                            Text(entity.workoutTypeNameFromRecord)
                                         }
                                     }
                                     
@@ -133,7 +133,7 @@ struct WorkoutListView: View {
             
         var groupedWorkouts: [String: [WorkoutEntity]] {
             Dictionary(grouping: workoutVm.savedWorkouts) { entity in
-                entity.workoutType ?? "Unknown"
+                entity.workoutTypeNameFromRecord
             }
         }
     }
