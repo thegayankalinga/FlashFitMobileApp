@@ -13,12 +13,19 @@ struct ContentView: View {
     //@State private var selectedOption: String? = nil
     @State private var selectedTab: String = "home"
     @State private var previousSelectedTab: String = "pd"
+    @State private var sheetContentHeight = CGFloat(0)
+    @EnvironmentObject var user: LoggedInUserModel
+    @Environment(\.dismiss) var dismiss
     
     var body: some View {
-        NavigationView {
-            VStack{
-                TabView(selection: $selectedTab){
+        TabView(selection: $selectedTab){
+    
+    
                     HomeScreenView()
+                        .onAppear() {
+                            print("home")
+                            self.previousSelectedTab = "home"
+                        }
                         .tabItem{
                             Label("Home", systemImage: "house.fill")
                         }
@@ -37,14 +44,15 @@ struct ContentView: View {
                         .tag("workouthome")
     
                     
-                    PopoverView(selectedOption: $previousSelectedTab)
+            PopoverView(selectedOption: $previousSelectedTab, userEmail: user.email!)
                         .tabItem {
                             Label("Add", systemImage: "plus.circle.fill")
                         }
                         .tag("add_button")
                         .sheet(isPresented: $showPopUp) {
-                            PopoverView(selectedOption: $previousSelectedTab)
+                            PopoverView(selectedOption: $previousSelectedTab, userEmail: user.email!)
                         }
+                     
                     
                     
                     MealHomeView()
@@ -57,6 +65,10 @@ struct ContentView: View {
                         }
                         .tag("mealhome")
                     ReportView()
+                        .onAppear() {
+                            print("report")
+                            self.previousSelectedTab = "report"
+                        }
                         .tabItem{
                             Label("Report", systemImage: "doc.text.below.ecg.fill")
                         }
@@ -68,23 +80,24 @@ struct ContentView: View {
                     selectedTab = value
                 }
                 .padding()
-            }.padding(.top)
+            }
         }
-    }
-}
+
+
 
 // TODO *****
 struct PopoverView: View {
     @Binding var selectedOption: String
+    var userEmail: String
     
     var body: some View {
         //AddWorkoutView()
         if(selectedOption == "workouthome"){
             AddWorkoutView()
         }else if(selectedOption == "mealhome"){
-            AddMealView()
+            AddMealView(userEmail: userEmail)
         }else{
-            AddMealView()
+            AddButtonGeneralView()
         }
       /*  VStack {
             HStack{

@@ -51,6 +51,7 @@
 		B6B7059D2A91C41600EFFAFD /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B7059C2A91C41600EFFAFD /* UserService.swift */; };
 		B6B7059F2A91DF4B00EFFAFD /* UserUpdateDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B7059E2A91DF4B00EFFAFD /* UserUpdateDto.swift */; };
 		B6B705A12A92189000EFFAFD /* MealRecordExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B705A02A92189000EFFAFD /* MealRecordExtension.swift */; };
+		B6B705A72A9848F200EFFAFD /* AddButtonGeneralView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B705A62A9848F200EFFAFD /* AddButtonGeneralView.swift */; };
 		B6B7AE4F2A8D2F5B009B0D36 /* TypeCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B7AE4E2A8D2F5B009B0D36 /* TypeCardView.swift */; };
 		B6B7AE512A8D2FA6009B0D36 /* AddWorkoutTypeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B7AE502A8D2FA6009B0D36 /* AddWorkoutTypeViewModel.swift */; };
 		B6B7AE532A8D2FB7009B0D36 /* WorkoutTypeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B7AE522A8D2FB7009B0D36 /* WorkoutTypeViewModel.swift */; };
@@ -153,6 +154,7 @@
 		B6B7059C2A91C41600EFFAFD /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		B6B7059E2A91DF4B00EFFAFD /* UserUpdateDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserUpdateDto.swift; sourceTree = "<group>"; };
 		B6B705A02A92189000EFFAFD /* MealRecordExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealRecordExtension.swift; sourceTree = "<group>"; };
+		B6B705A62A9848F200EFFAFD /* AddButtonGeneralView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddButtonGeneralView.swift; sourceTree = "<group>"; };
 		B6B7AE4E2A8D2F5B009B0D36 /* TypeCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeCardView.swift; sourceTree = "<group>"; };
 		B6B7AE502A8D2FA6009B0D36 /* AddWorkoutTypeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWorkoutTypeViewModel.swift; sourceTree = "<group>"; };
 		B6B7AE522A8D2FB7009B0D36 /* WorkoutTypeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutTypeViewModel.swift; sourceTree = "<group>"; };
@@ -274,6 +276,7 @@
 				72AA62412A7FABEB00AD9A04 /* WeeklyChartView.swift */,
 				72AA62462A7FADFD00AD9A04 /* PredictionSectionView.swift */,
 				72AA62482A7FBB0000AD9A04 /* PlanTodayView.swift */,
+				B6B705A62A9848F200EFFAFD /* AddButtonGeneralView.swift */,
 			);
 			path = HomeView;
 			sourceTree = "<group>";
@@ -691,6 +694,7 @@
 				72D865662A92694D008762F2 /* WorkoutReportView.swift in Sources */,
 				B6B7AE512A8D2FA6009B0D36 /* AddWorkoutTypeViewModel.swift in Sources */,
 				B6D1FD1E2A89C64600BD4BAC /* WorkoutViewModel.swift in Sources */,
+				B6B705A72A9848F200EFFAFD /* AddButtonGeneralView.swift in Sources */,
 				B6D1FD202A89C66800BD4BAC /* WorkoutListView.swift in Sources */,
 				72AA62422A7FABEB00AD9A04 /* WeeklyChartView.swift in Sources */,
 				B6D1FD312A8A662F00BD4BAC /* AddMealTypeView.swift in Sources */,
