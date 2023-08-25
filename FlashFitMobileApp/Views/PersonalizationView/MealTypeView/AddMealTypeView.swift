@@ -103,7 +103,7 @@ struct AddMealTypeView: View {
                 }
                 PrimaryActionButton(actionName: "Save", icon: "checkmark", disabled: viewModel.incomplete){
                     isFocused = nil
-                    //TODO: Optional force unwrap
+                    
                     viewModel.getAllMealTypes(email: user.email!, moc: moc)
                     if viewModel.updating{
                         if let id = viewModel.id,
@@ -139,7 +139,7 @@ struct AddMealTypeView: View {
                     
                     print("saved")
                 }
-                .opacity(viewModel.incomplete ? 1 : 0.6)
+                .opacity(!viewModel.incomplete ? 1 : 0.6)
                 .padding(.bottom, 25)
                 
             }

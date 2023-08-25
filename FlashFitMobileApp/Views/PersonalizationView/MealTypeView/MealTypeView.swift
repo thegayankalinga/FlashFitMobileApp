@@ -25,7 +25,7 @@ struct MealTypeView: View {
     @StateObject private var imagePicker = ImagePicker()
     @State private var formType: FormType?
     
-    @ObservedObject var mealTypeVM = MealTypeViewModel()
+    @ObservedObject var mealTypeVM = AddMealTypeViewModel(UIImage(systemName: "photo")!)
     
     var body: some View {
         NavigationStack {

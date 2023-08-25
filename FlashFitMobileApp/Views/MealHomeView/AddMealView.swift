@@ -18,10 +18,8 @@ struct AddMealView: View {
     @State private var showAlert = false
     @FocusState private var isFocused: FocusedField?
     
-    var email: String
     enum FocusedField{
-        case caloriesGained, weight
-        
+        case caloriesGained, weight    
     }
     
     let formatter: NumberFormatter = {
@@ -30,15 +28,7 @@ struct AddMealView: View {
         return formatter
     }()
 
-    
-    @FetchRequest(fetchRequest: MealTypeEntity.fetchRequest()) var fetchedMealTypes: FetchedResults<MealTypeEntity>
-    
-    init(userEmail: String) {
-        self.email = userEmail
-        _fetchedMealTypes = FetchRequest<MealTypeEntity>(fetchRequest: MealTypeEntity.getSpecifiedMealsTypes(findEmail: email))
-       viewModel = AddMealRecordViewModel()
-    }
-    
+
     
     var body: some View {
         
@@ -54,6 +44,7 @@ struct AddMealView: View {
                                 .fontWeight(.bold)
                         }
                         .padding(.top, 25)
+                        .padding(.leading, 25)
                         
                         
                         VStack (alignment: .leading, spacing: 20){
@@ -62,38 +53,43 @@ struct AddMealView: View {
                                 .accentColor(.orange)
                             
                             
-                            Picker("Select a meal", selection: $viewModel.selectedMealType) {
-                                
-                                Text("No Option").tag(Optional<MealTypeEntity>(nil))
-                                ForEach(fetchedMealTypes, id: \.self) { option in
-                                    
-                                    HStack{
-                                        Image(uiImage: option.uiImage)
-                                            .resizable()
-                                            .clipShape(Circle())
-                                            .scaledToFit()
-                                            .frame(width: 32 , height: 32)
-                                        Text("Meal: \(option.mealType)")
-                                        Text(String(option.caloriesGain))
-                                        
-                                        
-                                        
-                                    }.tag(Optional(option))
+                            VStack{
+                                Picker("Select a meal", selection: $viewModel.selectedMealType) {
+                                    Text("Select Value").tag(nil as MealTypeEntity?)
+                                    ForEach(viewModel.myMealTypes) { option in
+                                        HStack{
+                                            Image(uiImage: option.uiImage)
+                                                .resizable()
+                                                .clipShape(Circle())
+                                                .scaledToFit()
+                                                .frame(width: 32 , height: 32)
+                                            Text("Meal: \(option.mealType)")
+                                            Text(String(option.caloriesGain))
+                                        }.tag(option as MealTypeEntity?)
+                                    }
                                 }
+                                .pickerStyle(.navigationLink)
+                                .frame(height: 50)
                             }
-                            .pickerStyle(.navigationLink)
-                            .frame(height: 50)
+                            .onAppear(perform: {
+                                //print("Appear")
+                                //print(viewModel.selectedMealType)
+                                viewModel.getAllMealTypes(email: user.email!, moc: moc)
+                                viewModel.calTotalCalories(moc: moc)
+                                if (viewModel.updating){
+                                    print("updating")
+                                    viewModel.getMealTypeByUUID(moc: moc)
+                                    
+                                }
+                            })
+                            
                             
                             HStack(alignment: .center){
-                                Stepper("No of Meals \(viewModel.noOfPotions) \(viewModel.noOfPotions == 1 ? "Potion" : "Potions") ", value: $viewModel.noOfPotions, in: 1...5){_ in
-                                    let calories = Double(viewModel.selectedMealType?.caloriesGain ?? 0.00)
-                                    let potion = Double(viewModel.noOfPotions)
-                                    
-                                    viewModel.totalCalories = String(calories * potion)
+                                Stepper("No of Meals \(viewModel.noOfPotions) \(viewModel.noOfPotions == 1 ? "Potion" : "Potions") ", value: $viewModel.noOfPotions, in: 1...5){ value in
+                                    print(viewModel.noOfPotions)
+                                    viewModel.calTotalCalories(moc: moc)
                                 }
-                                 
-                                
-                                
+      
                             }
                             
                             EntryField(bindingField: $viewModel.totalCalories, placeholder: "Total Calories Gained", promptText: "", isSecure: false)
@@ -101,6 +97,7 @@ struct AddMealView: View {
                                 .focused($isFocused, equals: .caloriesGained)
                                 .textFieldStyle(GradientTextFieldBackground(systemImageString: "mouth", colorList: [.blue, .green]))
                                 .padding(.bottom)
+                                .disabled(true)
                             
                             Divider()
                             
@@ -110,20 +107,27 @@ struct AddMealView: View {
                                 .textFieldStyle(GradientTextFieldBackground(systemImageString: "scalemass", colorList: [.blue, .green]))
                                 .padding(.bottom)
                             
-                            
+                            Divider()
+                            Toggle("Add More", isOn: $viewModel.isAddMoreChecked.animation())
+                                .padding(.leading, 25)
+                                .padding(.trailing, 25)
                             
                         }
                         .padding()
                     }
-                    
-                    
-                    
-                    
+                    Spacer()
                 }
-                PrimaryActionButton(actionName: "Save Meal", icon: "plus.circle", disabled: !viewModel.incomplete){
-                    print("save button clicked")
+                
+                PrimaryActionButton(
+                    actionName: "Save Meal",
+                    icon: "plus.circle",
+                    disabled: !viewModel.incomplete)
+                {
+  
                     isFocused = nil
-                    print(viewModel.selectedMealType)
+             
+                    //viewModel.getAllMealRecordsByEmail(email: user.email!, moc: moc)
+                        
                     if viewModel.updating{
                         print("updating")
                         if let id = viewModel.id,
@@ -143,33 +147,61 @@ struct AddMealView: View {
                                 dismiss()
                             }
                         }else{
-                            print("adding")
+                            
                             let newRecord = MealRecordEntity(context: moc)
                             newRecord.recordID = UUID()
-                            newRecord.userEmail = email
+                            newRecord.userEmail = user.email!
                             newRecord.weightAtRecord = Double(viewModel.weight) ?? 0.0
                             newRecord.totalCaloriesGained = Double(viewModel.totalCalories) ?? 0.0
                             newRecord.recordDate = viewModel.date
                             newRecord.noOfPotions = Int16(viewModel.noOfPotions)
                             newRecord.mealTypeID = viewModel.selectedMealType!.mealTypeID
                             try? moc.save()
-                            print("saved")
+                            print("saved new")
                         }
+                    
+                    if(!viewModel.isAddMoreChecked){
+                        dismiss()
+                    }else{
+                        viewModel.noOfPotions = 1
+                        viewModel.date = Date.now
+                        viewModel.totalCalories = ""
+                        viewModel.weight = ""
+                        viewModel.selectedMealType = nil
+                    }
                         
                     
                         
                     }
+                    .opacity(viewModel.incomplete ? 1 : 0.6)
+                    .padding(.bottom, 25)
 
                 }
-                .opacity(viewModel.incomplete ? 1 : 0.6)
-                .padding(.bottom, 25)
-   
-            }
             .edgesIgnoringSafeArea(.all)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     SheetCloseButton(disabled: false){
                         dismiss()
+                    }
+                }
+                if viewModel.updating{
+                    ToolbarItem(placement: .navigationBarLeading) {
+                        Button{
+                            viewModel.getAllMealRecordsByEmail(email: user.email!, moc: moc)
+                            if let id = viewModel.id,
+                               let selectedItem = viewModel.myMealRecords.first(where: {$0.mealRecordID == id}){
+                                
+                                moc.delete(selectedItem)
+                                try? moc.save()
+                            }
+                            dismiss()
+                        }label: {
+                            HStack{
+                                Image(systemName: "trash")
+                            }
+                        }
+                        .buttonStyle(.borderedProminent)
+                        .tint(.red)
                     }
                 }
                 
@@ -182,13 +214,14 @@ struct AddMealView: View {
                     
                 }
             }
+            }
+        
         }
-    
 }
 
 struct AddMealView_Previews: PreviewProvider {
     static var previews: some View {
-        AddMealView(userEmail: "bg15407@gmail.com")
+        AddMealView(viewModel: AddMealRecordViewModel())
             .environmentObject(MealViewModel())
     }
 }

@@ -15,6 +15,7 @@ class AddMealTypeViewModel: ObservableObject{
     @Published var mealImage: UIImage
     @Published var userEmail = ""
     @Published var isAddMoreChecked = false
+    @Published var showAddMealSheet = false
     
     @Published var myMealTypes: [MealTypeEntity] = []
     

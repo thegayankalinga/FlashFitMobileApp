@@ -34,6 +34,7 @@ class AddWorkoutTypeViewModel: ObservableObject{
         userEmail = workoutTypeEntity.userId
     }
     
+    //MARK: Validation Computed Properties
     var incomplete: Bool{
         workoutName.isEmpty ||
         workoutImage == UIImage(systemName: "photo")! ||
@@ -56,6 +57,8 @@ class AddWorkoutTypeViewModel: ObservableObject{
         }
     }
     
+    
+    //MARK: Validation Functions
     func isValidWorkoutName() -> Bool{
         workoutName.count > 2
     }
