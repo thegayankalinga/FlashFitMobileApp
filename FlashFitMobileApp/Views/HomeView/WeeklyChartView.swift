@@ -24,32 +24,7 @@ struct WeeklyChartView: View {
         .init(date: Date.from(year: 2023, month: 1, day: 6), workoutDuration: 50),
         .init(date: Date.from(year: 2023, month: 1, day: 7), workoutDuration: 10)
     ]
-    
-    /*var dayByContent: [WorkoutEntity]
-    var weeklyWorkouts: [Date: TimeInterval] = [:]*/
-    
-   /* mutating func getTotalDuration () {
-        workoutVm.getWeeklyWorkouts(moc, userId: user.email)
-        dayByContent  = workoutVm.savedWeeklyWorkouts
-        
-        let calendar = Calendar.current
-     
-        for workout in dayByContent {
-            if let workoutDate = workout.date {
-                let components = calendar.dateComponents([.year, .month, .day], from: workoutDate)
-                let truncatedDate = calendar.date(from: components)!
-                
-                if let existingDuration = weeklyWorkouts[truncatedDate] {
-                    weeklyWorkouts[truncatedDate] = existingDuration + workout.duration
-                } else {
-                    weeklyWorkouts[truncatedDate] = workout.duration
-                }
-            }
-        }
-        
-        dayByContent = weeklyWorkouts.map { WeeklyActivity(date: $0.key, workoutDuration: $0.value) }
-    }*/
-    
+
     var body: some View {
         VStack (alignment: .leading) {
             
