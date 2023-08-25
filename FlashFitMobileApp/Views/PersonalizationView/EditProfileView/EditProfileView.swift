@@ -118,6 +118,6 @@ struct EditProfileView: View {
 struct EditProfileView_Previews: PreviewProvider {
     static var previews: some View {
         EditProfileView()
-            .environmentObject(LoggedInUserModel(email: "bg15407@gmail.com", name: "Gayan"))
+            .environmentObject(LoggedInUserModel(email: "bg15407@gmail.com", name: "Gayan", height: 160, weight: 62))
     }
 }

@@ -17,6 +17,7 @@ class AddMealRecordViewModel: ObservableObject{
     @Published var date: Date = Date.now
     @Published var calories: String = ""
     @Published var weight: String = ""
+    @Published var addMore: Bool = false
     var userEmail: String = ""
     @Published var myMealRecords: [MealRecordEntity] = []
     @Published var selectedMealType: MealTypeEntity?

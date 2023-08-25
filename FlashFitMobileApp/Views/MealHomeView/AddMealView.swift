@@ -123,6 +123,7 @@ struct AddMealView: View {
                             selectedItem.noOfPotions = Int16(viewModel.noOfPotions)
                             selectedItem.mealTypeID = viewModel.selectedMealType?.mealTypeID
                             selectedItem.recordID = viewModel.recordID
+                        }
                             
                             if moc.hasChanges{
                                 try? moc.save()
@@ -143,6 +144,7 @@ struct AddMealView: View {
                             print("saved")
                         }
                         
+                    
                         
                     }
 
@@ -169,7 +171,7 @@ struct AddMealView: View {
                 }
             }
         }
-    }
+    
 }
 
 struct AddMealView_Previews: PreviewProvider {
