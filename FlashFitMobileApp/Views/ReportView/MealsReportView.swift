@@ -14,7 +14,7 @@ struct MealsReportView: View {
     @Environment(\.managedObjectContext) var moc
     
     //@ObservedObject var mealVm =  MealViewModel()
-    @ObservedObject var viewModel = AddMealRecordViewModel()
+    @ObservedObject var viewModel = MealRecordViewModel()
     
     @State var date: Date = Date()
     @State private var totalCaloriesForSelectedDate: Double = 0.0

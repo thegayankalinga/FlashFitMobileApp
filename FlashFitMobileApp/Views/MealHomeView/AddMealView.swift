@@ -14,7 +14,7 @@ struct AddMealView: View {
     @Environment(\.managedObjectContext) var moc
     @Environment(\.dismiss) var dismiss
     
-    @ObservedObject var viewModel: AddMealRecordViewModel
+    @ObservedObject var viewModel: MealRecordViewModel
     @State private var showAlert = false
     @FocusState private var isFocused: FocusedField?
     
@@ -231,6 +231,6 @@ struct AddMealView: View {
 
 struct AddMealView_Previews: PreviewProvider {
     static var previews: some View {
-        AddMealView(viewModel: AddMealRecordViewModel())
+        AddMealView(viewModel: MealRecordViewModel())
     }
 }

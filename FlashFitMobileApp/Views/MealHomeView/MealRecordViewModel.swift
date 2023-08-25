@@ -10,7 +10,7 @@ import SwiftUI
 import CoreData
 
 
-class AddMealRecordViewModel: ObservableObject{
+class MealRecordViewModel: ObservableObject{
     
     //MARK: Binding Variables
     @Published var noOfPotions: Int = 1

@@ -13,7 +13,7 @@ struct MealListView: View {
     @Environment(\.managedObjectContext) var moc
     
     //@ObservedObject var mealVm =  MealViewModel()
-    @ObservedObject var viewModel: AddMealRecordViewModel
+    @ObservedObject var viewModel: MealRecordViewModel
     
     var body: some View {
         
@@ -100,7 +100,7 @@ struct MealListView: View {
 
 struct MealListView_Previews: PreviewProvider {
     static var previews: some View {
-        MealListView(viewModel: AddMealRecordViewModel())
+        MealListView(viewModel: MealRecordViewModel())
 
     }
 }

@@ -25,9 +25,9 @@ enum MealReocrdFormType: Identifiable, View{
     var body: some View{
         switch self{
         case .new:
-            return AddMealView(viewModel: AddMealRecordViewModel())
+            return AddMealView(viewModel: MealRecordViewModel())
         case .update(let mealRecordEntity):
-            return AddMealView(viewModel: AddMealRecordViewModel(mealRecordEntity))
+            return AddMealView(viewModel: MealRecordViewModel(mealRecordEntity))
         }
     }
 }

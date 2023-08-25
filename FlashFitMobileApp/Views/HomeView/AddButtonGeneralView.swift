@@ -55,7 +55,7 @@ struct AddButtonGeneralView: View{
   
         }
         .sheet(isPresented: $showAddMeal){
-            AddMealView(viewModel: AddMealRecordViewModel())
+            AddMealView(viewModel: MealRecordViewModel())
         }
         .sheet(isPresented: $showAddWorkout){
             AddWorkoutView()

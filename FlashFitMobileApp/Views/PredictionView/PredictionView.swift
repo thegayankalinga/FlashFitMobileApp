@@ -13,7 +13,7 @@ struct PredictionView: View {
     @EnvironmentObject var user: LoggedInUserModel
     @Environment(\.managedObjectContext) var moc
     @ObservedObject var workoutVm =  WorkoutViewModel()
-    @ObservedObject var mealVm = AddMealRecordViewModel()
+    @ObservedObject var mealVm = MealRecordViewModel()
     
     @State private var selectedDate = Date()
     @State private var predictedWeight = 0.0

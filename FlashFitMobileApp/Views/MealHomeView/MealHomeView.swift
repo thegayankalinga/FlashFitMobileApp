@@ -15,7 +15,7 @@ struct MealHomeView: View {
     @Environment(\.managedObjectContext) var moc
     
     //@ObservedObject var mealVm =  MealViewModel()
-    @ObservedObject var viewModel =  AddMealRecordViewModel()
+    @ObservedObject var viewModel =  MealRecordViewModel()
     @State var date: Date = Date()
     @State private var totalCaloriesForSelectedDate: Double = 0.0
     @State var dailyData: [MealRecordEntity] = []
@@ -112,7 +112,7 @@ struct MealHomeView: View {
                 .padding(.bottom, 10)
             }
             
-            NavigationLink("Update Recorded Meals", destination: MealListView(viewModel: AddMealRecordViewModel()).accentColor(.orange))
+            NavigationLink("Update Recorded Meals", destination: MealListView(viewModel: MealRecordViewModel()).accentColor(.orange))
         }
         .navigationTitle("Meals")
         .onAppear {

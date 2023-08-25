@@ -89,7 +89,7 @@ struct ContentView: View {
             .sheet(isPresented: $showMealAddSheet, onDismiss: {
                 self.selectedTab = previousSelectedTab
             }) {
-                AddMealView(viewModel: AddMealRecordViewModel())
+                AddMealView(viewModel: MealRecordViewModel())
             }
             .sheet(isPresented: $showWorkoutAddSheet, onDismiss: {
                 self.selectedTab = previousSelectedTab
