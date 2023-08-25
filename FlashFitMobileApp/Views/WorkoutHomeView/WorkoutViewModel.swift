@@ -12,7 +12,7 @@ class WorkoutViewModel : ObservableObject {
     
     
     //MARK: Binding Variables
-    @Published var workoutDuration: Double = 0.00
+    @Published var workoutDuration: Double = 5.0
     @Published var workoutDate: Date = Date.now
     @Published var totalCaloriesBurned = ""
     @Published var weightArRecord: String = ""
@@ -21,6 +21,7 @@ class WorkoutViewModel : ObservableObject {
     @Published var workoutTypeID: UUID = UUID()
     @Published var isAddMoreChecked = false
 
+    
     @Published var myWorkoutTypes: [WorkoutTypeEntity] = []
     @Published var savedWorkouts: [WorkoutEntity] = []
     @Published var savedWeeklyWorkouts: [WorkoutEntity] = []

@@ -95,7 +95,7 @@ struct ContentView: View {
                 self.selectedTab = previousSelectedTab
                 
             }) {
-                AddWorkoutView()
+                AddWorkoutView(viewModel: WorkoutViewModel())
                     
             }
             .sheet(isPresented: $showPopUp, onDismiss: {

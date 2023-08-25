@@ -81,7 +81,7 @@ struct AddMealView: View {
                                 if (viewModel.updating){
                                     print("updating")
                                     viewModel.getMealTypeByUUID(moc: moc)
-                                    viewModel.getMealTypeByUUID(moc: moc)
+                                    //viewModel.getMealTypeByUUID(moc: moc)
                                     
                                 }
                             })

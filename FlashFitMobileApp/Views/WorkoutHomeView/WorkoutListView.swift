@@ -12,13 +12,13 @@ struct WorkoutListView: View {
     @EnvironmentObject var user: LoggedInUserModel
     @Environment(\.managedObjectContext) var moc
     
-    @ObservedObject var workoutVm =  WorkoutViewModel()
+    @ObservedObject var viewModel =  WorkoutViewModel()
 
     var body: some View {
         List{
-            ForEach(workoutVm.savedWorkouts) { entity in
+            ForEach(viewModel.savedWorkouts) { entity in
                // Section(header: Text(entity.workoutType ?? "Unknown")) {
-                    NavigationLink(destination: AddWorkoutView()) {
+                NavigationLink(destination: WorkoutReocrdFormType.update(entity)) {
                         HStack {
                             VStack{
                                 Text("\(dateFormatted(date: entity.date ?? Date.now))")
@@ -49,6 +49,9 @@ struct WorkoutListView: View {
                                             .foregroundColor(.secondary)
                                             .fontWeight(.semibold)
                                     }
+                                    .onAppear(perform: {
+                                        viewModel.getWorkoutTypeBySpecificID(id: entity.workoutRecordID, moc: moc)
+                                    })
                                     
                                     HStack (spacing: 4){ // calories
                                         Text("Caories Burnt")
@@ -72,7 +75,7 @@ struct WorkoutListView: View {
             }
             .onDelete(perform: { indexSet in
                 //TODO: Optional force unwrap
-                workoutVm.deleteWorkout(moc, indexSet: indexSet, userId: user.email!)
+                viewModel.deleteWorkout(moc, indexSet: indexSet, userId: user.email!)
                 
             })
             
@@ -128,11 +131,11 @@ struct WorkoutListView: View {
         }
         .onAppear(perform : {
             //TODO: Optional force unwrap
-            workoutVm.getWorkouts(moc, userId: user.email!)
+            viewModel.getWorkouts(moc, userId: user.email!)
         })
             
         var groupedWorkouts: [String: [WorkoutEntity]] {
-            Dictionary(grouping: workoutVm.savedWorkouts) { entity in
+            Dictionary(grouping: viewModel.savedWorkouts) { entity in
                 entity.workoutTypeNameFromRecord
             }
         }
