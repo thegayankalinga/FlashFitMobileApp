@@ -107,7 +107,7 @@ struct MealsReportView: View {
                 Color(hex:0xF5F5F5)
                 Chart {
                     ForEach(viewModel.savedDailyMeals) { day in
-                        BarMark(x: .value("Meal ", "day.mealTypeID" ?? ""), //TODO: meal type name
+                        BarMark(x: .value("Meal ", "day.mealTypeID"), //TODO: meal type name
                                 y: .value("Calories (kcal)", day.totalCaloriesGained)
                         )
                         .foregroundStyle(Color.orange)
@@ -118,7 +118,7 @@ struct MealsReportView: View {
                 .chartXAxis {
                     /* AxisMarks(values: mealVm.savedDailyMeals.map {$0.mealTypeID ?? UUID}) { type in //TODO:                             AxisValueLabel()
                      } */
-                    AxisMarks(values: viewModel.savedDailyMeals.map {_ in "mealid" ?? "Unknown"}) { type in
+                    AxisMarks(values: viewModel.savedDailyMeals.map {_ in "mealid"}) { type in
                         AxisValueLabel()
                     }
                 }

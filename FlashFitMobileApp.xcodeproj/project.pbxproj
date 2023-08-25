@@ -24,7 +24,6 @@
 		72AA624C2A7FC96500AD9A04 /* PredictionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72AA624B2A7FC96500AD9A04 /* PredictionView.swift */; };
 		72D865662A92694D008762F2 /* WorkoutReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72D865652A92694D008762F2 /* WorkoutReportView.swift */; };
 		72D865682A92695B008762F2 /* MealsReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72D865672A92695B008762F2 /* MealsReportView.swift */; };
-		72F791B92A9791BA006FB4A4 /* MealViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72F791B82A9791BA006FB4A4 /* MealViewModel.swift */; };
 		B617B3B02A7EB4E400613526 /* FlashFitMobileAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B617B3AF2A7EB4E400613526 /* FlashFitMobileAppApp.swift */; };
 		B617B3B22A7EB4E400613526 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B617B3B12A7EB4E400613526 /* ContentView.swift */; };
 		B617B3B42A7EB4E600613526 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B617B3B32A7EB4E600613526 /* Assets.xcassets */; };
@@ -124,7 +123,6 @@
 		72AA624B2A7FC96500AD9A04 /* PredictionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictionView.swift; sourceTree = "<group>"; };
 		72D865652A92694D008762F2 /* WorkoutReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutReportView.swift; sourceTree = "<group>"; };
 		72D865672A92695B008762F2 /* MealsReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealsReportView.swift; sourceTree = "<group>"; };
-		72F791B82A9791BA006FB4A4 /* MealViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealViewModel.swift; sourceTree = "<group>"; };
 		B617B3AC2A7EB4E400613526 /* FlashFitMobileApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlashFitMobileApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B617B3AF2A7EB4E400613526 /* FlashFitMobileAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashFitMobileAppApp.swift; sourceTree = "<group>"; };
 		B617B3B12A7EB4E400613526 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -308,7 +306,6 @@
 				72732F3F2A7F7274009B80AA /* MealHomeView.swift */,
 				B6D1FD322A8A66AB00BD4BAC /* MealListView.swift */,
 				B6D1FD362A8A66CF00BD4BAC /* AddMealView.swift */,
-				72F791B82A9791BA006FB4A4 /* MealViewModel.swift */,
 				B6B705AA2A986B8A00EFFAFD /* AddMealRecordViewModel.swift */,
 				B64945FB2A98C1A30031418D /* MealRecordEnumView.swift */,
 			);
@@ -685,7 +682,6 @@
 				72AA62402A7FABAC00AD9A04 /* ProfileSectionView.swift in Sources */,
 				72732F432A7F728E009B80AA /* ReportView.swift in Sources */,
 				B66CCD3C2A8BD7BD009AC532 /* LoggedInUserModel.swift in Sources */,
-				72F791B92A9791BA006FB4A4 /* MealViewModel.swift in Sources */,
 				B6D1FD0A2A88F07C00BD4BAC /* RegistrationSecondView.swift in Sources */,
 				72AA624C2A7FC96500AD9A04 /* PredictionView.swift in Sources */,
 				7294D12E2A893AA10070E3A3 /* AddWorkoutTypeView.swift in Sources */,

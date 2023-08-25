@@ -232,6 +232,5 @@ struct AddMealView: View {
 struct AddMealView_Previews: PreviewProvider {
     static var previews: some View {
         AddMealView(viewModel: AddMealRecordViewModel())
-            .environmentObject(MealViewModel())
     }
 }

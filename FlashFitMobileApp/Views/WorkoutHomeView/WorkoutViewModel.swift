@@ -10,6 +10,9 @@ import CoreData
 
 class WorkoutViewModel : ObservableObject {
     
+    
+
+    
     @Published var savedWorkouts: [WorkoutEntity] = []
     @Published var savedWeeklyWorkouts: [WorkoutEntity] = []
     @Published var savedDailyWorkouts: [WorkoutEntity] = []

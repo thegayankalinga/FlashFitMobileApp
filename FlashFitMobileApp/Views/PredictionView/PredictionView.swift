@@ -13,7 +13,7 @@ struct PredictionView: View {
     @EnvironmentObject var user: LoggedInUserModel
     @Environment(\.managedObjectContext) var moc
     @ObservedObject var workoutVm =  WorkoutViewModel()
-    @ObservedObject var mealVm = MealViewModel()
+    @ObservedObject var mealVm = AddMealRecordViewModel()
     
     @State private var selectedDate = Date()
     @State private var predictedWeight = 0.0
@@ -156,7 +156,7 @@ struct PredictionView: View {
         // 1 fetch workout and meals list by userId
         mealVm.getMeals(moc, userId: userId)
         
-        let meals: [MealRecordEntity] = mealVm.savedMeals
+        let meals: [MealRecordEntity] = mealVm.myMealRecords
         
         // 2 get avg calories for each day
         let groupedByDate = Dictionary(grouping: meals) { $0.recordDate }

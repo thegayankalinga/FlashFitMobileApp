@@ -12,7 +12,7 @@ struct MealListView: View {
     @EnvironmentObject var user: LoggedInUserModel
     @Environment(\.managedObjectContext) var moc
     
-    @ObservedObject var mealVm =  MealViewModel()
+    //@ObservedObject var mealVm =  MealViewModel()
     @ObservedObject var viewModel: AddMealRecordViewModel
     
     var body: some View {
@@ -82,7 +82,7 @@ struct MealListView: View {
             })
             
             var groupedWorkouts: [String: [MealRecordEntity]] {
-                Dictionary(grouping: mealVm.savedMeals) { entity in
+                Dictionary(grouping: viewModel.myMealRecords) { entity in
                     entity.mealTypeID?.uuidString ?? UUID().uuidString
                 }
             }
@@ -101,6 +101,6 @@ struct MealListView: View {
 struct MealListView_Previews: PreviewProvider {
     static var previews: some View {
         MealListView(viewModel: AddMealRecordViewModel())
-            .environmentObject(MealViewModel())
+
     }
 }
