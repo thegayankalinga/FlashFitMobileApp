@@ -18,9 +18,10 @@ struct ContentView: View {
     @Environment(\.dismiss) var dismiss
     
     var body: some View {
-        TabView(selection: $selectedTab){
-    
-    
+        NavigationStack{
+            VStack{
+                TabView(selection: $selectedTab){
+
                     HomeScreenView()
                         .onAppear() {
                             print("home")
@@ -39,22 +40,17 @@ struct ContentView: View {
                         }
                         .tabItem{
                             Label("Workout", systemImage: "dumbbell.fill")
-                                
+                            
                         }
                         .tag("workouthome")
-    
                     
-            PopoverView(selectedOption: $previousSelectedTab, userEmail: user.email!)
+                    
+                    PopoverView(selectedOption: $previousSelectedTab, userEmail: user.email!)
                         .tabItem {
                             Label("Add", systemImage: "plus.circle.fill")
                         }
                         .tag("add_button")
-                        .sheet(isPresented: $showPopUp) {
-                            PopoverView(selectedOption: $previousSelectedTab, userEmail: user.email!)
-                        }
-                     
-                    
-                    
+
                     MealHomeView()
                         .onAppear() {
                             print("meal tapped")
@@ -73,15 +69,28 @@ struct ContentView: View {
                             Label("Report", systemImage: "doc.text.below.ecg.fill")
                         }
                         .tag("report")
-                }
-                .onChange(of: selectedTab){ value in
+                }.onChange(of: selectedTab){ value in
+                    
+                    if selectedTab == "add_button"{
+                        self.showPopUp = true
+                    }
                     print("previousSelectedTab: \(previousSelectedTab)")
                     print(value)
                     selectedTab = value
                 }
-                .padding()
+                }
+            .sheet(isPresented: $showPopUp, onDismiss: {
+                self.selectedTab = previousSelectedTab
+            }) {
+                PopoverView(selectedOption: $previousSelectedTab, userEmail: user.email!)
             }
+            .padding()
+            
+            
+    
         }
+    }
+}
 
 
 

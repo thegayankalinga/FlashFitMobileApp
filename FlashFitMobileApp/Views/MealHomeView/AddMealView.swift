@@ -43,10 +43,7 @@ struct AddMealView: View {
     var body: some View {
         
         NavigationStack {
-            
-            
             VStack{
-                
                 ScrollView {
                     VStack(alignment: .leading, spacing: 0.0) {
                         
@@ -152,9 +149,7 @@ struct AddMealView: View {
                 }
                 .opacity(viewModel.incomplete ? 1 : 0.6)
                 .padding(.bottom, 25)
-                
-                
-                
+   
             }
             .edgesIgnoringSafeArea(.all)
             .toolbar {
