@@ -102,9 +102,6 @@ struct MealHomeView: View {
                         AxisMarks(values: viewModel.savedDailyMeals.map {$0.mealTypeNameFromRecord}) { type in
                             AxisValueLabel()
                         }
-//                        AxisMarks(values: viewModel.savedDailyMeals.map {_ in "mealid"}) { type in
-//                            AxisValueLabel()
-//                        }
                     }
                 }
                 .frame(height: 200)

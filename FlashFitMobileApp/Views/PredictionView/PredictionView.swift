@@ -37,7 +37,7 @@ struct PredictionView: View {
             
             ZStack {
                 RoundedRectangle(cornerRadius: 20)
-                    .foregroundColor(.orange)
+                    .foregroundColor(Color(hex:0xFDB137))
                     .frame(height: 150)
                 
                 VStack(alignment: .leading, spacing: 10) {
@@ -64,7 +64,7 @@ struct PredictionView: View {
             
             ZStack {
                 RoundedRectangle(cornerRadius: 20)
-                    .foregroundColor(.orange)
+                    .foregroundColor(Color(hex:0xFDB137))
                     .frame(height: 250)
                 
                 VStack(alignment: .leading, spacing: 10) {
