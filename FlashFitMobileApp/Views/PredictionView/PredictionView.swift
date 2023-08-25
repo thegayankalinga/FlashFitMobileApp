@@ -13,6 +13,7 @@ struct PredictionView: View {
     @EnvironmentObject var user: LoggedInUserModel
     @Environment(\.managedObjectContext) var moc
     @ObservedObject var workoutVm =  WorkoutViewModel()
+    @ObservedObject var mealVm = MealViewModel()
     
     @State private var selectedDate = Date()
     @State private var predictedWeight = 0.0
@@ -153,17 +154,19 @@ struct PredictionView: View {
         
         // get avg calories count for each day usding workout and meals calories
         // 1 fetch workout and meals list by userId
-        let meals: [WorkoutModel] = []
+        mealVm.getMeals(moc, userId: userId)
+        
+        let meals: [MealRecordEntity] = mealVm.savedMeals
         
         // 2 get avg calories for each day
-        let groupedByDate = Dictionary(grouping: meals) { $0.date }
+        let groupedByDate = Dictionary(grouping: meals) { $0.recordDate }
         
         var averageCaloriesPerDay: [Date: Double] = [:]
         
         for (date, meals) in groupedByDate {
-            let totalCalories = meals.map(\.calories).reduce(0, +)
+            let totalCalories = meals.map(\.caloriesGainTotal).reduce(0, +)
             let averageCalories = totalCalories / Double(meals.count)
-            averageCaloriesPerDay[date] = averageCalories
+            averageCaloriesPerDay[date!] = averageCalories
         }
         
         // 3 mean of calories & days
@@ -300,7 +303,7 @@ struct PredictionView: View {
     func calculateBMI(userId: String, weight: Double) -> Double {
         // todo : fetch user details
         // height
-        let height = 164.0 / 100
+        let height = user.height! / 100
         
         // calculate BMI
         let BMI = weight / (height * height)

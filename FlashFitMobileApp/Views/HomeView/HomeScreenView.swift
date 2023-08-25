@@ -19,6 +19,7 @@ struct HomeScreenView: View {
     @State var weeklyWorkouts: [Date: TimeInterval] = [:]
     
     @State private var total = 0.0
+    @State var healthStatus : HealthStatusEnum = .Normalweight
     
     var body: some View {
         
@@ -31,7 +32,40 @@ struct HomeScreenView: View {
                 // prediction
                 ZStack {
                     Color(hex:0xFDB137)
-                    PredictionSectionView()
+                    VStack {
+                        NavigationLink(destination: PredictionView()) {
+                            HStack (alignment: .top) {
+                                VStack (alignment: .leading, spacing: 30) {
+                                    HStack {
+                                        Image(systemName: "figure.walk")
+                                        Text("Health Prediction")
+                                            .font(.footnote)
+                                            .padding(.bottom, 5)
+                                    }
+                                    
+                                    VStack (alignment: .leading, spacing: 3) {
+                                        Text(healthStatus.rawValue)
+                                            .font(.subheadline)
+                                            .fontWeight(.medium)
+                                        Text("\((user.weight!), specifier: "%.2f") Kg")
+                                            .font(.caption)
+                                    }
+                                }
+                                
+                                Spacer()
+                                
+                                Text("\(getDate())")
+                                    .font(.caption)
+                                    .foregroundColor(.secondary)
+                                
+                                Image(systemName: "chevron.right")
+                                    .font(.caption)
+                                    .foregroundColor(.secondary)
+                            }
+                            .padding()
+                            .foregroundColor(.black)
+                        }
+                    }
                 }
                 .cornerRadius(10)
                 .padding(.top, 15)
@@ -107,6 +141,7 @@ struct HomeScreenView: View {
             }
         }
         .onAppear{
+            calculateHealthStatus()
             getTotalDuration()
         }
     }
@@ -115,7 +150,7 @@ struct HomeScreenView: View {
         // Clear the existing data
         weeklyWorkouts = [:]
         dayByContent = []
-
+        
         workoutVm.getWeeklyWorkouts(moc, userId: user.email!)
         let data  = workoutVm.savedWeeklyWorkouts
         
@@ -158,6 +193,33 @@ struct HomeScreenView: View {
         
         // get weekly total
         total = dayByContent.reduce(0) {$0 + $1.workoutDuration}
+    }
+    
+    func calculateHealthStatus(){
+        let ht = (user.height ?? 0.0) / 100
+        
+        let BMI = (user.weight ?? 0.0) / (ht * ht)
+        
+        if BMI < 18.5 {
+            healthStatus = .Underweight
+        } else if 18.5 <= BMI && BMI < 25 {
+            healthStatus = .Normalweight
+        } else if 25 <= BMI && BMI <= 40 {
+            healthStatus = .Overweight
+        } else if BMI >= 40.0 {
+            healthStatus = .Obesity
+        } else {
+            healthStatus = .None
+        }
+        
+    }
+    
+    func getDate() -> String {
+        let date = Date()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "d MMM"
+        
+        return formatter.string(from: date)
     }
 }
 

@@ -8,9 +8,19 @@
 import SwiftUI
 
 struct PredictionSectionView: View {
+    
+    @EnvironmentObject var user: LoggedInUserModel
+    @Environment(\.managedObjectContext) var moc
+    
+    @State var healthStatus : String = ""
+    
+    init() {
+        _healthStatus = State(initialValue: calculateHealthStatus().rawValue)
+    }
+    
     var body: some View {
-        
-        VStack {
+        Text("")
+       /* VStack {
             NavigationLink(destination: PredictionView()) {
                 HStack (alignment: .top) {
                     VStack (alignment: .leading, spacing: 30) {
@@ -22,10 +32,10 @@ struct PredictionSectionView: View {
                         }
                         
                         VStack (alignment: .leading, spacing: 3) {
-                            Text("Over Weight")
+                            Text(healthStatus)
                                 .font(.subheadline)
                                 .fontWeight(.medium)
-                            Text("55.8Kg")
+                            Text("\((user.weight!), specifier: "%.2f")")
                                 .font(.caption)
                         }
                     }
@@ -43,8 +53,7 @@ struct PredictionSectionView: View {
                 .padding()
                 .foregroundColor(.black)
             }
-        }
-        //.frame(height: 120)
+        }*/
  
     }
     
@@ -55,10 +64,30 @@ struct PredictionSectionView: View {
         
         return formatter.string(from: date)
     }
-}
-
-struct PredictionSectionView_Previews: PreviewProvider {
-    static var previews: some View {
-        PredictionSectionView()
+    
+    func calculateHealthStatus() -> HealthStatusEnum {
+        let height = user.height! / 100
+        
+        let BMI = 56.0
+        //user.weight! / (height * height)
+        
+        if BMI < 18.5 {
+            return .Underweight
+        } else if 18.5 <= BMI && BMI < 25 {
+            return .Normalweight
+        } else if 25 <= BMI && BMI <= 40 {
+            return .Overweight
+        } else if BMI >= 40.0 {
+            return .Obesity
+        } else {
+            return .None
+        }
+        
     }
 }
+
+//struct PredictionSectionView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        PredictionSectionView()
+//    }
+//}
