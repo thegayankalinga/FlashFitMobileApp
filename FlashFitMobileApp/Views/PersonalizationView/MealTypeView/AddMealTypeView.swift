@@ -101,13 +101,16 @@ struct AddMealTypeView: View {
                     Spacer()
                     
                 }
-                PrimaryActionButton(actionName: "Save", icon: "checkmark", disabled: !viewModel.incomplete){
+                PrimaryActionButton(actionName: "Save", icon: "checkmark", disabled: viewModel.incomplete){
                     isFocused = nil
                     //TODO: Optional force unwrap
                     viewModel.getAllMealTypes(email: user.email!, moc: moc)
                     if viewModel.updating{
                         if let id = viewModel.id,
                            let selectedItem = viewModel.myMealTypes.first(where: {$0.imageId == id}){
+                            if(selectedItem.typeID == nil){
+                                selectedItem.typeID = UUID()
+                            }
                             selectedItem.mealTypeName = viewModel.mealName
                             selectedItem.caloriesGained = Double(viewModel.caloriesGainPerPotion) ?? 0
                             selectedItem.userEmail = user.email
@@ -145,6 +148,26 @@ struct AddMealTypeView: View {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     SheetCloseButton(disabled: false){
                         dismiss()
+                    }
+                }
+                if viewModel.updating{
+                    ToolbarItem(placement: .navigationBarLeading) {
+                        Button{
+                            viewModel.getAllMealTypes(email: user.email!, moc: moc)
+                            if let id = viewModel.id,
+                               let selectedItem = viewModel.myMealTypes.first(where: {$0.imageId == id}){
+                                FileManager().deleteImage(with: selectedItem.imageId)
+                                moc.delete(selectedItem)
+                                try? moc.save()
+                            }
+                            dismiss()
+                        }label: {
+                            HStack{
+                                Image(systemName: "trash")
+                            }
+                        }
+                        .buttonStyle(.borderedProminent)
+                        .tint(.red)
                     }
                 }
                 

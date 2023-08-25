@@ -23,9 +23,9 @@ struct SheetCloseButton: View{
                     .aspectRatio(contentMode: .fit)
             }
         }
+        .tint(.black)
         .frame(width: 32, alignment: .center)
         //.background(CustomColors.backgroundGray)
-        .foregroundStyle(.gray)
         .clipShape(Circle())
         .disabled(disabled)
     }

@@ -10,7 +10,6 @@ import PhotosUI
 import UIKit
 
 struct MealTypeView: View {
-    //TODO: filter by email
     
     var email: String
 
@@ -50,6 +49,7 @@ struct MealTypeView: View {
                                     }
                                 }
                             }
+                            
                         }
                         .padding(.horizontal)
                         

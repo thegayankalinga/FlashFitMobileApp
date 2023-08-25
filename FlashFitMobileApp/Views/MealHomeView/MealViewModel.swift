@@ -14,6 +14,17 @@ class MealViewModel : ObservableObject {
     @Published var savedWeeklyMeals: [MealRecordEntity] = []
     @Published var savedDailyMeals: [MealRecordEntity] = []
        
+    
+    func getMealType(_ moc: NSManagedObjectContext, mealID: UUID) -> MealTypeEntity?{
+        var mealObj: MealTypeEntity?
+        do{
+            mealObj  = MealRecordEntity.getMealTypeObject(moc: moc, typeID: mealID)
+            print(mealObj?.mealType ?? "value not found")
+//            print(mealObj.)
+            return mealObj
+        }
+
+    }
     // fetch data
     func getMeals(_ moc: NSManagedObjectContext, userId: String) {
         let request = NSFetchRequest<MealRecordEntity>(entityName: "MealRecordEntity")

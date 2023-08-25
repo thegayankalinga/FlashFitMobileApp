@@ -55,7 +55,6 @@
 		B6B705AB2A986B8A00EFFAFD /* AddMealRecordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B705AA2A986B8A00EFFAFD /* AddMealRecordViewModel.swift */; };
 		B6B7AE4F2A8D2F5B009B0D36 /* TypeCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B7AE4E2A8D2F5B009B0D36 /* TypeCardView.swift */; };
 		B6B7AE512A8D2FA6009B0D36 /* AddWorkoutTypeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B7AE502A8D2FA6009B0D36 /* AddWorkoutTypeViewModel.swift */; };
-		B6B7AE532A8D2FB7009B0D36 /* WorkoutTypeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B7AE522A8D2FB7009B0D36 /* WorkoutTypeViewModel.swift */; };
 		B6B7AE552A8D2FDB009B0D36 /* WorkoutTypeEnumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B7AE542A8D2FDB009B0D36 /* WorkoutTypeEnumView.swift */; };
 		B6D1FCF42A874FB100BD4BAC /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D1FCF32A874FB100BD4BAC /* RegistrationView.swift */; };
 		B6D1FCF62A875D1B00BD4BAC /* GradientTextFieldBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D1FCF52A875D1B00BD4BAC /* GradientTextFieldBackground.swift */; };
@@ -159,7 +158,6 @@
 		B6B705AA2A986B8A00EFFAFD /* AddMealRecordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMealRecordViewModel.swift; sourceTree = "<group>"; };
 		B6B7AE4E2A8D2F5B009B0D36 /* TypeCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeCardView.swift; sourceTree = "<group>"; };
 		B6B7AE502A8D2FA6009B0D36 /* AddWorkoutTypeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWorkoutTypeViewModel.swift; sourceTree = "<group>"; };
-		B6B7AE522A8D2FB7009B0D36 /* WorkoutTypeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutTypeViewModel.swift; sourceTree = "<group>"; };
 		B6B7AE542A8D2FDB009B0D36 /* WorkoutTypeEnumView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutTypeEnumView.swift; sourceTree = "<group>"; };
 		B6D1FCF32A874FB100BD4BAC /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
 		B6D1FCF52A875D1B00BD4BAC /* GradientTextFieldBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientTextFieldBackground.swift; sourceTree = "<group>"; };
@@ -341,7 +339,6 @@
 				7294D12D2A893AA10070E3A3 /* AddWorkoutTypeView.swift */,
 				7294D12F2A893ACA0070E3A3 /* WorkoutTypeView.swift */,
 				B6B7AE502A8D2FA6009B0D36 /* AddWorkoutTypeViewModel.swift */,
-				B6B7AE522A8D2FB7009B0D36 /* WorkoutTypeViewModel.swift */,
 				B6B7AE542A8D2FDB009B0D36 /* WorkoutTypeEnumView.swift */,
 			);
 			path = WorkoutTypeView;
@@ -660,7 +657,6 @@
 				B6D1FD282A89C76800BD4BAC /* SplashScreenView.swift in Sources */,
 				B6B7059B2A91C18800EFFAFD /* UserModel.swift in Sources */,
 				B6B7059F2A91DF4B00EFFAFD /* UserUpdateDto.swift in Sources */,
-				B6B7AE532A8D2FB7009B0D36 /* WorkoutTypeViewModel.swift in Sources */,
 				B61BBE652A8BCA1A0014E9C5 /* MeaTypeEnumView.swift in Sources */,
 				B621B27F2A873D95001C4711 /* FlashFitMobileApp.xcdatamodeld in Sources */,
 				B6D1FD332A8A66AB00BD4BAC /* MealListView.swift in Sources */,

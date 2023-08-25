@@ -17,6 +17,7 @@ class AddWorkoutTypeViewModel: ObservableObject{
     @Published var userEmail = ""
     @Published var isAddMoreChecked = false
     @Published var myWorkoutTypes: [WorkoutTypeEntity] = []
+    @Published var showAddWorkoutSheet = false
     
     var id: String?
     var updating: Bool{id != nil}

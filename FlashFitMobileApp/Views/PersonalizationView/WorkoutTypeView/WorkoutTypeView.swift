@@ -20,6 +20,7 @@ struct WorkoutTypeView: View {
     init(userEmail: String) {
         self.email = userEmail
         _fetchedWorkoutTypes = FetchRequest<WorkoutTypeEntity>(fetchRequest: WorkoutTypeEntity.getSpecifiedWorkoutTypes(findEmail: email))
+        
     }
 
 
@@ -29,7 +30,7 @@ struct WorkoutTypeView: View {
     @StateObject private var imagePicker = ImagePicker()
     @State private var formType: WorkoutFormType?
     
-    @StateObject var viewModel = WorkoutTypeViewModel()
+    @StateObject var viewModel = AddWorkoutTypeViewModel(UIImage(systemName: "photo")!)
     
 
     
@@ -44,7 +45,7 @@ struct WorkoutTypeView: View {
                         ScrollView{
                             LazyVGrid(columns: column, spacing: 20){
                                 ForEach(fetchedWorkoutTypes){ type in
-                                  
+                                    
                                         Button{
                                             
                                             formType = .update(type)

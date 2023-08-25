@@ -24,18 +24,6 @@ extension MealRecordEntity{
         mealTypeID ?? UUID()
     }
     
-    var mealObject: MealTypeEntity{
-        @Environment(\.managedObjectContext) var moc
-        do{
-            let type = try moc.fetch(MealTypeEntity.getMealTypeByID(id: mealType)).first!
-            return type
-        }catch{
-            print(error.localizedDescription)
- 
-        }
-        return MealTypeEntity()
-        
-    }
     
     var userID: String{
         userEmail ?? ""
@@ -51,6 +39,16 @@ extension MealRecordEntity{
     
     var weightRecorded: Double{
         weightAtRecord
+    }
+    
+    static func getMealTypeObject(moc: NSManagedObjectContext, typeID: UUID) -> MealTypeEntity{
+        var mealObj = MealTypeEntity()
+        do{
+            mealObj  = try moc.fetch(MealTypeEntity.getMealTypeByID(id: typeID)).first ?? MealTypeEntity()
+            return mealObj
+        }catch{(print(error.localizedDescription))}
+        
+        return mealObj
     }
     
     static func getSpecifiedMealsRecordByDate(findEmail: String, givenDate: Date) -> NSFetchRequest<MealRecordEntity> {

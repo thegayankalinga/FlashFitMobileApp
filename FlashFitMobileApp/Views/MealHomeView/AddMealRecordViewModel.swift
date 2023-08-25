@@ -15,7 +15,7 @@ class AddMealRecordViewModel: ObservableObject{
     //MARK: Form Variable
     @Published var noOfPotions: Int = 1
     @Published var date: Date = Date.now
-    @Published var calories: String = ""
+    @Published var totalCalories = ""
     @Published var weight: String = ""
     @Published var addMore: Bool = false
     var userEmail: String = ""
@@ -27,17 +27,17 @@ class AddMealRecordViewModel: ObservableObject{
     var updating: Bool {id != nil}
     
     init(){
-        
+
     }
 
-    init(_ mealRecordEntity: MealRecordEntity){
+    init(_ mealRecordEntity: MealRecordEntity, moc: NSManagedObjectContext, typeID: UUID){
         recordID = mealRecordEntity.mealRecordID
         id = recordID
-        selectedMealType =  mealRecordEntity.mealObject
+        selectedMealType =  MealRecordEntity.getMealTypeObject(moc: moc, typeID: typeID)
         noOfPotions = mealRecordEntity.noOfPotionsConsumed
         date = mealRecordEntity.recordCreatedDate
-        calories = String(mealRecordEntity.caloriesGainTotal)
-        weight = String(mealRecordEntity.weightRecorded)
+        totalCalories = String(format: "%.2f",mealRecordEntity.caloriesGainTotal)
+        weight = String(format: "%.2f",mealRecordEntity.weightRecorded)
         userEmail = mealRecordEntity.userID
         
     }

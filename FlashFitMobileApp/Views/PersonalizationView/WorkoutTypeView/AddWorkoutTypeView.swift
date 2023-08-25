@@ -113,6 +113,9 @@ struct AddWorkoutTypeView: View {
                     if viewModel.updating{
                         if let id = viewModel.id,
                            let selectedItem = viewModel.myWorkoutTypes.first(where: {$0.imageId == id}){
+                            if(selectedItem.typeID == nil){
+                                selectedItem.typeID = UUID()
+                            }
                             selectedItem.workoutTypeName = viewModel.workoutName
                             selectedItem.calorieBurnPerMin = Double(viewModel.caloriesBurnedPerMin) ?? 0
                             selectedItem.userEmail = user.email
@@ -149,6 +152,29 @@ struct AddWorkoutTypeView: View {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     SheetCloseButton(disabled: false){
                         dismiss()
+                    }
+                    
+                    
+                }
+                
+                if viewModel.updating{
+                    ToolbarItem(placement: .navigationBarLeading) {
+                        Button{
+                            viewModel.getAllWorkoutTypes(email: user.email!, moc: moc)
+                            if let id = viewModel.id,
+                               let selectedItem = viewModel.myWorkoutTypes.first(where: {$0.imageId == id}){
+                                FileManager().deleteImage(with: selectedItem.imageId)
+                                moc.delete(selectedItem)
+                                try? moc.save()
+                            }
+                            dismiss()
+                        }label: {
+                            HStack{
+                                Image(systemName: "trash")
+                            }
+                        }
+                        .buttonStyle(.borderedProminent)
+                        .tint(.red)
                     }
                 }
                 

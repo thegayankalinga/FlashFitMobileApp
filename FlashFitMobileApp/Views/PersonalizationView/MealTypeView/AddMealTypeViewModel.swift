@@ -79,4 +79,6 @@ class AddMealTypeViewModel: ObservableObject{
          
         }
     }
+    
+   
 }

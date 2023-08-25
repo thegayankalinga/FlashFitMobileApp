@@ -17,9 +17,7 @@ struct MealListView: View {
     var body: some View {
         
         VStack (alignment: .center){
-            Text("Meal Summary")
-                .font(.title3).bold()
-                .padding(.leading)
+
             List{
                 ForEach(mealVm.savedMeals) { entity in
                     NavigationLink(destination: EditMealView(entity: entity)) {
@@ -32,7 +30,7 @@ struct MealListView: View {
                                         Text("Meal Type")
                                         Spacer()
                                         HStack {
-                                            Text("set meal type id") //TODO: set meal type
+                                            Text("No type name")
                                         }
                                     }
                                                                     
@@ -40,7 +38,7 @@ struct MealListView: View {
                                         Text("Caories Gained")
                                         Spacer()
                                         HStack {
-                                            Text("\((entity.totalCaloriesGained), specifier: "%.2f")")
+                                            Text("\((entity.caloriesGainTotal), specifier: "%.2f")")
                                             Text("K/Cal")
                                                 .font(.footnote)
                                                 .foregroundColor(.secondary)
@@ -63,12 +61,11 @@ struct MealListView: View {
                     
                 }
                 .onDelete(perform: { indexSet in
-                    //TODO: Optional force unwrap
+
                     mealVm.deleteMeal(moc, indexSet: indexSet, userId: user.email!)
                 })
             }
             .onAppear(perform : {
-                //TODO: Optional force unwrap
                 mealVm.getMeals(moc, userId: user.email!)
             })
             
@@ -78,11 +75,13 @@ struct MealListView: View {
                 }
             }
         }
+        .navigationTitle("Meal Summery")
+        .navigationBarTitleDisplayMode(.inline)
     }
     
     func dateFormatted(date: Date) -> String {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "d MMM yyyy"
+        dateFormatter.dateFormat = "dd MMM yyyy"
         return dateFormatter.string(from: date)
     }
 }

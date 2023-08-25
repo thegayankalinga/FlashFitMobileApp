@@ -20,7 +20,7 @@ struct AddMealView: View {
     
     var email: String
     enum FocusedField{
-        case caloriesGained
+        case caloriesGained, weight
         
     }
     
@@ -85,16 +85,28 @@ struct AddMealView: View {
                             .frame(height: 50)
                             
                             HStack(alignment: .center){
-                                Stepper("No of Meals \(viewModel.noOfPotions) \(viewModel.noOfPotions == 1 ? "Potion" : "Potions") ", value: $viewModel.noOfPotions, in: 1...5)
+                                Stepper("No of Meals \(viewModel.noOfPotions) \(viewModel.noOfPotions == 1 ? "Potion" : "Potions") ", value: $viewModel.noOfPotions, in: 1...5){_ in
+                                    let calories = Double(viewModel.selectedMealType?.caloriesGain ?? 0.00)
+                                    let potion = Double(viewModel.noOfPotions)
+                                    
+                                    viewModel.totalCalories = String(calories * potion)
+                                }
+                                 
+                                
                                 
                             }
-                            Text("Calories Gained \((viewModel.selectedMealType?.caloriesGain ?? 0.0) * Double(viewModel.noOfPotions)) Kcal")
+                            
+                            EntryField(bindingField: $viewModel.totalCalories, placeholder: "Total Calories Gained", promptText: "", isSecure: false)
+                                .numberOnly($viewModel.totalCalories, includeDecimal: true)
+                                .focused($isFocused, equals: .caloriesGained)
+                                .textFieldStyle(GradientTextFieldBackground(systemImageString: "mouth", colorList: [.blue, .green]))
+                                .padding(.bottom)
                             
                             Divider()
                             
                             EntryField(bindingField: $viewModel.weight, placeholder: "Body Weight in Kilo Gram", promptText: viewModel.weightPrompt, isSecure: false)
                                 .numberOnly($viewModel.weight, includeDecimal: true)
-                                .focused($isFocused, equals: .caloriesGained)
+                                .focused($isFocused, equals: .weight)
                                 .textFieldStyle(GradientTextFieldBackground(systemImageString: "scalemass", colorList: [.blue, .green]))
                                 .padding(.bottom)
                             
@@ -111,13 +123,13 @@ struct AddMealView: View {
                 PrimaryActionButton(actionName: "Save Meal", icon: "plus.circle", disabled: !viewModel.incomplete){
                     print("save button clicked")
                     isFocused = nil
-                    
+                    print(viewModel.selectedMealType)
                     if viewModel.updating{
                         print("updating")
                         if let id = viewModel.id,
                            let selectedItem = viewModel.myMealRecords.first(where: {$0.mealRecordID == id}){
                             selectedItem.recordDate = viewModel.date
-                            selectedItem.totalCaloriesGained = Double(viewModel.calories) ?? 0
+                            selectedItem.totalCaloriesGained = Double(viewModel.totalCalories) ?? 0
                             selectedItem.userEmail = user.email
                             selectedItem.weightAtRecord = Double(viewModel.weight) ?? 0.0
                             selectedItem.noOfPotions = Int16(viewModel.noOfPotions)
@@ -136,7 +148,7 @@ struct AddMealView: View {
                             newRecord.recordID = UUID()
                             newRecord.userEmail = email
                             newRecord.weightAtRecord = Double(viewModel.weight) ?? 0.0
-                            newRecord.totalCaloriesGained = Double(viewModel.calories) ?? 0.0
+                            newRecord.totalCaloriesGained = Double(viewModel.totalCalories) ?? 0.0
                             newRecord.recordDate = viewModel.date
                             newRecord.noOfPotions = Int16(viewModel.noOfPotions)
                             newRecord.mealTypeID = viewModel.selectedMealType!.mealTypeID
