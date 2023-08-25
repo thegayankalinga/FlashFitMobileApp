@@ -18,8 +18,8 @@ struct ContentView: View {
     @Environment(\.dismiss) var dismiss
     
     var body: some View {
-        NavigationStack{
-            VStack{
+     
+     
                 TabView(selection: $selectedTab){
 
                     HomeScreenView()
@@ -78,7 +78,7 @@ struct ContentView: View {
                     print(value)
                     selectedTab = value
                 }
-                }
+    
             .sheet(isPresented: $showPopUp, onDismiss: {
                 self.selectedTab = previousSelectedTab
             }) {
@@ -88,7 +88,7 @@ struct ContentView: View {
             
             
     
-        }
+
     }
 }
 
