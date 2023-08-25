@@ -10,39 +10,62 @@ import SwiftUI
 struct ContentView: View {
     
     @State private var showPopUp = false
-    @State private var selectedOption: String? = nil
+    //@State private var selectedOption: String? = nil
+    @State private var selectedTab: String = "home"
+    @State private var previousSelectedTab: String = "pd"
     
     var body: some View {
         NavigationView {
             VStack{
-                TabView{
+                TabView(selection: $selectedTab){
                     HomeScreenView()
                         .tabItem{
                             Label("Home", systemImage: "house.fill")
                         }
+                        .tag("home")
+                    
+                    
                     WorkoutHomeView()
+                        .onAppear() {
+                            print("workout tapped")
+                            self.previousSelectedTab = "workouthome"
+                        }
                         .tabItem{
                             Label("Workout", systemImage: "dumbbell.fill")
+                                
                         }
+                        .tag("workouthome")
     
                     
-                    PopoverView(selectedOption: $selectedOption)
+                    PopoverView(selectedOption: $previousSelectedTab)
                         .tabItem {
                             Label("Add", systemImage: "plus.circle.fill")
                         }
+                        .tag("add_button")
                         .sheet(isPresented: $showPopUp) {
-                            PopoverView(selectedOption: $selectedOption)
+                            PopoverView(selectedOption: $previousSelectedTab)
                         }
                     
                     
                     MealHomeView()
+                        .onAppear() {
+                            print("meal tapped")
+                            self.previousSelectedTab = "mealhome"
+                        }
                         .tabItem{
                             Label("Meal", systemImage: "cup.and.saucer.fill")
                         }
+                        .tag("mealhome")
                     ReportView()
                         .tabItem{
                             Label("Report", systemImage: "doc.text.below.ecg.fill")
                         }
+                        .tag("report")
+                }
+                .onChange(of: selectedTab){ value in
+                    print("previousSelectedTab: \(previousSelectedTab)")
+                    print(value)
+                    selectedTab = value
                 }
                 .padding()
             }.padding(.top)
@@ -52,11 +75,17 @@ struct ContentView: View {
 
 // TODO *****
 struct PopoverView: View {
-    @Binding var selectedOption: String?
+    @Binding var selectedOption: String
     
     var body: some View {
         //AddWorkoutView()
-        AddMealView()
+        if(selectedOption == "workouthome"){
+            AddWorkoutView()
+        }else if(selectedOption == "mealhome"){
+            AddMealView()
+        }else{
+            AddMealView()
+        }
       /*  VStack {
             HStack{
                 Button(action: {

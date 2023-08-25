@@ -53,6 +53,7 @@ class RegistrationViewModel: ObservableObject{
     func navigateTo3() {
         navigationPath.append("1")
     }
+
     
     func navigateBack() {
         navigationPath.removeLast()

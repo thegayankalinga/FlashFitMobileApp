@@ -13,7 +13,6 @@ struct RegistrationThirdView: View {
         @Environment(\.managedObjectContext) var moc
         @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
         @StateObject var registrationVM: RegistrationViewModel
-        
         @State private var response = 0;
         @State private var confirmButtonClickCount = 0
         @State private var validated = false
@@ -48,7 +47,7 @@ struct RegistrationThirdView: View {
                 if(confirmButtonClickCount == 0 ){
                     //TODO: Add the image icon to button
                     PrimaryActionButton(actionName: "Confirm", icon: "checkmark", disabled: false){
-                        
+                        confirmButtonClickCount += 1
                         do{
                             response = try registrationVM.register(moc: moc)
                         }catch RegistrationError.userExist{
@@ -71,29 +70,50 @@ struct RegistrationThirdView: View {
                         Text("Hooray, Welcome")
                         
                         Text("Successfully Registered Please Login to continue.")
-                        
+
+                        }
                         Button("Login"){
                             confirmButtonClickCount = 0
-                            self.presentationMode.wrappedValue.dismiss()
-                        }
-                    }
+                            
+                            withAnimation{
+                                registrationVM.navigateToRoot()
+                                
+                                self.presentationMode.wrappedValue.dismiss()
+                                
+                                self.presentationMode.wrappedValue.dismiss()
+                            }
+                        }.transition(.slide)
+               
+                    
                     
                 }else if(response == 409){
                     VStack{
                         Text("User Already  Existing in our records, pls login")
                         Button("Login"){
                             confirmButtonClickCount = 0
-                            self.presentationMode.wrappedValue.dismiss()
+                            
+                            withAnimation{
+                                registrationVM.navigateToRoot()
+                                
+                                self.presentationMode.wrappedValue.dismiss()
+                                    
+                                self.presentationMode.wrappedValue.dismiss()
+                            }
+                            
                         }
+                        .transition(.slide)
+                        
                     }
                     
                 }else if(response != 0){
                     VStack{
                         Text("Something went wrong, could you pls re-try")
                         Button("Re-Try"){
-                            confirmButtonClickCount = 0
-                            registrationVM.navigateToRoot()
-                        }
+                            withAnimation{
+                                confirmButtonClickCount = 0
+                                registrationVM.navigateToRoot()
+                            }
+                        }.transition(.slide)
                     }
                 }
                 

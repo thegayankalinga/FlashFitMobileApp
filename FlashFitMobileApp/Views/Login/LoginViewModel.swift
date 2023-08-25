@@ -15,8 +15,8 @@ class LoginViewModel: ObservableObject{
     
     let pepper: String = "DEFAULTPEPPERVALUE"
     let passwordHasherIteration: Int = 3
-    @Published var email = ""
-    @Published var password = ""
+    @Published var email = "bg15407@gmail.com"
+    @Published var password = "gayan"
     
     
     func login(email: String, password: String, moc: NSManagedObjectContext)throws -> UserModel{

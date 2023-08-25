@@ -24,6 +24,7 @@ struct RegistrationView: View {
             .navigationDestination(for: String.self) { _ in
                 RegistrationThirdView(registrationVM: registrationVM)
             }
+            
         }
 
     }
