@@ -23,126 +23,128 @@ struct HomeScreenView: View {
     
     var body: some View {
         
-        VStack{
-            // profile
-            ProfileSectionView().padding(.bottom, 20)
-            
-            ScrollView {
+        NavigationView{
+            VStack{
+                // profile
+                ProfileSectionView().padding(.bottom, 20)
                 
-                // prediction
-                ZStack {
-                    Color(hex:0xFDB137)
-                    VStack {
-                        NavigationLink(destination: PredictionView()) {
-                            HStack (alignment: .top) {
-                                VStack (alignment: .leading, spacing: 30) {
-                                    HStack {
-                                        Image(systemName: "figure.walk")
-                                        Text("Health Prediction")
-                                            .font(.footnote)
-                                            .padding(.bottom, 5)
+                ScrollView {
+                    
+                    // prediction
+                    ZStack {
+                        Color(hex:0xFDB137)
+                        VStack {
+                            NavigationLink(destination: PredictionView()) {
+                                HStack (alignment: .top) {
+                                    VStack (alignment: .leading, spacing: 30) {
+                                        HStack {
+                                            Image(systemName: "figure.walk")
+                                            Text("Health Prediction")
+                                                .font(.footnote)
+                                                .padding(.bottom, 5)
+                                        }
+                                        
+                                        VStack (alignment: .leading, spacing: 3) {
+                                            Text(healthStatus.rawValue)
+                                                .font(.subheadline)
+                                                .fontWeight(.medium)
+                                            Text("\((user.weight!), specifier: "%.2f") Kg")
+                                                .font(.caption)
+                                        }
                                     }
                                     
-                                    VStack (alignment: .leading, spacing: 3) {
-                                        Text(healthStatus.rawValue)
-                                            .font(.subheadline)
-                                            .fontWeight(.medium)
-                                        Text("\((user.weight!), specifier: "%.2f") Kg")
-                                            .font(.caption)
-                                    }
+                                    Spacer()
+                                    
+                                    Text("\(getDate())")
+                                        .font(.caption)
+                                        .foregroundColor(.secondary)
+                                    
+                                    Image(systemName: "chevron.right")
+                                        .font(.caption)
+                                        .foregroundColor(.secondary)
                                 }
-                                
-                                Spacer()
-                                
-                                Text("\(getDate())")
-                                    .font(.caption)
-                                    .foregroundColor(.secondary)
-                                
-                                Image(systemName: "chevron.right")
-                                    .font(.caption)
-                                    .foregroundColor(.secondary)
+                                .padding()
+                                .foregroundColor(.black)
                             }
-                            .padding()
-                            .foregroundColor(.black)
                         }
                     }
-                }
-                .cornerRadius(10)
-                .padding(.top, 15)
-                .padding(.bottom, 10)
-                
-                // plan for today
-                ZStack {
-                    Color(hex:0xFDB137)
-                    PlanTodayView()
-                }
-                .cornerRadius(10)
-                .padding(.bottom, 10)
-                
-                // weekly chart
-                ZStack{
-                    Color(hex:0xF4F4F4)
-                    VStack (alignment: .leading) {
-                        
-                        HStack{
-                            Image(systemName: "flame.fill")
-                            Text("Weekly Activity")
-                                .font(.footnote)
-                                .padding(.bottom, 1)
-                        }
-                        
-                        HStack(spacing: 4) {
-                            Text("\(Int(total) / 60)")
-                                .font(.subheadline)
-                                .fontWeight(.bold)
-                                .padding(.bottom, 10)
-                            
-                            Text("hrs")
-                                .font(.footnote)
-                                .foregroundColor(.secondary)
-                                .fontWeight(.semibold)
-                                .padding(.bottom, 8)
-                            
-                            Text("\(Int(total) % 60)")
-                                .font(.subheadline)
-                                .fontWeight(.bold)
-                                .padding(.bottom, 10)
-                            
-                            Text("mins")
-                                .font(.footnote)
-                                .foregroundColor(.secondary)
-                                .fontWeight(.semibold)
-                                .padding(.bottom, 8)
-                        }
-                        
-                        Chart {
-                            ForEach(dayByContent) { day in
-                                BarMark(x: .value("Day of Week", day.date, unit: .day),
-                                        y: .value("Duration (m)", day.workoutDuration)
-                                )
-                                .foregroundStyle(Color.orange)
-                                .cornerRadius(6)
-                            }
-                        }
-                        .frame(height: 150)
-                        .chartXAxis {
-                            AxisMarks(values: dayByContent.map {$0.date}) { date in
-                                AxisValueLabel(format: .dateTime.weekday(.narrow), centered: true)
-                            }
-                        }
-                        
-                    }
-                    .padding()
                     .cornerRadius(10)
+                    .padding(.top, 15)
+                    .padding(.bottom, 10)
+                    
+                    // plan for today
+                    ZStack {
+                        Color(hex:0xFDB137)
+                        PlanTodayView()
+                    }
+                    .cornerRadius(10)
+                    .padding(.bottom, 10)
+                    
+                    // weekly chart
+                    ZStack{
+                        Color(hex:0xF4F4F4)
+                        VStack (alignment: .leading) {
+                            
+                            HStack{
+                                Image(systemName: "flame.fill")
+                                Text("Weekly Activity")
+                                    .font(.footnote)
+                                    .padding(.bottom, 1)
+                            }
+                            
+                            HStack(spacing: 4) {
+                                Text("\(Int(total) / 60)")
+                                    .font(.subheadline)
+                                    .fontWeight(.bold)
+                                    .padding(.bottom, 10)
+                                
+                                Text("hrs")
+                                    .font(.footnote)
+                                    .foregroundColor(.secondary)
+                                    .fontWeight(.semibold)
+                                    .padding(.bottom, 8)
+                                
+                                Text("\(Int(total) % 60)")
+                                    .font(.subheadline)
+                                    .fontWeight(.bold)
+                                    .padding(.bottom, 10)
+                                
+                                Text("mins")
+                                    .font(.footnote)
+                                    .foregroundColor(.secondary)
+                                    .fontWeight(.semibold)
+                                    .padding(.bottom, 8)
+                            }
+                            
+                            Chart {
+                                ForEach(dayByContent) { day in
+                                    BarMark(x: .value("Day of Week", day.date, unit: .day),
+                                            y: .value("Duration (m)", day.workoutDuration)
+                                    )
+                                    .foregroundStyle(Color.orange)
+                                    .cornerRadius(6)
+                                }
+                            }
+                            .frame(height: 150)
+                            .chartXAxis {
+                                AxisMarks(values: dayByContent.map {$0.date}) { date in
+                                    AxisValueLabel(format: .dateTime.weekday(.narrow), centered: true)
+                                }
+                            }
+                            
+                        }
+                        .padding()
+                        .cornerRadius(10)
+                    }
+                    .cornerRadius(10)
+                    .padding(.bottom, 10)
+                    
                 }
-                .cornerRadius(10)
-                .padding(.bottom, 10)
-                
             }
-        }
-        .onAppear{
-            calculateHealthStatus()
-            getTotalDuration()
+            .onAppear{
+                calculateHealthStatus()
+                getTotalDuration()
+            }
         }
     }
     

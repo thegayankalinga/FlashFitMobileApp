@@ -57,7 +57,7 @@ struct ProfileHomeView: View {
             .navigationTitle("Profile")
             .navigationBarTitleDisplayMode(.inline)
             .padding(.top, 20)
-        .background(Color(UIColor.secondarySystemBackground))
+        //.background(Color(UIColor.secondarySystemBackground))
         }
 
         //.background(Color(#colorLiteral(red: 0.9607843137, green: 0.9607843137, blue: 0.9607843137, alpha: 1))) // #F5F5F5

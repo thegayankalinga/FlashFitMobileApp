@@ -31,143 +31,117 @@ struct EditProfileView: View {
     }
     
     var body: some View {
-        VStack {
-            
-            
-            Image(uiImage: viewModel.userImage)
-                .resizable()
-                .scaledToFill()
-                .frame(width: 64 , height: 64)
-                .clipShape(Circle())
-            HStack{
-                PhotosPicker("Select Image",
-                     selection: $imagePicker.imageSelection,
-                     matching: .images,
-                     photoLibrary: .shared())
-
-            }
-            .padding(.bottom, 15)
-            
-           Form {
-               Section (header: Text("Personal Details")){
-                   TextField("Full Name", text: $viewModel.name)
-  
-                   DatePicker("Birthdate", selection: $viewModel.dob, displayedComponents: [.date])
-                       .accentColor(.orange)
-
-                 
-               }
-               Section (header: Text("Gender")){
-                   Picker("", selection: $viewModel.selectedGender) {
-                       ForEach(GenderTypeEnum.allCases) { option in
-                           // 2
-                           Text(String(describing: option))
-                       }
-                   }
-                   .frame(height: 50)
-                   .pickerStyle(.segmented)
-               }
-               
-               Section(header: Text("Height in Centi Meters")) {
-                   EntryField(bindingField: $viewModel.height, placeholder: "Heigh in CM", promptText: "", isSecure: false)
-                       .numberOnly($viewModel.height, includeDecimal: true)
-               }
-               Section(header: Text("Weight in Kilo Grams")) {
-                   EntryField(bindingField: $viewModel.weight, placeholder: "Weight in KG", promptText: "", isSecure: false)
-                       .numberOnly($viewModel.weight, includeDecimal: true)
-                   //EntryField("Weight (Kg)", text: $viewModel.weight)
-               }
-           }
-           .tint(.pink)
-
-           
-            Spacer()
-            
-            PrimaryActionButton(actionName: "Update", icon: "checkmark", disabled: viewModel.incomplete){
-                isFocused = nil
-                
-                viewModel.getTheUserDetailsToUpdate(email: user.email!, moc: moc)
-                if viewModel.updating{
-                    print("updating")
-                    if(viewModel.id == ""){
-                        viewModel.id = UUID().uuidString
-                    }
-                    if let id = viewModel.id,
-                       let selectedItem = viewModel.userToUpdate{
-                        let bmi = UserService.calculateBmi(weight: Double(viewModel.weight) ?? 0.0, height: Double(viewModel.height) ?? 0.0)
-                        selectedItem.name = viewModel.name
-                        selectedItem.weight = Double(viewModel.weight) ?? 0.0
-                        selectedItem.height = Double(viewModel.height) ?? 0.0
-                        selectedItem.genderType = viewModel.selectedGender.rawValue
-                        selectedItem.dateOfBirth = viewModel.dob
-                        selectedItem.bmi = bmi
-                        selectedItem.healthStatus = UserService.getHealthStatus(bodyMassIndexValue: bmi).rawValue
-                        FileManager().saveImage(with: id, image: viewModel.userImage)
+            VStack {
+                Form {
+                    
+                    Image(uiImage: viewModel.userImage)
+                        .resizable()
+                        .scaledToFill()
+                        .frame(width: 64 , height: 64)
+                        .clipShape(Circle())
+                        .frame(maxWidth: .infinity, alignment: .center)
+                    HStack{
+                        PhotosPicker("Select Profile Picture",
+                                     selection: $imagePicker.imageSelection,
+                                     matching: .images,
+                                     photoLibrary: .shared())
                         
-                        if moc.hasChanges{
-                            try? moc.save()
+                    }
+                    .frame(maxWidth: .infinity, alignment: .center)
+                    .padding(.bottom, 15)
+                    
+                    Section (header: Text("Personal Details")){
+                        TextField("Full Name", text: $viewModel.name)
+                        
+                        DatePicker("Birthdate", selection: $viewModel.dob, displayedComponents: [.date])
+                            .accentColor(.orange)
+                        
+                        
+                    }
+                    Section (header: Text("Gender")){
+                        Picker("", selection: $viewModel.selectedGender) {
+                            ForEach(GenderTypeEnum.allCases) { option in
+                                // 2
+                                Text(String(describing: option))
+                            }
                         }
-                        
-                        alertHeading = "Update Successful"
-                        alertMessage = "\(viewModel.name) Updated Successful"
-                        showingAlert.toggle()
-                        print("\(viewModel.name) Updated Successful")
+                        .frame(height: 50)
+                        .pickerStyle(.segmented)
+                    }
+                    
+                    Section(header: Text("Height in Centi Meters")) {
+                        EntryField(bindingField: $viewModel.height, placeholder: "Heigh in CM", promptText: "", isSecure: false)
+                            .numberOnly($viewModel.height, includeDecimal: true)
+                    }
+                    Section(header: Text("Weight in Kilo Grams")) {
+                        EntryField(bindingField: $viewModel.weight, placeholder: "Weight in KG", promptText: "", isSecure: false)
+                            .numberOnly($viewModel.weight, includeDecimal: true)
+                        //EntryField("Weight (Kg)", text: $viewModel.weight)
                     }
                 }
-            
+                .tint(.pink)
                 
-               
-            }
-            .opacity(!viewModel.incomplete ? 1 : 0.6)
-            .padding(.bottom, 25)
-//            PrimaryActionButton(actionName: "Update", icon: "pencil.line", disabled: false){
-//                do{
-//                    let response = try viewModel.update(email: user.email ?? "", moc: moc)
-//                    if(response == 201){
-//                        alertHeading = "Update Successful"
-//                        alertMessage = "\(viewModel.name) Updated Successful"
-//                        showingAlert.toggle()
-//                        print("\(viewModel.name) Updated Successful")
-//                    }
-//                }catch UpdateError.UpdateFailed{
-//                    alertHeading = "Update Failed"
-//                    alertMessage = "Update Failed, Please re-try later"
-//                    showingAlert.toggle()
-//                    print("Update Failed")
-//                }catch UpdateError.UserNotFound{
-//                    alertHeading = "User not found for update"
-//                    alertMessage = "User details not found, please re-try later"
-//                    showingAlert.toggle()
-//                    print("User not found")
-//
-//                }catch{
-//                    alertHeading = "Unknown Error"
-//                    alertMessage = "Please re-try later, update unsuccessful"
-//                    showingAlert.toggle()
-//                    print("Something went wrong")
-//                }
-//            }
-        }
-        .toolbar {
-            ToolbarItem(placement: .keyboard) {
-                Button{
+                PrimaryActionButton(actionName: "Update", icon: "checkmark", disabled: viewModel.incomplete){
                     isFocused = nil
-                }label: {
-                    Image(systemName: "keyboard.chevron.compact.down")
+                    
+                    viewModel.getTheUserDetailsToUpdate(email: user.email!, moc: moc)
+                    if viewModel.updating{
+                        print("updating")
+                        if(viewModel.id == ""){
+                            viewModel.id = UUID().uuidString
+                        }
+                        if let id = viewModel.id,
+                           let selectedItem = viewModel.userToUpdate{
+                            let bmi = UserService.calculateBmi(weight: Double(viewModel.weight) ?? 0.0, height: Double(viewModel.height) ?? 0.0)
+                            selectedItem.name = viewModel.name
+                            selectedItem.weight = Double(viewModel.weight) ?? 0.0
+                            selectedItem.height = Double(viewModel.height) ?? 0.0
+                            selectedItem.genderType = viewModel.selectedGender.rawValue
+                            selectedItem.dateOfBirth = viewModel.dob
+                            selectedItem.bmi = bmi
+                            selectedItem.healthStatus = UserService.getHealthStatus(bodyMassIndexValue: bmi).rawValue
+                            FileManager().saveImage(with: id, image: viewModel.userImage)
+                            
+                            if moc.hasChanges{
+                                try? moc.save()
+                            }
+                            
+                            alertHeading = "Update Successful"
+                            alertMessage = "\(viewModel.name) Updated Successful"
+                            showingAlert.toggle()
+                            print("\(viewModel.name) Updated Successful")
+                        }
+                    }
+                    
+                    
+                    
                 }
-                
+                .opacity(!viewModel.incomplete ? 1 : 0.6)
+                .padding(.bottom, 25)
+
             }
-        }
-        .onChange(of: imagePicker.uiImage){ newImage in
-            if let newImage{
-                viewModel.userImage = newImage
+            //.edgesIgnoringSafeArea(.all)
+            .toolbar {
+                ToolbarItem(placement: .keyboard) {
+                    Button{
+                        isFocused = nil
+                    }label: {
+                        Image(systemName: "keyboard.chevron.compact.down")
+                    }
+                    
+                }
             }
-        }
-        .onAppear(perform: setUserDataAtLoad)
-        .environmentObject(user)
-        .alert(isPresented: $showingAlert) { () -> Alert in
-            Alert(title: Text(alertHeading), message: Text(alertMessage))
-        }
+            .onChange(of: imagePicker.uiImage){ newImage in
+                if let newImage{
+                    viewModel.userImage = newImage
+                }
+            }
+            .onAppear(perform: setUserDataAtLoad)
+            .environmentObject(user)
+            .alert(isPresented: $showingAlert) { () -> Alert in
+                Alert(title: Text(alertHeading), message: Text(alertMessage))
+            }
+   
     }
     
     

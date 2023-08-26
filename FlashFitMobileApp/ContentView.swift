@@ -20,19 +20,21 @@ struct ContentView: View {
     @Environment(\.dismiss) var dismiss
     
     var body: some View {
-        NavigationView{
-            VStack{
+        //NavigationView{
+            //VStack{
                 TabView(selection: $selectedTab){
                     
-                    HomeScreenView()
-                        .onAppear() {
-                            print("home")
-                            self.previousSelectedTab = "home"
-                        }
-                        .tabItem{
-                            Label("Home", systemImage: "house.fill")
-                        }
-                        .tag("home")
+                 
+                        HomeScreenView()
+                  
+                            .onAppear() {
+                                print("home")
+                                self.previousSelectedTab = "home"
+                            }
+                            .tabItem{
+                                Label("Home", systemImage: "house.fill")
+                            }
+                            .tag("home")
                     
                     
                     WorkoutHomeView()
@@ -85,7 +87,7 @@ struct ContentView: View {
                     print(value)
                     selectedTab = value
                 }
-            }
+            //}
             .sheet(isPresented: $showMealAddSheet, onDismiss: {
                 self.selectedTab = previousSelectedTab
             }) {
@@ -106,7 +108,7 @@ struct ContentView: View {
                     .presentationDetents([.height(150), .fraction(0.2)])
             }
             .padding()
-        }
+        //}
     }
 }
 
