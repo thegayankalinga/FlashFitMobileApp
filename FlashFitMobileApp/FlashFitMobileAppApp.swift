@@ -13,7 +13,7 @@ struct FlashFitMobileAppApp: App {
     
     var body: some Scene {
         WindowGroup {
-            LoginView(loggedInUser: LoggedInUserModel())
+            SplashScreenView()
                 .environment(\.managedObjectContext, dataController.container.viewContext)
                 .onAppear{
                     print(URL.documentsDirectory.path)

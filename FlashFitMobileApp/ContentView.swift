@@ -24,14 +24,18 @@ struct ContentView: View {
             //VStack{
                 TabView(selection: $selectedTab){
                     
-                 
+
                     HomeScreenView(workoutVm: WorkoutViewModel())
-                  
+
                             .onAppear() {
                                 print("home")
                                 self.previousSelectedTab = "home"
                             }
                             .tabItem{
+                                HStack{
+                                    Image(systemName: "house.fill")
+                                    Text("Home")
+                                }
                                 Label("Home", systemImage: "house.fill")
                             }
                             .tag("home")
@@ -48,7 +52,7 @@ struct ContentView: View {
                         }
                         .tag("workouthome")
                     
-                    
+
                     HomeScreenView(workoutVm: WorkoutViewModel())
                         .tabItem {
                             Label("Add", systemImage: "plus.circle.fill")

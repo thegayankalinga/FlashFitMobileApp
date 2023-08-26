@@ -29,9 +29,10 @@ class RegistrationViewModel: ObservableObject{
     @Published var userImage: UIImage
   
     var dateFormatter = DateFormatter()
+
     
     init(_ uiImage: UIImage){
-        
+        self.dateFormatter.dateFormat = "yyyy-MMM-dd"
         self.userImage = uiImage
     }
     
@@ -43,7 +44,7 @@ class RegistrationViewModel: ObservableObject{
         self.password = password
         self.confirmPassword = confirmPassword
         self.genderType = genderType
-        self.dateOfBirth = dateOfBirth ?? Calendar.current.date(byAdding: .year, value: -14, to: Date())!
+        self.dateOfBirth = dateOfBirth ?? Calendar.current.date(byAdding: .year, value: -15, to: Date())!
         self.weight = weight
         self.height = height
         self.dateFormatter.dateFormat = "yyyy-MMM-dd"
@@ -144,6 +145,7 @@ class RegistrationViewModel: ObservableObject{
     
     var agePrompt: String{
         if isValidAge() {
+
             return ""
         }else {
             return "Age must be 15 years or older"
@@ -268,47 +270,4 @@ class RegistrationViewModel: ObservableObject{
            
            
     }
-    
-//    func valueExists(email: String, moc: NSManagedObjectContext) -> Bool {
-//        let fetchRequest: NSFetchRequest<UserModelEntity> = UserModelEntity.fetchRequest()
-//        fetchRequest.predicate = NSPredicate(format: "email == %@", email)
-//
-//        do {
-//            let context = moc // Replace with your actual managed object context
-//            let count = try context.count(for: fetchRequest)
-//            return count > 0
-//        } catch {
-//            print("Error checking for value existence: \(error)")
-//            return false
-//        }
-//    }
-
-//
-//    func getHealthStatus(bodyMassIndexValue: Double) -> HealthStatusEnum {
-//
-//        switch bodyMassIndexValue {
-//        case ...18.5:
-//            return .Underweight
-//        case 18.5...24.9:
-//            return .Normalweight
-//        case 25...29.9:
-//            return .Overweight
-//        case 30...:
-//            return .Obesity
-//        default:
-//            return .None
-//        }
-//    }
-    
-//    func calculateBmi(weight: Double, height: Double) -> Double {
-//
-//        var bmi: Double = 0.0
-//
-//        var heightMeters = height / 100
-//        heightMeters = heightMeters * heightMeters
-//
-//        bmi = weight / heightMeters
-//
-//        return bmi
-//    }
 }

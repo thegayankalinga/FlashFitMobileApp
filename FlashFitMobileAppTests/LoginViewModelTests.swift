@@ -7,7 +7,7 @@
 
 import XCTest
 import CoreData
-@testable import YourApp // Import your app module here
+@testable import FlashFitMobileApp // Import your app module here
 
 class LoginViewModelTests: XCTestCase {
 

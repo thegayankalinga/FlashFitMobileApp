@@ -72,7 +72,8 @@ struct RegistrationThirdView: View {
                             
                             HStack(spacing: 20){
                                 Text("Date of Birth: ")
-                                Text("\(registrationVM.dateFormatter.string(from: registrationVM.dateOfBirth ))")
+                                Text(registrationVM.dateFormatter.string(from: registrationVM.dateOfBirth))
+                                
                             }
                             
                             HStack(spacing: 20){

@@ -22,7 +22,7 @@ struct RegistrationSecondView: View {
             VStack {
                     
                 LogoShapeView(heightLimiter: 0.7, logoTypeName: "home-logo")
-                    .frame(maxHeight: 220)
+                    .frame(maxHeight: 250)
                 ScrollView {
                     
                     Text("Thats all we need...")
@@ -65,7 +65,7 @@ struct RegistrationSecondView: View {
                                    displayedComponents: [.date]
                                    
                         )
-                        //.datePickerStyle(GraphicalDatePickerStyle())
+                        .datePickerStyle(GraphicalDatePickerStyle())
                         .padding()
                         Text(registrationVM.agePrompt)
                             .fixedSize(horizontal: false, vertical: true)
