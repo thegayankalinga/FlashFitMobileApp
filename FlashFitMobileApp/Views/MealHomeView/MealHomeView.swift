@@ -111,7 +111,8 @@ struct MealHomeView: View {
                 }
                 
                 VStack{
-                    NavigationLink("Update Recorded Meals", destination: MealListView(viewModel: MealRecordViewModel()).accentColor(.orange))
+                    NavigationLink("Update Recorded Meals", destination: MealListView(viewModel: MealRecordViewModel()).accentColor(CustomColors.secondaryColor))
+                        .font(.headline)
                 }
                 .padding(.bottom, 25)
             }

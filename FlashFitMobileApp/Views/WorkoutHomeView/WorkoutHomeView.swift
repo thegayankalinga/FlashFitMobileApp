@@ -106,7 +106,8 @@ struct WorkoutHomeView: View {
                         .padding(.bottom, 10)
                     }
                     VStack{
-                        NavigationLink("Update Recorded Workouts", destination: WorkoutListView()).accentColor(.orange)
+                        NavigationLink("Update Recorded Workouts", destination: WorkoutListView()).accentColor(CustomColors.primaryColor)
+                            .font(.headline)
                     }.padding(.bottom, 25)
                 }
             }
