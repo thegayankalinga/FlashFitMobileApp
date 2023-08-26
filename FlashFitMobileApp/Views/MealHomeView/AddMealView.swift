@@ -35,15 +35,15 @@ struct AddMealView: View {
         NavigationStack {
             
             VStack{
-               
-           
+                
+                
                 ScrollView {
-                   
+                    
                     VStack(alignment: .leading, spacing: 0.0) {
                         LogoShapeView(heightLimiter: 0.5, logoTypeName: "meal-logo")
                             .frame(minHeight: 160)
                         Spacer()
-                       
+                        
                         
                         
                         VStack (alignment: .leading, spacing: 20){
@@ -54,7 +54,7 @@ struct AddMealView: View {
                                     .fontWeight(.bold)
                             }
                             .padding(.top, 25)
-//                            .padding(.leading, 25)
+                            //                            .padding(.leading, 25)
                             
                             DatePicker("Select a date", selection: $viewModel.date, displayedComponents: .date)
                                 .accentColor(.orange)
@@ -99,7 +99,7 @@ struct AddMealView: View {
                                     print(viewModel.noOfPotions)
                                     viewModel.calTotalCalories(moc: moc)
                                 }
-      
+                                
                             }
                             
                             EntryField(bindingField: $viewModel.totalCalories, placeholder: "Total Calories Gained", promptText: "", isSecure: false)
@@ -107,7 +107,7 @@ struct AddMealView: View {
                                 .focused($isFocused, equals: .caloriesGained)
                                 .textFieldStyle(GradientTextFieldBackground(systemImageString: "mouth", colorList: [.blue, .green]))
                                 .padding(.bottom)
-                                
+                            
                             
                             Divider()
                             
@@ -129,33 +129,33 @@ struct AddMealView: View {
                     }
                     
                 }
-                
-                PrimaryActionButton(
-                    actionName: "Save Meal",
-                    icon: "plus.circle",
-                    disabled: !viewModel.incomplete)
-                {
-  
-                    isFocused = nil
-             
-                    viewModel.getAllMealRecordsByEmail(email: user.email!, moc: moc)
+                VStack{
+                    PrimaryActionButton(
+                        actionName: "Save Meal",
+                        icon: "plus.circle",
+                        disabled: !viewModel.incomplete)
+                    {
                         
-                    if viewModel.updating{
-                        print("updating")
-                        print(viewModel.myMealRecords)
-                        if let id = viewModel.recordID,
-                           let selectedItem = viewModel.myMealRecords.first(where: {$0.mealRecordID == id}){
-                            
-                            print(selectedItem)
-                            selectedItem.recordDate = viewModel.date
-                            selectedItem.totalCaloriesGained = Double(viewModel.totalCalories) ?? 0
-                            selectedItem.userEmail = user.email
-                            selectedItem.weightAtRecord = Double(viewModel.weight) ?? 0.0
-                            selectedItem.noOfPotions = Int16(viewModel.noOfPotions)
-                            selectedItem.mealTypeID = viewModel.selectedMealType?.mealTypeID
-                            selectedItem.mealTypeName = viewModel.selectedMealType?.mealTypeName
-                            selectedItem.recordID = viewModel.recordID
-                        }
+                        isFocused = nil
+                        
+                        viewModel.getAllMealRecordsByEmail(email: user.email!, moc: moc)
+                        
+                        if viewModel.updating{
+                            print("updating")
+                            print(viewModel.myMealRecords)
+                            if let id = viewModel.recordID,
+                               let selectedItem = viewModel.myMealRecords.first(where: {$0.mealRecordID == id}){
+                                
+                                print(selectedItem)
+                                selectedItem.recordDate = viewModel.date
+                                selectedItem.totalCaloriesGained = Double(viewModel.totalCalories) ?? 0
+                                selectedItem.userEmail = user.email
+                                selectedItem.weightAtRecord = Double(viewModel.weight) ?? 0.0
+                                selectedItem.noOfPotions = Int16(viewModel.noOfPotions)
+                                selectedItem.mealTypeID = viewModel.selectedMealType?.mealTypeID
+                                selectedItem.mealTypeName = viewModel.selectedMealType?.mealTypeName
+                                selectedItem.recordID = viewModel.recordID
+                            }
                             
                             if moc.hasChanges{
                                 try? moc.save()
@@ -176,24 +176,25 @@ struct AddMealView: View {
                             try? moc.save()
                             print("saved new")
                         }
-                    
-                    if(!viewModel.isAddMoreChecked){
-                        dismiss()
-                    }else{
-                        viewModel.noOfPotions = 1
-                        viewModel.date = Date.now
-                        viewModel.totalCalories = ""
-                        viewModel.weight = ""
-                        viewModel.selectedMealType = nil
-                    }
                         
-                    
+                        if(!viewModel.isAddMoreChecked){
+                            dismiss()
+                        }else{
+                            viewModel.noOfPotions = 1
+                            viewModel.date = Date.now
+                            viewModel.totalCalories = ""
+                            viewModel.weight = ""
+                            viewModel.selectedMealType = nil
+                        }
+                        
+                        
                         
                     }
                     .opacity(viewModel.incomplete ? 1 : 0.6)
                     .padding(.bottom, 25)
-
+                    
                 }
+            }.padding(.bottom, 25)
             .edgesIgnoringSafeArea(.all)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
@@ -201,26 +202,26 @@ struct AddMealView: View {
                         dismiss()
                     }
                 }
-                if viewModel.updating{
-                    ToolbarItem(placement: .navigationBarLeading) {
-                        Button{
-                            viewModel.getAllMealRecordsByEmail(email: user.email!, moc: moc)
-                            if let id = viewModel.id,
-                               let selectedItem = viewModel.myMealRecords.first(where: {$0.mealRecordID == id}){
-                                
-                                moc.delete(selectedItem)
-                                try? moc.save()
-                            }
-                            dismiss()
-                        }label: {
-                            HStack{
-                                Image(systemName: "trash")
-                            }
-                        }
-                        .buttonStyle(.borderedProminent)
-                        .tint(.red)
-                    }
-                }
+//                if viewModel.updating{
+//                    ToolbarItem(placement: .navigationBarLeading) {
+//                        Button{
+//                            viewModel.getAllMealRecordsByEmail(email: user.email!, moc: moc)
+//                            if let id = viewModel.id,
+//                               let selectedItem = viewModel.myMealRecords.first(where: {$0.mealRecordID == id}){
+//
+//                                moc.delete(selectedItem)
+//                                try? moc.save()
+//                            }
+//                            dismiss()
+//                        }label: {
+//                            HStack{
+//                                Image(systemName: "trash")
+//                            }
+//                        }
+//                        .buttonStyle(.borderedProminent)
+//                        .tint(.red)
+//                    }
+//                }
                 
                 ToolbarItem(placement: .keyboard) {
                     Button{

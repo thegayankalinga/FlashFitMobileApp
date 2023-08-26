@@ -48,22 +48,7 @@ class LoginViewModel: ObservableObject{
                 user.healthStatus = data?.healthStatus!
                 user.createdDate = (data?.createdDate)!
                 user.userImageId = (data?.userImageId)
-//                user.im = (data?.uiImage) ?? UIImage(imageLiteralResourceName: "profile picture")
-                
-//                user = UserModel(
-//                    email: (data?.email)!,
-//                    name: (data?.name)!,
-//                    passwordSalt: (data?.passwordSalt)!,
-//                    passwordHash: (data?.passwordHash)!,
-//                    dateOfBirth: data?.dateOfBirth ?? Date.now,
-//                    genderType: GenderTypeEnum(rawValue: (data?.genderType)!)!,
-//                    weightInKilos: (data?.weight)!,
-//                    heightInCentiMeter: (data?.height)!,
-//                    bodyMassIndex: (data?.bmi)!,
-//                    healthStatus: HealthStatusEnum(rawValue: (data!.healthStatus)!)!,
-//                    createdDate: (data?.createdDate)!,
-//                    image: (data?.uiImage) ?? UIImage(imageLiteralResourceName: "profile picture")
-//                )
+
             }
             
         } catch {

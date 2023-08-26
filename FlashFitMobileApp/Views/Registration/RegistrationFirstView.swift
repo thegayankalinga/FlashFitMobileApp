@@ -21,74 +21,74 @@ struct RegistrationFirstView: View {
         }
         
         var body: some View {
-            VStack {
-                
-                //TODO: Graphic & Logo
-                LogoShapeView(logoTypeName: "home-logo")
-               
-                Text("Lets Start...")
-                    .font(.headline)
-                    .padding(.top, 25)
-                    .padding(.bottom, 25)
-                
+         
                 VStack {
                     
-                    EntryField(bindingField: $registrationVM.email, placeholder: "Email Address", promptText: registrationVM.emailPrompt, isSecure: false)
-                        .focused($isFocused, equals: .email)
-                        .textFieldStyle(GradientTextFieldBackground(systemImageString: "person", colorList: [.blue, .green]))
-                        .padding(.bottom)
+                    LogoShapeView(logoTypeName: "home-logo")
+                        .frame(maxHeight: 250)
+                    Text("Lets Start...")
+                        .font(.headline)
+                        .padding(.bottom, 10)
+                    ScrollView {
+                        VStack {
+                            
+                            EntryField(bindingField: $registrationVM.email, placeholder: "Email Address", promptText: registrationVM.emailPrompt, isSecure: false)
+                                .focused($isFocused, equals: .email)
+                                .textFieldStyle(GradientTextFieldBackground(systemImageString: "person", colorList: [.blue, .green]))
+                                .padding(.bottom)
+                            
+                            EntryField(bindingField: $registrationVM.password, placeholder: "Password", promptText: registrationVM.goodPasswordPrompt, isSecure: true)
+                                .focused($isFocused, equals: .password)
+                                .disableAutocorrection(true)
+                                .textFieldStyle(GradientTextFieldBackground(systemImageString: "lock", colorList: [.blue, .green]))
+                                .padding(.bottom)
+                            
+                            EntryField(bindingField: $registrationVM.confirmPassword, placeholder: "Confirm Password", promptText: registrationVM.confirmPasswordPrompt, isSecure: true)
+                                .focused($isFocused, equals: .confirmPassword)
+                                .disableAutocorrection(true)
+                                .textFieldStyle(GradientTextFieldBackground(systemImageString: "lock.fill", colorList: [.blue, .green]))
+                                .padding(.bottom)
+                        }
+                        .padding(25)
+                    }
+                    Spacer(minLength: 25)
                     
-                    EntryField(bindingField: $registrationVM.password, placeholder: "Password", promptText: registrationVM.goodPasswordPrompt, isSecure: true)
-                        .focused($isFocused, equals: .password)
-                        .disableAutocorrection(true)
-                        .textFieldStyle(GradientTextFieldBackground(systemImageString: "lock", colorList: [.blue, .green]))
-                        .padding(.bottom)
+                    //TODO: Add the image icon to button
+                    PrimaryActionButton(
+                        actionName: "Next",
+                        icon: "chevron.forward",
+                        disabled: !registrationVM.isSignupFirstPageComplete
+                    ) {
+                        registrationVM.navigateTo2()
+                    }
+                    .opacity(registrationVM.isSignupFirstPageComplete ? 1 : 0.6)
                     
-                    EntryField(bindingField: $registrationVM.confirmPassword, placeholder: "Confirm Password", promptText: registrationVM.confirmPasswordPrompt, isSecure: true)
-                        .focused($isFocused, equals: .confirmPassword)
-                        .disableAutocorrection(true)
-                        .textFieldStyle(GradientTextFieldBackground(systemImageString: "lock.fill", colorList: [.blue, .green]))
-                        .padding(.bottom)
-                }
-                .padding(25)
-                       
-                Spacer(minLength: 25)
-                
-                //TODO: Add the image icon to button
-                PrimaryActionButton(
-                    actionName: "Next",
-                    icon: "chevron.forward",
-                    disabled: !registrationVM.isSignupFirstPageComplete
-                ) {
-                    registrationVM.navigateTo2()
-                }
-                .opacity(registrationVM.isSignupFirstPageComplete ? 1 : 0.6)
-                
-                
-                HStack{
-                    Text("Already have an account ?")
+                    
+                    HStack{
+                        Text("Already have an account ?")
 
-                    Button("Login"){
-                        self.presentationMode.wrappedValue.dismiss()
+                        Button("Login"){
+                            self.presentationMode.wrappedValue.dismiss()
+                        }
+                        
+                  
                     }
                     
-              
-                }
-                
-                Spacer(minLength: 50)
+                    Spacer(minLength: 50)
 
-                
-            }
-            .toolbar {
-                ToolbarItem(placement: .keyboard) {
-                    Button{
-                        isFocused = nil
-                    }label: {
-                        Image(systemName: "keyboard.chevron.compact.down")
-                    }
                     
                 }
+                .toolbar {
+                    ToolbarItem(placement: .keyboard) {
+                        Button{
+                            isFocused = nil
+                        }label: {
+                            Image(systemName: "keyboard.chevron.compact.down")
+                        }
+                        
+                    }
             }
+
         }
 
 }

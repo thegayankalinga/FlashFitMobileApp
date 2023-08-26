@@ -22,102 +22,100 @@ struct RegistrationThirdView: View {
         
         var body: some View {
             
-            VStack{
-                LogoShapeView(logoTypeName: "home-logo")
-                
-                Spacer()
-                
-                Image(uiImage: (registrationVM.userImage))
-                    .resizable()
-                    .scaledToFill()
-                    .frame(width: 128 , height: 128)
-                    .clipShape(Circle())
-                
-                HStack{
-                        
-
+   
+        VStack{
+            LogoShapeView(logoTypeName: "home-logo")
+                    .frame(maxHeight: 220)
+     
+            ScrollView{
+                VStack{
+                    Text("Confirm your details")
+                        .font(.headline)
+                        .padding(.top, 10)
+                        .padding(.bottom, 25)
+                    
+                    Image(uiImage: (registrationVM.userImage))
+                        .resizable()
+                        .scaledToFill()
+                        .frame(width: 128 , height: 128)
+                        .clipShape(Circle())
+                    
+                    HStack{
                         PhotosPicker("Select Image",
                                      selection: $imagePicker.imageSelection,
                                      matching: .images,
                                      photoLibrary: .shared())
-                        
-
-                }
-                
-                .padding(.bottom, 15)
-
-                VStack(alignment: .leading){
-                    Text("Confirm your details")
-                        .font(.headline)
-                        .padding(.top, 25)
-                        .padding(.bottom, 25)
+                    }
                     
-                    //Data to confirm
-                    VStack(alignment: .leading, spacing: 20){
-                        
-                        HStack(spacing: 20){
-                            Text("Email: ")
-                            Text(registrationVM.email)
+                    
+             
+                    
+                    VStack(alignment: .leading){
+                       
+                        //Data to confirm
+                        VStack(alignment: .leading, spacing: 20){
+                            
+                            HStack(spacing: 20){
+                                Text("Email: ")
+                                Text(registrationVM.email)
+                                
+                            }
+                            HStack(spacing: 20){
+                                Text("Name: ")
+                                Text(registrationVM.name)
+                            }
+                            
+                            HStack(spacing: 20){
+                                Text("Gender: ")
+                                Text(registrationVM.genderType.rawValue)
+                            }
+                            
+                            HStack(spacing: 20){
+                                Text("Date of Birth: ")
+                                Text("\(registrationVM.dateFormatter.string(from: registrationVM.dateOfBirth ))")
+                            }
+                            
+                            HStack(spacing: 20){
+                                Text("Weight: ")
+                                Text(registrationVM.weight)
+                            }
+                            
                             
                         }
-                        HStack(spacing: 20){
-                            Text("Name: ")
-                            Text(registrationVM.name)
-                        }
                         
-                        HStack(spacing: 20){
-                            Text("Gender: ")
-                            Text(registrationVM.genderType.rawValue)
-                        }
-                        
-                        HStack(spacing: 20){
-                            Text("Date of Birth: ")
-                            Text("\(registrationVM.dateFormatter.string(from: registrationVM.dateOfBirth ))")
-                        }
-                        
-                        HStack(spacing: 20){
-                            Text("Weight: ")
-                            Text(registrationVM.weight)
-                        }
-                        
-                        
+                        .padding(.bottom, 20)
                     }
-                }
-                
-                Spacer()
-                
-              
-                
-                
-
-                
-                if(confirmButtonClickCount == 0 ){
-                    //TODO: Add the image icon to button
-                    PrimaryActionButton(actionName: "Confirm", icon: "checkmark", disabled: false){
-                        confirmButtonClickCount += 1
-                        do{
-                            response = try registrationVM.register(moc: moc)
-                        }catch RegistrationError.userExist{
-                            response = 409
-                            print("User exist")
-                        }catch RegistrationError.creationFailed{
-                            response = 400
-                            print("Something went wrong")
-                        }catch{
-                            response = 400
-                            print("Something went wrong")
+         
+                    .padding(.top, 10)
+                    
+     
+                    
+                    if(confirmButtonClickCount == 0 ){
+                        //TODO: Add the image icon to button
+                        PrimaryActionButton(actionName: "Confirm", icon: "checkmark", disabled: false){
+                            confirmButtonClickCount += 1
+                            do{
+                                response = try registrationVM.register(moc: moc)
+                            }catch RegistrationError.userExist{
+                                response = 409
+                                print("User exist")
+                            }catch RegistrationError.creationFailed{
+                                response = 400
+                                print("Something went wrong")
+                            }catch{
+                                response = 400
+                                print("Something went wrong")
+                            }
+                            
                         }
- 
                     }
-                }
-                
-                
-                if(response == 201){
-                    VStack{
-                        Text("Hooray, Welcome")
-                        
-                        Text("Successfully Registered Please Login to continue.")
-
+                    
+                    if(response == 201){
+                        VStack{
+                            Text("Hooray, Welcome")
+                            
+                            Text("Successfully Registered Please Login to continue.")
+                            
                         }
                         Button("Login"){
                             confirmButtonClickCount = 0
@@ -130,55 +128,50 @@ struct RegistrationThirdView: View {
                                 self.presentationMode.wrappedValue.dismiss()
                             }
                         }.transition(.slide)
-               
-                    
-                    
-                }else if(response == 409){
-                    VStack{
-                        Text("User Already  Existing in our records, pls login")
-                        Button("Login"){
-                            confirmButtonClickCount = 0
-                            
-                            withAnimation{
-                                registrationVM.navigateToRoot()
-                                
-                                self.presentationMode.wrappedValue.dismiss()
-                                    
-                                self.presentationMode.wrappedValue.dismiss()
-                            }
-                            
-                        }
-                        .transition(.slide)
                         
-                    }
-                    
-                }else if(response != 0){
-                    VStack{
-                        Text("Something went wrong, could you pls re-try")
-                        Button("Re-Try"){
-                            withAnimation{
+                        
+                        
+                    }else if(response == 409){
+                        VStack{
+                            Text("User Already  Existing in our records, pls login")
+                            Button("Login"){
                                 confirmButtonClickCount = 0
-                                registrationVM.navigateToRoot()
+                                
+                                withAnimation{
+                                    registrationVM.navigateToRoot()
+                                    
+                                    self.presentationMode.wrappedValue.dismiss()
+                                    
+                                    self.presentationMode.wrappedValue.dismiss()
+                                }
+                                
                             }
-                        }.transition(.slide)
+                            .transition(.slide)
+                            
+                        }
+                        
+                    }else if(response != 0){
+                        VStack{
+                            Text("Something went wrong, could you pls re-try")
+                            Button("Re-Try"){
+                                withAnimation{
+                                    confirmButtonClickCount = 0
+                                    registrationVM.navigateToRoot()
+                                }
+                            }.transition(.slide)
+                        }
                     }
                 }
-                
-                
             }
-            .toolbar{
-                
+        }
+        .toolbar{
             }.onChange(of: imagePicker.uiImage){ newImage in
                 if let newImage{
                     registrationVM.userImage = newImage
-                }
             }
-            
         }
-     
-                
-
-            
+   
+        }
 
 }
 

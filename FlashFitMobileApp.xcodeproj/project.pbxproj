@@ -45,6 +45,8 @@
 		B621B27F2A873D95001C4711 /* FlashFitMobileApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B621B27D2A873D95001C4711 /* FlashFitMobileApp.xcdatamodeld */; };
 		B6284EA92A99136400C3E49C /* UserEntityExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6284EA82A99136400C3E49C /* UserEntityExtension.swift */; };
 		B6284EAB2A991E9C00C3E49C /* ProfileEnumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6284EAA2A991E9C00C3E49C /* ProfileEnumView.swift */; };
+		B6284EAD2A99EB5200C3E49C /* LoginViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6284EAC2A99EB5200C3E49C /* LoginViewModelTests.swift */; };
+		B6284EAF2A99EBAB00C3E49C /* LoginViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6284EAE2A99EBAB00C3E49C /* LoginViewUITests.swift */; };
 		B64945FC2A98C1A30031418D /* MealRecordEnumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B64945FB2A98C1A30031418D /* MealRecordEnumView.swift */; };
 		B64945FE2A98F4E20031418D /* WorkoutRecordExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B64945FD2A98F4E20031418D /* WorkoutRecordExtension.swift */; };
 		B64946002A9908CD0031418D /* WorkoutRecordEnumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B64945FF2A9908CD0031418D /* WorkoutRecordEnumView.swift */; };
@@ -149,6 +151,8 @@
 		B621B27E2A873D95001C4711 /* FlashFitMobileApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FlashFitMobileApp.xcdatamodel; sourceTree = "<group>"; };
 		B6284EA82A99136400C3E49C /* UserEntityExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserEntityExtension.swift; sourceTree = "<group>"; };
 		B6284EAA2A991E9C00C3E49C /* ProfileEnumView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEnumView.swift; sourceTree = "<group>"; };
+		B6284EAC2A99EB5200C3E49C /* LoginViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModelTests.swift; sourceTree = "<group>"; };
+		B6284EAE2A99EBAB00C3E49C /* LoginViewUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewUITests.swift; sourceTree = "<group>"; };
 		B64945FB2A98C1A30031418D /* MealRecordEnumView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealRecordEnumView.swift; sourceTree = "<group>"; };
 		B64945FD2A98F4E20031418D /* WorkoutRecordExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutRecordExtension.swift; sourceTree = "<group>"; };
 		B64945FF2A9908CD0031418D /* WorkoutRecordEnumView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutRecordEnumView.swift; sourceTree = "<group>"; };
@@ -416,6 +420,7 @@
 				B617B3C02A7EB4E600613526 /* FlashFitMobileAppTests.swift */,
 				B621B2732A873538001C4711 /* HealthStatusTests.swift */,
 				B621B2752A87399F001C4711 /* BMICalculatorTests.swift */,
+				B6284EAC2A99EB5200C3E49C /* LoginViewModelTests.swift */,
 			);
 			path = FlashFitMobileAppTests;
 			sourceTree = "<group>";
@@ -425,6 +430,7 @@
 			children = (
 				B617B3CA2A7EB4E600613526 /* FlashFitMobileAppUITests.swift */,
 				B617B3CC2A7EB4E600613526 /* FlashFitMobileAppUITestsLaunchTests.swift */,
+				B6284EAE2A99EBAB00C3E49C /* LoginViewUITests.swift */,
 			);
 			path = FlashFitMobileAppUITests;
 			sourceTree = "<group>";
@@ -728,6 +734,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B6284EAD2A99EB5200C3E49C /* LoginViewModelTests.swift in Sources */,
 				B617B3C12A7EB4E600613526 /* FlashFitMobileAppTests.swift in Sources */,
 				B621B2742A873538001C4711 /* HealthStatusTests.swift in Sources */,
 				B621B2762A87399F001C4711 /* BMICalculatorTests.swift in Sources */,
@@ -740,6 +747,7 @@
 			files = (
 				B617B3CB2A7EB4E600613526 /* FlashFitMobileAppUITests.swift in Sources */,
 				B617B3CD2A7EB4E600613526 /* FlashFitMobileAppUITestsLaunchTests.swift in Sources */,
+				B6284EAF2A99EBAB00C3E49C /* LoginViewUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

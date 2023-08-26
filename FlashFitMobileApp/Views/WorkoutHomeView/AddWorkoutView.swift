@@ -55,8 +55,8 @@ struct AddWorkoutView: View {
                                 .accentColor(.orange)
                             
                             
-                            VStack{
-                                Picker("Select a Workout Type", selection: $viewModel.selectedWorkoutType) {
+                            VStack(alignment: .leading){
+                                Picker("Select a Workout", selection: $viewModel.selectedWorkoutType) {
                                     Text("Select Value").tag(nil as WorkoutTypeEntity?)
                                     ForEach(viewModel.myWorkoutTypes) { option in
                                         HStack{
@@ -133,33 +133,33 @@ struct AddWorkoutView: View {
                     }
                     Spacer()
                 }
-                
-                PrimaryActionButton(
-                    actionName: "Save Workout",
-                    icon: "plus.circle",
-                    disabled: !viewModel.incomplete)
-                {
-  
-                    isFocused = nil
-             
-                    viewModel.getAllWorkoutRecordsByEmail(email: user.email!, moc: moc)
+                VStack{
+                    PrimaryActionButton(
+                        actionName: "Save Workout",
+                        icon: "plus.circle",
+                        disabled: !viewModel.incomplete)
+                    {
                         
-                    if viewModel.updating{
-                        print("updating")
-                        print(viewModel.savedWorkouts)
-                        if let id = viewModel.recordID,
-                           let selectedItem = viewModel.savedWorkouts.first(where: {$0.workoutRecordID == id}){
-                            
-                            print(selectedItem)
-                            selectedItem.date = viewModel.workoutDate
-                            selectedItem.calories = Double(viewModel.totalCaloriesBurned) ?? 0
-                            selectedItem.userID = user.email
-                            selectedItem.weight = Double(viewModel.weightArRecord) ?? 0.0
-                            selectedItem.duration = viewModel.workoutDuration
-                            selectedItem.workoutTypeId = viewModel.selectedWorkoutType?.workoutTypeID
-                            selectedItem.workoutTypeName = viewModel.workoutTypeName
-                            selectedItem.id = viewModel.recordID
-                        }
+                        isFocused = nil
+                        
+                        viewModel.getAllWorkoutRecordsByEmail(email: user.email!, moc: moc)
+                        
+                        if viewModel.updating{
+                            print("updating")
+                            print(viewModel.savedWorkouts)
+                            if let id = viewModel.recordID,
+                               let selectedItem = viewModel.savedWorkouts.first(where: {$0.workoutRecordID == id}){
+                                
+                                print(selectedItem)
+                                selectedItem.date = viewModel.workoutDate
+                                selectedItem.calories = Double(viewModel.totalCaloriesBurned) ?? 0
+                                selectedItem.userID = user.email
+                                selectedItem.weight = Double(viewModel.weightArRecord) ?? 0.0
+                                selectedItem.duration = viewModel.workoutDuration
+                                selectedItem.workoutTypeId = viewModel.selectedWorkoutType?.workoutTypeID
+                                selectedItem.workoutTypeName = viewModel.workoutTypeName
+                                selectedItem.id = viewModel.recordID
+                            }
                             
                             if moc.hasChanges{
                                 try? moc.save()
@@ -180,23 +180,23 @@ struct AddWorkoutView: View {
                             try? moc.save()
                             print("saved new")
                         }
-                    
-                    if(!viewModel.isAddMoreChecked){
-                        dismiss()
-                    }else{
-                        viewModel.workoutDuration = 5
-                        viewModel.workoutDate = Date.now
-                        viewModel.totalCaloriesBurned = ""
-                        viewModel.weightArRecord = ""
-                        viewModel.selectedWorkoutType = nil
-                    }
                         
-                    
+                        if(!viewModel.isAddMoreChecked){
+                            dismiss()
+                        }else{
+                            viewModel.workoutDuration = 5
+                            viewModel.workoutDate = Date.now
+                            viewModel.totalCaloriesBurned = ""
+                            viewModel.weightArRecord = ""
+                            viewModel.selectedWorkoutType = nil
+                        }
+                        
+                        
                         
                     }
                     .opacity(viewModel.incomplete ? 1 : 0.6)
                     .padding(.bottom, 25)
-
+                }.padding(.bottom, 25)
                 }
             .edgesIgnoringSafeArea(.all)
             .toolbar {
@@ -205,26 +205,26 @@ struct AddWorkoutView: View {
                         dismiss()
                     }
                 }
-                if viewModel.updating{
-                    ToolbarItem(placement: .navigationBarLeading) {
-                        Button{
-                            viewModel.getAllWorkoutRecordsByEmail(email: user.email!, moc: moc)
-                            if let id = viewModel.id,
-                               let selectedItem = viewModel.myWorkoutTypes.first(where: {$0.workoutTypeID == id}){
-                                
-                                moc.delete(selectedItem)
-                                try? moc.save()
-                            }
-                            dismiss()
-                        }label: {
-                            HStack{
-                                Image(systemName: "trash")
-                            }
-                        }
-                        .buttonStyle(.borderedProminent)
-                        .tint(.red)
-                    }
-                }
+//                if viewModel.updating{
+//                    ToolbarItem(placement: .navigationBarLeading) {
+//                        Button{
+//                            viewModel.getAllWorkoutRecordsByEmail(email: user.email!, moc: moc)
+//                            if let id = viewModel.id,
+//                               let selectedItem = viewModel.myWorkoutTypes.first(where: {$0.workoutTypeID == id}){
+//
+//                                moc.delete(selectedItem)
+//                                try? moc.save()
+//                            }
+//                            dismiss()
+//                        }label: {
+//                            HStack{
+//                                Image(systemName: "trash")
+//                            }
+//                        }
+//                        .buttonStyle(.borderedProminent)
+//                        .tint(.red)
+//                    }
+//                }
                 
                 ToolbarItem(placement: .keyboard) {
                     Button{
