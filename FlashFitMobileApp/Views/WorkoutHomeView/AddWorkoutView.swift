@@ -40,8 +40,7 @@ struct AddWorkoutView: View {
                             .frame(minHeight: 160)
                         Spacer()
                         
-                        
-                        
+                    
                         VStack (alignment: .leading, spacing: 20){
                             
                             VStack(alignment: .leading){
