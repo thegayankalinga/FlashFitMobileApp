@@ -16,7 +16,7 @@ struct LoginView: View {
     @State private var nextView: IdentifiableView? = nil
     @FocusState private var isFocused: FocusedField?
     @State private var showingAlert = false
-    @State var data: UserModel?
+    @State var data: UserModelEntity?
     
     enum FocusedField{
         case email, password
@@ -67,8 +67,9 @@ struct LoginView: View {
                             print("User data set for Env Obj")
                             loggedInUser.email = data?.email
                             loggedInUser.name = data?.name
-                            loggedInUser.height = data?.heightInCentiMeter
-                            loggedInUser.weight = data?.weightInKilos
+                            loggedInUser.height = data?.height
+                            loggedInUser.weight = data?.weight
+                            loggedInUser.userImage = data?.uiImage
                         }
                         
                         print("successfull login \(data?.email ?? "")")
@@ -135,6 +136,6 @@ struct LoginView: View {
 
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
-        LoginView(loggedInUser: LoggedInUserModel(email: "bg15407@gmail.com", name: "Gayan Kalinga", height: 160, weight: 62), data: UserModel(email: "bg15407@gmail.com", name: "Gayan Kalinga", passwordSalt: "", passwordHash: "",dateOfBirth: Date.now, genderType: GenderTypeEnum.Male, weightInKilos: 62, heightInCentiMeter: 165, bodyMassIndex: 20, healthStatus: HealthStatusEnum.Normalweight, createdDate: Date.now))
+        LoginView(loggedInUser: LoggedInUserModel(email: "bg15407@gmail.com", name: "Gayan Kalinga", height: 160, weight: 62, image: UIImage(imageLiteralResourceName: "profile picture")), data: UserModelEntity())
     }
 }

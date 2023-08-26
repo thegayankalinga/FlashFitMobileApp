@@ -8,11 +8,14 @@
 import SwiftUI
 
 struct ProfileSectionView: View {
+    
+    @EnvironmentObject var user: LoggedInUserModel
+    
     var body: some View {
         HStack {
-            NavigationLink(destination: ProfileHomeView()) {
+            NavigationLink(destination: ProfileHomeView( viewModel: EditProfileViewModel(UIImage(imageLiteralResourceName: "profile picture")))) {
                 
-                Image("profile picture")
+                Image(uiImage: user.userImage ?? UIImage(imageLiteralResourceName: "profile picture"))
                     .resizable()
                     .frame(width: 50, height: 50)
                     .clipShape(Circle())
@@ -20,7 +23,7 @@ struct ProfileSectionView: View {
             }
             
             VStack(alignment: .leading) {
-                Text("John Doe") //todo: from db
+                Text(user.name!) //todo: from db
                     .font(.subheadline)
                     .fontWeight(.bold)
                 

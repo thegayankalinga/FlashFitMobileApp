@@ -7,7 +7,7 @@
 
 import Foundation
 import CoreData
-
+import UIKit
 class UserService{
     
     static func getUserData(email: String, moc: NSManagedObjectContext)throws -> UserModel{
@@ -36,7 +36,8 @@ class UserService{
                     heightInCentiMeter: (data?.height)!,
                     bodyMassIndex: (data?.bmi)!,
                     healthStatus: HealthStatusEnum(rawValue: (data!.healthStatus)!)!,
-                    createdDate: (data?.createdDate)!
+                    createdDate: (data?.createdDate)!,
+                    image: (data?.uiImage) ?? UIImage(imageLiteralResourceName: "profile picture")
                 )
             }
             

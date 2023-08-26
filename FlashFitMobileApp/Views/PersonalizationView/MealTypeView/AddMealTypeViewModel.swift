@@ -31,7 +31,7 @@ class AddMealTypeViewModel: ObservableObject{
         mealName = mealTypeEntity.mealType
         id = mealTypeEntity.imageId
         mealImage = mealTypeEntity.uiImage
-        caloriesGainPerPotion = String(mealTypeEntity.caloriesGained)
+        caloriesGainPerPotion = String(format: "%.2f", mealTypeEntity.caloriesGained)
         userEmail = mealTypeEntity.userId
     }
     

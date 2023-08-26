@@ -97,9 +97,11 @@ struct RegistrationSecondView: View {
                 
             }
         }
+        
         .onAppear{
             UITextField.appearance().clearButtonMode = .whileEditing
         }
+        
         }
      
 
@@ -107,6 +109,6 @@ struct RegistrationSecondView: View {
 
 struct RegistrationScreenTwoView_Previews: PreviewProvider {
     static var previews: some View {
-        RegistrationSecondView(registrationVM: RegistrationViewModel())
+        RegistrationSecondView(registrationVM: RegistrationViewModel(UIImage(imageLiteralResourceName: "profile picture")))
     }
 }

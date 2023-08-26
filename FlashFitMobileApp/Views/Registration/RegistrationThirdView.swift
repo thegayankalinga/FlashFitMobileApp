@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-
+import PhotosUI
 struct RegistrationThirdView: View {
 
         
@@ -16,7 +16,7 @@ struct RegistrationThirdView: View {
         @State private var response = 0;
         @State private var confirmButtonClickCount = 0
         @State private var validated = false
-        
+    @StateObject var imagePicker  = ImagePicker()
         
         
         
@@ -25,24 +25,71 @@ struct RegistrationThirdView: View {
             VStack{
                 LogoShapeView()
                 
-                Text("Confirm your details")
-                    .font(.headline)
-                    .padding(.top, 25)
-                    .padding(.bottom, 25)
+                Spacer()
                 
-                //Data to confirm
-                VStack(alignment: .leading){
+                Image(uiImage: (registrationVM.userImage))
+                    .resizable()
+                    .scaledToFill()
+                    .frame(width: 128 , height: 128)
+                    .clipShape(Circle())
+                
+                HStack{
+                        
 
-                    Text(registrationVM.email)
-                    Text(registrationVM.name)
-                    Text(registrationVM.genderType.rawValue)
-                    Text("\(registrationVM.dateFormatter.string(from: registrationVM.dateOfBirth ))")
-                    Text(registrationVM.weight)
-        
+                        PhotosPicker("Select Image",
+                                     selection: $imagePicker.imageSelection,
+                                     matching: .images,
+                                     photoLibrary: .shared())
+                        
+
                 }
                 
+                .padding(.bottom, 15)
+
+                VStack(alignment: .leading){
+                    Text("Confirm your details")
+                        .font(.headline)
+                        .padding(.top, 25)
+                        .padding(.bottom, 25)
+                    
+                    //Data to confirm
+                    VStack(alignment: .leading, spacing: 20){
+                        
+                        HStack(spacing: 20){
+                            Text("Email: ")
+                            Text(registrationVM.email)
+                            
+                        }
+                        HStack(spacing: 20){
+                            Text("Name: ")
+                            Text(registrationVM.name)
+                        }
+                        
+                        HStack(spacing: 20){
+                            Text("Gender: ")
+                            Text(registrationVM.genderType.rawValue)
+                        }
+                        
+                        HStack(spacing: 20){
+                            Text("Date of Birth: ")
+                            Text("\(registrationVM.dateFormatter.string(from: registrationVM.dateOfBirth ))")
+                        }
+                        
+                        HStack(spacing: 20){
+                            Text("Weight: ")
+                            Text(registrationVM.weight)
+                        }
+                        
+                        
+                    }
+                }
                 
                 Spacer()
+                
+              
+                
+                
+
                 
                 if(confirmButtonClickCount == 0 ){
                     //TODO: Add the image icon to button
@@ -119,6 +166,14 @@ struct RegistrationThirdView: View {
                 
                 
             }
+            .toolbar{
+                
+            }.onChange(of: imagePicker.uiImage){ newImage in
+                if let newImage{
+                    registrationVM.userImage = newImage
+                }
+            }
+            
         }
      
                 
@@ -129,6 +184,6 @@ struct RegistrationThirdView: View {
 
 struct RegistrationThirdView_Previews: PreviewProvider {
     static var previews: some View {
-        RegistrationThirdView(registrationVM: RegistrationViewModel())
+        RegistrationThirdView(registrationVM: RegistrationViewModel(UIImage(imageLiteralResourceName: "profile picture")))
     }
 }

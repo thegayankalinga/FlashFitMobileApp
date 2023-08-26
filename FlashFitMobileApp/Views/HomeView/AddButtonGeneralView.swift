@@ -15,52 +15,71 @@ struct AddButtonGeneralView: View{
  
     
     var body: some View{
-        HStack{
-            
-            Button(action: {
-                print("add workout tapped!")
-                showAddWorkout.toggle()
-            }) {
-                HStack {
-                    Image(systemName: "dumbbell.fill")
-                        .font(.title3)
-                    Text("Add Workout")
-                        .fontWeight(.semibold)
-                        .font(.title3)
+        VStack(alignment: .center ,spacing: 20) {
+            Text("Select Type to Add")
+                .font(.headline)
+                .padding(.top, 20)
+            HStack{
+             
+                Button(action: {
+                    print("add workout tapped!")
+                    showAddWorkout.toggle()
+                }) {
+                    HStack {
+                        Image(systemName: "dumbbell.fill")
+                            .font(.title3)
+                        Text("Workout")
+                            .fontWeight(.semibold)
+                            .font(.title3)
+                    }
+                    .padding()
+                    .foregroundColor(.white)
+                    .frame(width: 180)
+                    .background(CustomColors.primaryColor)
+                    .cornerRadius(40)
+                    
                 }
-                .padding()
-                .foregroundColor(.white)
-                .background(Color.green)
-                .cornerRadius(40)
-            }
-            
-            
-            Button(action: {
-                print("add meal tapped!")
-                showAddMeal.toggle()
-            }) {
-                HStack {
-                    Image(systemName: "cup.and.saucer.fill")
-                        .font(.title3)
-                    Text("Add Meal")
-                        .fontWeight(.semibold)
-                        .font(.title3)
-                }
-                .padding()
-                .foregroundColor(.white)
-                .background(Color.red)
-                .cornerRadius(40)
-            }
-         
-  
-        }
-        .sheet(isPresented: $showAddMeal){
-            AddMealView(viewModel: MealRecordViewModel())
-        }
-        .sheet(isPresented: $showAddWorkout){
-            AddWorkoutView(viewModel: WorkoutViewModel())
                 
+                
+                
+                Button(action: {
+                    print("add meal tapped!")
+                    showAddMeal.toggle()
+                }) {
+                    HStack {
+                        Image(systemName: "cup.and.saucer.fill")
+                            .font(.title3)
+                        Text("Meal")
+                            .fontWeight(.semibold)
+                            .font(.title3)
+                    }
+                    .padding()
+                    .foregroundColor(.white)
+                    .frame(width: 180)
+                    .background(CustomColors.secondaryColor)
+                    .cornerRadius(40)
+                    .frame(width: 180)
+                }
+                
+                
+             
+      
+            }
+            
+            .edgesIgnoringSafeArea(.all)
+            .padding()
+            
+
+            .sheet(isPresented: $showAddMeal){
+                AddMealView(viewModel: MealRecordViewModel())
+            }
+            .sheet(isPresented: $showAddWorkout){
+                AddWorkoutView(viewModel: WorkoutViewModel())
+                    
         }
+        }
+        .padding(40)
+        .background(LinearGradient(colors: [CustomColors.backgroundGray, CustomColors.gradientLower], startPoint: .topLeading, endPoint: .bottomTrailing))
    
     }
 }

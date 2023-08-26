@@ -8,6 +8,10 @@
 import SwiftUI
 
 struct PlanTodayView: View {
+    
+    @ObservedObject var mealVM = MealRecordEntity()
+    @ObservedObject var workoutVM = WorkoutViewModel()
+    
     var body: some View {
         VStack {
             HStack (alignment: .top){

@@ -43,6 +43,8 @@
 		B621B2792A873A89001C4711 /* UserRegisterDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = B621B2782A873A89001C4711 /* UserRegisterDto.swift */; };
 		B621B27C2A873BBB001C4711 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B621B27B2A873BBB001C4711 /* DataController.swift */; };
 		B621B27F2A873D95001C4711 /* FlashFitMobileApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B621B27D2A873D95001C4711 /* FlashFitMobileApp.xcdatamodeld */; };
+		B6284EA92A99136400C3E49C /* UserEntityExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6284EA82A99136400C3E49C /* UserEntityExtension.swift */; };
+		B6284EAB2A991E9C00C3E49C /* ProfileEnumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6284EAA2A991E9C00C3E49C /* ProfileEnumView.swift */; };
 		B64945FC2A98C1A30031418D /* MealRecordEnumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B64945FB2A98C1A30031418D /* MealRecordEnumView.swift */; };
 		B64945FE2A98F4E20031418D /* WorkoutRecordExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B64945FD2A98F4E20031418D /* WorkoutRecordExtension.swift */; };
 		B64946002A9908CD0031418D /* WorkoutRecordEnumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B64945FF2A9908CD0031418D /* WorkoutRecordEnumView.swift */; };
@@ -145,6 +147,8 @@
 		B621B2782A873A89001C4711 /* UserRegisterDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRegisterDto.swift; sourceTree = "<group>"; };
 		B621B27B2A873BBB001C4711 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		B621B27E2A873D95001C4711 /* FlashFitMobileApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FlashFitMobileApp.xcdatamodel; sourceTree = "<group>"; };
+		B6284EA82A99136400C3E49C /* UserEntityExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserEntityExtension.swift; sourceTree = "<group>"; };
+		B6284EAA2A991E9C00C3E49C /* ProfileEnumView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEnumView.swift; sourceTree = "<group>"; };
 		B64945FB2A98C1A30031418D /* MealRecordEnumView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealRecordEnumView.swift; sourceTree = "<group>"; };
 		B64945FD2A98F4E20031418D /* WorkoutRecordExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutRecordExtension.swift; sourceTree = "<group>"; };
 		B64945FF2A9908CD0031418D /* WorkoutRecordEnumView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutRecordEnumView.swift; sourceTree = "<group>"; };
@@ -252,6 +256,7 @@
 				B6B7059A2A91C18800EFFAFD /* UserModel.swift */,
 				B6B705A02A92189000EFFAFD /* MealRecordExtension.swift */,
 				B64945FD2A98F4E20031418D /* WorkoutRecordExtension.swift */,
+				B6284EA82A99136400C3E49C /* UserEntityExtension.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -327,6 +332,7 @@
 			children = (
 				727C265D2A7FE8090003AD5B /* EditProfileView.swift */,
 				B6A4E9892A91BE22007CC664 /* EditProfileViewModel.swift */,
+				B6284EAA2A991E9C00C3E49C /* ProfileEnumView.swift */,
 			);
 			path = EditProfileView;
 			sourceTree = "<group>";
@@ -667,6 +673,7 @@
 				B617B3DA2A7EB7CA00613526 /* HomeScreenView.swift in Sources */,
 				B621B2722A87338E001C4711 /* HealthStatusEnum.swift in Sources */,
 				B621B2702A873365001C4711 /* GenderTypeEnum.swift in Sources */,
+				B6284EA92A99136400C3E49C /* UserEntityExtension.swift in Sources */,
 				72732F3D2A7F724D009B80AA /* WorkoutHomeView.swift in Sources */,
 				B6D1FCFB2A8768F100BD4BAC /* LoginViewModel.swift in Sources */,
 				B6D1FD0C2A88F80A00BD4BAC /* RegistrationThirdView.swift in Sources */,
@@ -711,6 +718,7 @@
 				B6D1FD002A88731A00BD4BAC /* EntryField.swift in Sources */,
 				B6D1FCFD2A876F8200BD4BAC /* IdentifiableView.swift in Sources */,
 				B6B7059D2A91C41600EFFAFD /* UserService.swift in Sources */,
+				B6284EAB2A991E9C00C3E49C /* ProfileEnumView.swift in Sources */,
 				B617B3B02A7EB4E400613526 /* FlashFitMobileAppApp.swift in Sources */,
 				B6B705A12A92189000EFFAFD /* MealRecordExtension.swift in Sources */,
 			);

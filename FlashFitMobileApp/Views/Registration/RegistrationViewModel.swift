@@ -26,10 +26,16 @@ class RegistrationViewModel: ObservableObject{
     @Published var dateOfBirth: Date = Calendar.current.date(byAdding: .year, value: -15, to: Date())!
     @Published var weight = ""
     @Published var height = ""
+    @Published var userImage: UIImage
   
     var dateFormatter = DateFormatter()
     
-    init( navigationPath: NavigationPath = NavigationPath(), email: String = "", name: String = "", password: String = "", confirmPassword: String = "", genderType: GenderTypeEnum = GenderTypeEnum.Male, dateOfBirth: Foundation.Date? = nil, weight: String = "", height: String = "", dateFormatter: DateFormatter = DateFormatter()) {
+    init(_ uiImage: UIImage){
+        
+        self.userImage = uiImage
+    }
+    
+    init( navigationPath: NavigationPath = NavigationPath(), email: String = "", name: String = "", password: String = "", confirmPassword: String = "", genderType: GenderTypeEnum = GenderTypeEnum.Male, dateOfBirth: Foundation.Date? = nil, weight: String = "", height: String = "", dateFormatter: DateFormatter = DateFormatter(), image: UIImage) {
         
         self.navigationPath = navigationPath
         self.email = email
@@ -41,6 +47,7 @@ class RegistrationViewModel: ObservableObject{
         self.weight = weight
         self.height = height
         self.dateFormatter.dateFormat = "yyyy-MMM-dd"
+        self.userImage = image
     }
 
     
@@ -245,7 +252,11 @@ class RegistrationViewModel: ObservableObject{
             user.bmi = bmi
             user.healthStatus = hs.rawValue
             user.createdDate = Date.now
+            user.userImageId = UUID().uuidString
         
+            
+            try? moc.save()
+            FileManager().saveImage(with: user.userImageID, image: userImage)
             
             if (try? moc.save()) != nil{
                 return 201

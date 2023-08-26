@@ -95,6 +95,6 @@ struct RegistrationFirstView: View {
 
 struct RegistrationFirstView_Previews: PreviewProvider {
     static var previews: some View {
-        RegistrationFirstView(registrationVM: RegistrationViewModel())
+        RegistrationFirstView(registrationVM: RegistrationViewModel(UIImage(imageLiteralResourceName: "profile picture")))
     }
 }

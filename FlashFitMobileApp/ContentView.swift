@@ -103,7 +103,7 @@ struct ContentView: View {
                 
             }) {
                 AddButtonGeneralView()
-                    .presentationDetents([.height(100), .fraction(0.2)])
+                    .presentationDetents([.height(150), .fraction(0.2)])
             }
             .padding()
         }

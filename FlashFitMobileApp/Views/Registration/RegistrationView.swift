@@ -10,7 +10,7 @@ import SwiftUI
 struct RegistrationView: View {
     
     
-    @ObservedObject var registrationVM = RegistrationViewModel()
+    @ObservedObject var registrationVM = RegistrationViewModel(UIImage(imageLiteralResourceName: "profile picture"))
     
 
     var body: some View {
