@@ -78,57 +78,7 @@ struct WorkoutListView: View {
                 viewModel.deleteWorkout(moc, indexSet: indexSet, userId: user.email!)
                 
             })
-            
-           /* ForEach(groupedWorkouts.keys.sorted(), id: \.self) { workoutType in
-                Section(header: Text(workoutType)) {
-                    ForEach(groupedWorkouts[workoutType]!.indices, id: \.self) { index in
-                        let entity = groupedWorkouts[workoutType]![index]
-                        NavigationLink(destination: EditWorkoutView(entity: entity)) {
-                            HStack {
-                                VStack{
-                                    Text("\(dateFormatted(date: entity.date ?? Date.now))")
-                                    VStack (alignment: .leading, spacing: 5) {
-                                        HStack(spacing: 4) { // duration
-                                            Text("Duration")
-                                            
-                                            Spacer()
-                                            
-                                            Text("\(Int(entity.duration) / 60)")
-                                            Text("hrs")
-                                                .font(.footnote)
-                                                .foregroundColor(.secondary)
-                                                .fontWeight(.semibold)
-                                            
-                                            Text("\(Int(entity.duration) % 60)")
-                                            Text("mins")
-                                                .font(.footnote)
-                                                .foregroundColor(.secondary)
-                                                .fontWeight(.semibold)
-                                        }
-                                        
-                                        HStack (spacing: 4){ // calories
-                                            Text("Caories Burnt")
-                                            Spacer()
-                                            HStack {
-                                                Text("\((entity.duration), specifier: "%.2f")")
-                                                Text("K/Cal")
-                                                    .font(.footnote)
-                                                    .foregroundColor(.secondary)
-                                                    .fontWeight(.semibold)
-                                            }
-                                        }
-                                        .padding(.bottom, 2)
-                                    }
-                                }
-                                .font(.caption)
-                            }
-                        }
-                    }
-                    
-                }
-            }
-            .onDelete(perform: workoutVm.deleteWorkout)*/
-        }
+          }
         .onAppear(perform : {
             //TODO: Optional force unwrap
             viewModel.getWorkouts(moc, userId: user.email!)
