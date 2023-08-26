@@ -12,6 +12,11 @@ struct CustomColors {
     static let gradientLower = Color("GradientLowerColor")
     static let primaryColor = Color("PrimaryColor")
     static let secondaryColor = Color("SecondaryColor")
+    static let primaryGreen = Color("PrimaryGreen")
+    static let primaryLavendar = Color("PrimaryLavendar")
+    static let primaryYellow = Color("PrimaryYellow")
+    static let primaryRed = Color("PrimaryRed")
+    static let primaryOrange = Color("PrimaryOrange")
     // Add more here...
 }
 

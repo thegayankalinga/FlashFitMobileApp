@@ -22,74 +22,83 @@ struct PredictionView: View {
     @State private var predictedCalories = 0.0
     @State private var hasExercised = 0
     @State private var suggestion = "No Data Found"
+    @State private var suggesionColor = CustomColors.primaryColor
     
     var body: some View {
-        VStack {
-            Text("Predictions")
-                .font(.title3).bold()
-                .padding(.leading)
-                .padding(.top)
-                .frame(alignment: .leading)
-            
-            DatePicker("Select a Date", selection: $selectedDate, displayedComponents: .date)
-                .padding()
-                .accentColor(.orange)
-            
-            ZStack {
-                RoundedRectangle(cornerRadius: 20)
-                    .foregroundColor(Color(hex:0xFDB137))
-                    .frame(height: 150)
+        ScrollView{
+            VStack {
+                Text("Predictions")
+                    .font(.title3).bold()
+                    .padding(.leading)
+                    .padding(.top)
+                    .frame(alignment: .leading)
                 
-                VStack(alignment: .leading, spacing: 10) {
-                    Text("Predicted Weight (Kg)")
-                        .font(.body)
-                    Text("Predicted BMI")
-                        .font(.body)
-                    Text("Health Status")
-                        .font(.body)
-                }
-                .offset(x: -60, y: 0)
+                DatePicker("Select a Date", selection: $selectedDate, displayedComponents: .date)
+                    .padding()
+                    .accentColor(.orange)
                 
-                VStack(alignment: .trailing, spacing: 10) {
-                    Text("\(predictedWeight != 0 ? String(format: "%.1f", predictedWeight) : "0.0")")
-                        .font(.headline)
-                    Text("\(predictedWeight != 0 ? String(format: "%.1f", BMI) : "0.0")")
-                        .font(.headline)
-                    Text("\(predictedWeight != 0 ? healthStatus : "0.0")")
-                        .font(.headline)
-                }
-                .offset(x: 110, y: 0)
-            }
-            .padding()
-            
-            ZStack {
-                RoundedRectangle(cornerRadius: 20)
-                    .foregroundColor(Color(hex:0xFDB137))
-                    .frame(height: 250)
-                
-                VStack(alignment: .leading, spacing: 10) {
-                    HStack{
-                        Image(systemName: "stethoscope").padding(5).bold()
-                        Text("Suggestions")
-                            .font(.headline)
-                    }.padding(.bottom)
+                ZStack {
+                    RoundedRectangle(cornerRadius: 20)
+                        .foregroundColor(Color(hex:0xFDB137))
+                        .frame(height: 150)
                     
-                    Text("\(suggestion)")
-                        .font(.body)
-                        .padding(.leading)
+                    VStack(alignment: .leading, spacing: 10) {
+                        Text("Predicted Weight (Kg)")
+                            .font(.body)
+                        Text("Predicted BMI")
+                            .font(.body)
+                        Text("Health Status")
+                            .font(.body)
+                    }
+                    .offset(x: -60, y: 0)
+                    
+                    VStack(alignment: .trailing, spacing: 10) {
+                        Text("\(predictedWeight != 0 ? String(format: "%.1f", predictedWeight) : "0.0")")
+                            .font(.headline)
+                        Text("\(predictedWeight != 0 ? String(format: "%.1f", BMI) : "0.0")")
+                            .font(.headline)
+                        Text("\(predictedWeight != 0 ? healthStatus : "0.0")")
+                            .font(.headline)
+                    }
+                    .offset(x: 110, y: 0)
                 }
-                .offset(x: 0, y: -60)
+                .padding()
+                
+                ZStack {
+                    RoundedRectangle(cornerRadius: 20)
+                        .foregroundColor(suggesionColor)
+                        .frame(height: 250)
+                    
+                    VStack(alignment: .leading, spacing: 10) {
+                        HStack{
+                            Image(systemName: "stethoscope").padding(5).bold()
+                            Text("Suggestions")
+                                .font(.headline)
+                        }.padding(.bottom)
+                        
+                        Text("\(suggestion)")
+                            .font(.body)
+                            .padding(.leading)
+                    }
+                    .offset(x: 0, y: -60)
+                }
+                .padding()
+                
+                
+                Spacer()
+                
+                PrimaryActionButton(actionName: "Calculate", icon: "chevron.forward", disabled: false, onClick: calculateHealthStatus)
+                
             }
-            .padding()
-            
-            
-            Spacer()
-            
-            PrimaryActionButton(actionName: "Calculate", icon: "chevron.forward", disabled: false, onClick: calculateHealthStatus)
-            
+            .padding(.bottom, 25)
         }
     }
     
+    
+    func setSuggestionColor(){
+        
+  
+    }
     // calculate health status
     func calculateHealthStatus(){
         let user = user.email
@@ -128,6 +137,20 @@ struct PredictionView: View {
             healthStatus = status.rawValue
             
             print("Weight == \(predictedWeight) || BMI == \(BMI) || Status == \(healthStatus)")
+            
+            //let hs = HealthStatusEnum(rawValue: healthStatus)
+            switch status {
+            case .None:
+                suggesionColor = CustomColors.primaryLavendar
+            case .Underweight:
+                suggesionColor = CustomColors.primaryYellow
+            case .Normalweight:
+                suggesionColor = CustomColors.primaryGreen
+            case .Overweight:
+                suggesionColor = CustomColors.primaryOrange
+            case .Obesity:
+                suggesionColor = CustomColors.primaryRed
+            }
         }
         catch{
             // error

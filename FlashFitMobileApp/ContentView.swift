@@ -25,7 +25,7 @@ struct ContentView: View {
                 TabView(selection: $selectedTab){
                     
                  
-                        HomeScreenView()
+                    HomeScreenView(workoutVm: WorkoutViewModel())
                   
                             .onAppear() {
                                 print("home")
@@ -49,7 +49,7 @@ struct ContentView: View {
                         .tag("workouthome")
                     
                     
-                    HomeScreenView()
+                    HomeScreenView(workoutVm: WorkoutViewModel())
                         .tabItem {
                             Label("Add", systemImage: "plus.circle.fill")
                         }

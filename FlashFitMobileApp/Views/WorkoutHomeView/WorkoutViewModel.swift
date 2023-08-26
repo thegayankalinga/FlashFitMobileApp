@@ -26,6 +26,9 @@ class WorkoutViewModel : ObservableObject {
     @Published var savedWorkouts: [WorkoutEntity] = []
     @Published var savedWeeklyWorkouts: [WorkoutEntity] = []
     @Published var savedDailyWorkouts: [WorkoutEntity] = []
+
+    
+    @Published var todayViewColor = CustomColors.primaryColor
     
     //MARK: Stored Variables
     var workoutTypeName: String?
@@ -36,7 +39,7 @@ class WorkoutViewModel : ObservableObject {
     
     //MARK: Initializers
     init(){
-        
+        print(todayViewColor)
     }
     
     

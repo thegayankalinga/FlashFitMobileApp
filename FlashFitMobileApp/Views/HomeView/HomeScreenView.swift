@@ -13,10 +13,12 @@ struct HomeScreenView: View {
     @EnvironmentObject var user: LoggedInUserModel
     @Environment(\.managedObjectContext) var moc
     
-    @ObservedObject var workoutVm =  WorkoutViewModel()
+    @ObservedObject var workoutVm: WorkoutViewModel
     
     @State var dayByContent: [WeeklyActivity] = []
     @State var weeklyWorkouts: [Date: TimeInterval] = [:]
+    
+    @State private var predictionColor: Color = CustomColors.primaryColor
     
     @State private var total = 0.0
     @State var healthStatus : HealthStatusEnum = .Normalweight
@@ -32,7 +34,7 @@ struct HomeScreenView: View {
                     
                     // prediction
                     ZStack {
-                        Color(hex:0xFDB137)
+                        predictionColor
                         VStack {
                             NavigationLink(destination: PredictionView()) {
                                 HStack (alignment: .top) {
@@ -68,15 +70,34 @@ struct HomeScreenView: View {
                             }
                         }
                     }
+                    .onAppear(perform:{
+                        switch healthStatus {
+                        case .None:
+                            predictionColor = CustomColors.primaryLavendar
+                        case .Underweight:
+                            predictionColor = CustomColors.primaryYellow
+                        case .Normalweight:
+                            predictionColor = CustomColors.primaryGreen
+                        case .Overweight:
+                            predictionColor = CustomColors.primaryOrange
+                        case .Obesity:
+                            predictionColor = CustomColors.primaryRed
+                        }
+                    })
                     .cornerRadius(10)
                     .padding(.top, 15)
                     .padding(.bottom, 10)
                     
                     // plan for today
                     ZStack {
-                        Color(hex:0xFDB137)
+                        workoutVm.todayViewColor
                         PlanTodayView()
                     }
+                    .onAppear(perform: {
+                        print("today in home appear")
+                       
+                        print(workoutVm.todayViewColor)
+                    })
                     .cornerRadius(10)
                     .padding(.bottom, 10)
                     
@@ -227,7 +248,7 @@ struct HomeScreenView: View {
 
 struct HomeScreenView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeScreenView()
+        HomeScreenView(workoutVm: WorkoutViewModel())
     }
 }
 
