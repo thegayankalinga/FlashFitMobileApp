@@ -33,8 +33,8 @@ struct LoginView: View {
                 
                 
                 Text("Welcome Back")
-                    .font(.headline)
-                    .padding(.top, 25)
+                    .font(.title)
+//                    .padding(.top, 10)
                     .padding(.bottom, 25)
                 
                 
@@ -104,7 +104,8 @@ struct LoginView: View {
                         
                         
                     }
-                }
+                }.padding(.top, 10)
+                
                 
                 Spacer(minLength: 50)
                 
