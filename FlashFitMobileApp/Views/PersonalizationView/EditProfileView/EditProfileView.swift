@@ -86,12 +86,14 @@ struct EditProfileView: View {
                     
                     viewModel.getTheUserDetailsToUpdate(email: user.email!, moc: moc)
                     if viewModel.updating{
-                        print("updating")
-                        if(viewModel.id == ""){
+                        if(viewModel.id == nil || viewModel.id! == ""){
+                            print("seeting id for existing user")
                             viewModel.id = UUID().uuidString
                         }
                         if let id = viewModel.id,
                            let selectedItem = viewModel.userToUpdate{
+                            //print(id)
+                            //print(viewModel.userToUpdate)
                             let bmi = UserService.calculateBmi(weight: Double(viewModel.weight) ?? 0.0, height: Double(viewModel.height) ?? 0.0)
                             selectedItem.name = viewModel.name
                             selectedItem.weight = Double(viewModel.weight) ?? 0.0
@@ -100,6 +102,18 @@ struct EditProfileView: View {
                             selectedItem.dateOfBirth = viewModel.dob
                             selectedItem.bmi = bmi
                             selectedItem.healthStatus = UserService.getHealthStatus(bodyMassIndexValue: bmi).rawValue
+                            
+                            //print(selectedItem.userImageId)
+                            if(selectedItem.userImageID == ""){
+                                print("setting")
+                               
+                                selectedItem.userImageId = id
+                            }
+                            
+                            if(selectedItem.id == nil){
+                                selectedItem.id = UUID(uuidString: id)
+                            }
+                            //print(selectedItem)
                             FileManager().saveImage(with: id, image: viewModel.userImage)
                             
                             if moc.hasChanges{
