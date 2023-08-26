@@ -28,8 +28,6 @@ struct WorkoutReportView: View {
     var avgCaloryBurnPerDay = 2000.0
     
     var body: some View {
-        let percent  = (totalCaloriesForSelectedDate / avgCaloryBurnPerDay) * 100
-        let progress = 1 - (percent / 100)
         
         VStack (alignment: .leading, spacing: 20){
             

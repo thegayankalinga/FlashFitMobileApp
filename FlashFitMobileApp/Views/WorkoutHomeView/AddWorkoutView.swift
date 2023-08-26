@@ -66,7 +66,7 @@ struct AddWorkoutView: View {
                                                 .clipShape(Circle())
                                                 .scaledToFit()
                                                 .frame(width: 32 , height: 32)
-                                            Text("Meal: \(option.workoutName)")
+                                            Text("Workout: \(option.workoutName)")
                                             Text(String(option.caloriesBurned))
                                         }.tag(option as WorkoutTypeEntity?)
                                     }
@@ -91,9 +91,6 @@ struct AddWorkoutView: View {
                             
                             
                             HStack(alignment: .center){
-                                
-                                
-                                
                                 Stepper("Duration \(stepperMessage)", value: $viewModel.workoutDuration, in: 1...300, step: 5){ value in
                                     print(viewModel.workoutDuration)
                                     
@@ -102,7 +99,7 @@ struct AddWorkoutView: View {
                                     }else if(viewModel.workoutDuration == 60){
                                         stepperMessage = "\(viewModel.workoutDuration / 60) hour"
                                     }else{
-                                        stepperMessage = "\(viewModel.workoutDuration / 60) hours"
+                                        stepperMessage = "\(Int(viewModel.workoutDuration) / 60) hr \(Int(viewModel.workoutDuration) % 60) mins"
                                     }
                                     
                                     viewModel.calTotalCalorieBurned(moc: moc)
@@ -110,23 +107,23 @@ struct AddWorkoutView: View {
       
                             }
                             
-                            EntryField(bindingField: $viewModel.totalCaloriesBurned, placeholder: "Total Calories Gained", promptText: "", isSecure: false)
+                            EntryField(bindingField: $viewModel.totalCaloriesBurned, placeholder: "Total Calories Burned", promptText: "", isSecure: false)
                                 .numberOnly($viewModel.totalCaloriesBurned, includeDecimal: true)
                                 .focused($isFocused, equals: .caloriesBurned)
-                                .textFieldStyle(GradientTextFieldBackground(systemImageString: "mouth", colorList: [.blue, .green]))
-                                .padding(.bottom)
+                                .textFieldStyle(GradientTextFieldBackground(systemImageString: "dumbbell", colorList: [.blue, .green]))
+                                //.padding(.bottom)
                                 
                             
-                            Divider()
+                            // Divider()
                             
                             EntryField(bindingField: $viewModel.weightArRecord, placeholder: "Body Weight in Kilo Gram", promptText: viewModel.weightPrompt, isSecure: false)
                                 .numberOnly($viewModel.weightArRecord, includeDecimal: true)
                                 .focused($isFocused, equals: .weightAtRecord)
                                 .textFieldStyle(GradientTextFieldBackground(systemImageString: "scalemass", colorList: [.blue, .green]))
-                                .padding(.bottom)
+                                //.padding(.bottom)
                             
                             if(!viewModel.updating){
-                                Divider()
+                               // Divider()
                                 Toggle("Add More", isOn: $viewModel.isAddMoreChecked.animation())
                                     .padding(.leading, 25)
                                     .padding(.trailing, 25)
@@ -139,7 +136,7 @@ struct AddWorkoutView: View {
                 }
                 
                 PrimaryActionButton(
-                    actionName: "Save Meal",
+                    actionName: "Save Workout",
                     icon: "plus.circle",
                     disabled: !viewModel.incomplete)
                 {

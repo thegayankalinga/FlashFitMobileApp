@@ -51,22 +51,26 @@ struct AddWorkoutTypeView: View {
                                 promptText: viewModel.workoutNamePrompt,
                                 isSecure: false)
                             .focused($isFocused, equals: .workoutTypeName)
-                            .textFieldStyle(GradientTextFieldBackground(systemImageString: "fork.knife.circle", colorList: [.cyan, .green]))
-                            .padding(.bottom)
+                            .textFieldStyle(GradientTextFieldBackground(systemImageString: "figure.walk", colorList: [.cyan, .green]))
+                            //.padding(.bottom)
                             
                             EntryField(
                                 bindingField: $viewModel.caloriesBurnedPerMin,
-                                placeholder: "Calories Gained by Potion",
+                                placeholder: "Calories Burned Per Minute",
                                 promptText: viewModel.caloriesBurnedPrompt,
                                 isSecure: false)
                             .numberOnly($viewModel.caloriesBurnedPerMin, includeDecimal: true)
                             .focused($isFocused, equals: .calorieBurnedPerMin)
-                            .textFieldStyle(GradientTextFieldBackground(systemImageString: "mouth", colorList: [.blue, .green]))
-                            .padding(.bottom)
+                            .textFieldStyle(GradientTextFieldBackground(systemImageString: "flame", colorList: [.blue, .green]))
+                            //.padding(.bottom)
                             
-                            Image(uiImage: viewModel.workoutImage)
-                                .resizable()
-                                .scaledToFit()
+                            VStack{
+                                Image(uiImage: viewModel.workoutImage)
+                                    .resizable()
+                                    .scaledToFit()
+                                    .cornerRadius(15)
+                            }
+                            .frame(width: 200, height: 200)
                             
                             HStack{
                                 if viewModel.updating {
@@ -83,7 +87,7 @@ struct AddWorkoutTypeView: View {
                                     
                                 }
                             }
-                            .padding(.bottom, 15)
+                            //.padding(.bottom, 15)
                             
                             Divider()
                             Toggle("Add More", isOn: $viewModel.isAddMoreChecked.animation())
