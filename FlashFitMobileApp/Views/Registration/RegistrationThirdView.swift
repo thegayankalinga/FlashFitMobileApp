@@ -23,7 +23,7 @@ struct RegistrationThirdView: View {
         var body: some View {
             
             VStack{
-                LogoShapeView()
+                LogoShapeView(logoTypeName: "home-logo")
                 
                 Spacer()
                 

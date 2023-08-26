@@ -40,7 +40,7 @@ struct AddMealView: View {
                 ScrollView {
                    
                     VStack(alignment: .leading, spacing: 0.0) {
-                        LogoShapeView(heightLimiter: 0.5)
+                        LogoShapeView(heightLimiter: 0.5, logoTypeName: "meal-logo")
                             .frame(minHeight: 160)
                         Spacer()
                        

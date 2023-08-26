@@ -24,7 +24,7 @@ struct RegistrationFirstView: View {
             VStack {
                 
                 //TODO: Graphic & Logo
-                LogoShapeView()
+                LogoShapeView(logoTypeName: "home-logo")
                
                 Text("Lets Start...")
                     .font(.headline)
