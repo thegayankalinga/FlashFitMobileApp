@@ -32,98 +32,101 @@ struct MealHomeView: View {
     var body: some View {
         let percent  = (totalCaloriesForSelectedDate / avgCaloryGainPerDay) * 100
         let progress = 1 - (percent / 100)
-        
-        VStack (alignment: .leading){
-            Text("Meal Summary")
-                .font(.title3).bold()
-                .padding(.leading)
-            
-            DatePicker("Pick a date", selection: $date, displayedComponents: .date)
-                .accentColor(.orange)
-                .padding()
-            
-            // progress
-            VStack(alignment: .leading){
-                HStack{
-                    Image(systemName: "flame.fill")
-                    Text("Gained Calories")
-                        .font(.footnote)
-                        .padding(.bottom, 1)
-                }
+        NavigationStack{
+            ScrollView{
+            VStack (alignment: .leading){
                 
-                ZStack {
-                    Color(hex:0xFDB137)
-                    ZStack{
-                        Circle()
-                            .stroke(Color.white ,style: StrokeStyle(lineWidth: 8))
-                            .frame(width: width, height: height)
-                        Circle()
-                            .trim(from: CGFloat(progress), to: 1)
-                            .stroke(Color.orange, style: StrokeStyle(lineWidth: 8, lineCap: .round, lineJoin: .round, miterLimit: .infinity, dash: [20,0], dashPhase: 0))
-                            .rotationEffect(.degrees(90))
-                            .rotation3DEffect(.degrees(180), axis: (x: 1, y: 0, z: 0))
-                            .frame(width: width, height: height)
-                        VStack{
-                            Text("\(totalCaloriesForSelectedDate, specifier: "%.1f")").font(.title2).bold()
-                            Text("K/Cal").font(.caption).bold().padding(0.5)
-                        }
+                DatePicker("Pick a date", selection: $date, displayedComponents: .date)
+                    .accentColor(.orange)
+                    .padding()
+                
+                // progress
+                VStack(alignment: .leading){
+                    HStack{
+                        Image(systemName: "flame.fill")
+                        Text("Gained Calories")
+                            .font(.footnote)
+                            .padding(.bottom, 1)
                     }
                     
+                    ZStack {
+                        Color(hex:0xFDB137)
+                        ZStack{
+                            Circle()
+                                .stroke(Color.white ,style: StrokeStyle(lineWidth: 8))
+                                .frame(width: width, height: height)
+                            Circle()
+                                .trim(from: CGFloat(progress), to: 1)
+                                .stroke(Color.orange, style: StrokeStyle(lineWidth: 8, lineCap: .round, lineJoin: .round, miterLimit: .infinity, dash: [20,0], dashPhase: 0))
+                                .rotationEffect(.degrees(90))
+                                .rotation3DEffect(.degrees(180), axis: (x: 1, y: 0, z: 0))
+                                .frame(width: width, height: height)
+                            VStack{
+                                Text("\(totalCaloriesForSelectedDate, specifier: "%.1f")").font(.title2).bold()
+                                Text("K/Cal").font(.caption).bold().padding(0.5)
+                            }
+                        }
+                        
+                    }
+                    .frame(height: 200)
+                    .cornerRadius(10)
+                    .padding(.bottom, 10)
+                    
                 }
-                .frame(height: 200)
-                .cornerRadius(10)
-                .padding(.bottom, 10)
-                
-            }
-            // summary
-            VStack (alignment: .leading){
-                HStack{
-                    Image(systemName: "flame.fill")
-                    Text("Daily Activity")
-                        .font(.footnote)
-                        .padding(.bottom, 1)
-                }
-                
-                ZStack {
-                    Color(hex:0xF5F5F5)
-                    Chart {
-                        ForEach(viewModel.savedDailyMeals) { day in
-                            BarMark(x: .value("Meal",
-                                              day.mealTypeNameFromRecord),
-                                    y: .value("Calories (kcal)", day.totalCaloriesGained)
-                            )
-                            .foregroundStyle(Color.orange)
-                            .cornerRadius(6)
+                // summary
+                VStack (alignment: .leading){
+                    HStack{
+                        Image(systemName: "flame.fill")
+                        Text("Daily Activity")
+                            .font(.footnote)
+                            .padding(.bottom, 1)
+                    }
+                    
+                    ZStack {
+                        Color(hex:0xF5F5F5)
+                        Chart {
+                            ForEach(viewModel.savedDailyMeals) { day in
+                                BarMark(x: .value("Meal",
+                                                  day.mealTypeNameFromRecord),
+                                        y: .value("Calories (kcal)", day.totalCaloriesGained)
+                                )
+                                .foregroundStyle(Color.orange)
+                                .cornerRadius(6)
+                            }
+                        }
+                        .frame(height: 150)
+                        .chartXAxis {
+                            
+                            AxisMarks(values: viewModel.savedDailyMeals.map {$0.mealTypeNameFromRecord}) { type in
+                                AxisValueLabel()
+                            }
+                            //                        AxisMarks(values: viewModel.savedDailyMeals.map {_ in "mealid"}) { type in
+                            //                            AxisValueLabel()
+                            //                        }
                         }
                     }
-                    .frame(height: 150)
-                    .chartXAxis {
-                     
-                        AxisMarks(values: viewModel.savedDailyMeals.map {$0.mealTypeNameFromRecord}) { type in
-                            AxisValueLabel()
-                        }
-//                        AxisMarks(values: viewModel.savedDailyMeals.map {_ in "mealid"}) { type in
-//                            AxisValueLabel()
-//                        }
-                    }
+                    .frame(height: 200)
+                    .cornerRadius(10)
+                    .padding(.bottom, 10)
                 }
-                .frame(height: 200)
-                .cornerRadius(10)
-                .padding(.bottom, 10)
+                
+                VStack{
+                    NavigationLink("Update Recorded Meals", destination: MealListView(viewModel: MealRecordViewModel()).accentColor(.orange))
+                }
+                .padding(.bottom, 25)
             }
-            
-            NavigationLink("Update Recorded Meals", destination: MealListView(viewModel: MealRecordViewModel()).accentColor(.orange))
         }
-        .navigationTitle("Meals")
-        .onAppear {
-            getTotalCalories()
-            getSummaryData()
-            viewModel.getAllMealTypes(email: user.email!, moc: moc)
-           
-        }
-        .onChange(of: date) { newValue in
-            getTotalCalories()
-            getSummaryData()
+            .navigationTitle("Meals")
+            .onAppear {
+                getTotalCalories()
+                getSummaryData()
+                viewModel.getAllMealTypes(email: user.email!, moc: moc)
+                
+            }
+            .onChange(of: date) { newValue in
+                getTotalCalories()
+                getSummaryData()
+            }
         }
         
     }

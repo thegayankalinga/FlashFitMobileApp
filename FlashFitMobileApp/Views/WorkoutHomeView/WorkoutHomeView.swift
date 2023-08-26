@@ -33,83 +33,83 @@ struct WorkoutHomeView: View {
         
         let percent  = (totalCaloriesForSelectedDate / avgCaloryBurnPerDay) * 100
         let progress = 1 - (percent / 100)
-        
-        VStack (alignment: .leading){
-            Text("Workout Summary")
-                .font(.title3).bold()
-                .padding(.leading)
-            
-            DatePicker("Pick a date", selection: $date, displayedComponents: .date)
-                .accentColor(.orange)
-                .padding()
-            
-            // progress
-            VStack(alignment: .leading){
-                HStack{
-                    Image(systemName: "flame.fill")
-                    Text("Burned Calories")
-                        .font(.footnote)
-                        .padding(.bottom, 1)
-                }
-                
-                ZStack {
-                    Color(hex:0xFDB137)
-                    ZStack{
-                        Circle()
-                            .stroke(Color.white ,style: StrokeStyle(lineWidth: 8))
-                            .frame(width: width, height: height)
-                        Circle()
-                            .trim(from: CGFloat(progress), to: 1)
-                            .stroke(Color.orange, style: StrokeStyle(lineWidth: 8, lineCap: .round, lineJoin: .round, miterLimit: .infinity, dash: [20,0], dashPhase: 0))
-                            .rotationEffect(.degrees(90))
-                            .rotation3DEffect(.degrees(180), axis: (x: 1, y: 0, z: 0))
-                            .frame(width: width, height: height)
-                        VStack{
-                            Text("\(totalCaloriesForSelectedDate, specifier: "%.1f")").font(.title2).bold()
-                            Text("K/Cal").font(.caption).bold().padding(0.5)
-                        }
-                    }
+        NavigationStack{
+            ScrollView{
+                VStack (alignment: .leading){
                     
-                }
-                .frame(height: 200)
-                .cornerRadius(10)
-                .padding(.bottom, 10)
-                
-            }
-            // summary
-            VStack (alignment: .leading){
-                HStack{
-                    Image(systemName: "flame.fill")
-                    Text("Daily Activity")
-                        .font(.footnote)
-                        .padding(.bottom, 1)
-                }
-                
-                ZStack {
-                    Color(hex:0xF5F5F5)
-                    Chart {
-                        ForEach(workoutVm.savedDailyWorkouts) { day in
-                            BarMark(x: .value("Workout", day.workoutTypeNameFromRecord),
-                                    y: .value("Duration (m)", day.duration)
-                            )
-                            .foregroundStyle(Color.orange)
-                            .cornerRadius(6)
+                    DatePicker("Pick a date", selection: $date, displayedComponents: .date)
+                        .accentColor(.orange)
+                        .padding()
+                    
+                    // progress
+                    VStack(alignment: .leading){
+                        HStack{
+                            Image(systemName: "flame.fill")
+                            Text("Burned Calories")
+                                .font(.footnote)
+                                .padding(.bottom, 1)
                         }
-                    }
-                    .frame(height: 150)
-                    .chartXAxis {
-                        AxisMarks(values: workoutVm.savedDailyWorkouts.map {$0.workoutTypeNameFromRecord}) { type in
-                            AxisValueLabel()
+                        
+                        ZStack {
+                            Color(hex:0xFDB137)
+                            ZStack{
+                                Circle()
+                                    .stroke(Color.white ,style: StrokeStyle(lineWidth: 8))
+                                    .frame(width: width, height: height)
+                                Circle()
+                                    .trim(from: CGFloat(progress), to: 1)
+                                    .stroke(Color.orange, style: StrokeStyle(lineWidth: 8, lineCap: .round, lineJoin: .round, miterLimit: .infinity, dash: [20,0], dashPhase: 0))
+                                    .rotationEffect(.degrees(90))
+                                    .rotation3DEffect(.degrees(180), axis: (x: 1, y: 0, z: 0))
+                                    .frame(width: width, height: height)
+                                VStack{
+                                    Text("\(totalCaloriesForSelectedDate, specifier: "%.1f")").font(.title2).bold()
+                                    Text("K/Cal").font(.caption).bold().padding(0.5)
+                                }
+                            }
+                            
                         }
+                        .frame(height: 200)
+                        .cornerRadius(10)
+                        .padding(.bottom, 10)
+                        
                     }
+                    // summary
+                    VStack (alignment: .leading){
+                        HStack{
+                            Image(systemName: "flame.fill")
+                            Text("Daily Activity")
+                                .font(.footnote)
+                                .padding(.bottom, 1)
+                        }
+                        
+                        ZStack {
+                            Color(hex:0xF5F5F5)
+                            Chart {
+                                ForEach(workoutVm.savedDailyWorkouts) { day in
+                                    BarMark(x: .value("Workout", day.workoutTypeNameFromRecord),
+                                            y: .value("Duration (m)", day.duration)
+                                    )
+                                    .foregroundStyle(Color.orange)
+                                    .cornerRadius(6)
+                                }
+                            }
+                            .frame(height: 150)
+                            .chartXAxis {
+                                AxisMarks(values: workoutVm.savedDailyWorkouts.map {$0.workoutTypeNameFromRecord}) { type in
+                                    AxisValueLabel()
+                                }
+                            }
+                        }
+                        .frame(height: 200)
+                        .cornerRadius(10)
+                        .padding(.bottom, 10)
+                    }
+                    VStack{
+                        NavigationLink("Update Recorded Workouts", destination: WorkoutListView()).accentColor(.orange)
+                    }.padding(.bottom, 25)
                 }
-                .frame(height: 200)
-                .cornerRadius(10)
-                .padding(.bottom, 10)
             }
-            
-            NavigationLink("Update Recorded Workouts", destination: WorkoutListView()).accentColor(.orange)
-        }
         .navigationTitle("Workout")
         .onAppear {
             getTotalCalories()
@@ -119,6 +119,7 @@ struct WorkoutHomeView: View {
             getTotalCalories()
             getSummaryData()
         }
+    }
     }
     
     // calculate total calories burnt in a given date
