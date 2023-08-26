@@ -24,6 +24,8 @@
 		72AA624C2A7FC96500AD9A04 /* PredictionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72AA624B2A7FC96500AD9A04 /* PredictionView.swift */; };
 		72D865662A92694D008762F2 /* WorkoutReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72D865652A92694D008762F2 /* WorkoutReportView.swift */; };
 		72D865682A92695B008762F2 /* MealsReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72D865672A92695B008762F2 /* MealsReportView.swift */; };
+		72DD6E002A99F51C000245F5 /* PredictionCalculatorAppTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72DD6DFF2A99F51C000245F5 /* PredictionCalculatorAppTest.swift */; };
+		72DD6E022A99F8E6000245F5 /* PredictionUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72DD6E012A99F8E6000245F5 /* PredictionUITest.swift */; };
 		B617B3B02A7EB4E400613526 /* FlashFitMobileAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B617B3AF2A7EB4E400613526 /* FlashFitMobileAppApp.swift */; };
 		B617B3B22A7EB4E400613526 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B617B3B12A7EB4E400613526 /* ContentView.swift */; };
 		B617B3B42A7EB4E600613526 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B617B3B32A7EB4E600613526 /* Assets.xcassets */; };
@@ -127,6 +129,8 @@
 		72AA624B2A7FC96500AD9A04 /* PredictionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictionView.swift; sourceTree = "<group>"; };
 		72D865652A92694D008762F2 /* WorkoutReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutReportView.swift; sourceTree = "<group>"; };
 		72D865672A92695B008762F2 /* MealsReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealsReportView.swift; sourceTree = "<group>"; };
+		72DD6DFF2A99F51C000245F5 /* PredictionCalculatorAppTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictionCalculatorAppTest.swift; sourceTree = "<group>"; };
+		72DD6E012A99F8E6000245F5 /* PredictionUITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictionUITest.swift; sourceTree = "<group>"; };
 		B617B3AC2A7EB4E400613526 /* FlashFitMobileApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlashFitMobileApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B617B3AF2A7EB4E400613526 /* FlashFitMobileAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashFitMobileAppApp.swift; sourceTree = "<group>"; };
 		B617B3B12A7EB4E400613526 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -421,6 +425,7 @@
 				B621B2732A873538001C4711 /* HealthStatusTests.swift */,
 				B621B2752A87399F001C4711 /* BMICalculatorTests.swift */,
 				B6284EAC2A99EB5200C3E49C /* LoginViewModelTests.swift */,
+				72DD6DFF2A99F51C000245F5 /* PredictionCalculatorAppTest.swift */,
 			);
 			path = FlashFitMobileAppTests;
 			sourceTree = "<group>";
@@ -431,6 +436,7 @@
 				B617B3CA2A7EB4E600613526 /* FlashFitMobileAppUITests.swift */,
 				B617B3CC2A7EB4E600613526 /* FlashFitMobileAppUITestsLaunchTests.swift */,
 				B6284EAE2A99EBAB00C3E49C /* LoginViewUITests.swift */,
+				72DD6E012A99F8E6000245F5 /* PredictionUITest.swift */,
 			);
 			path = FlashFitMobileAppUITests;
 			sourceTree = "<group>";
@@ -736,6 +742,7 @@
 			files = (
 				B6284EAD2A99EB5200C3E49C /* LoginViewModelTests.swift in Sources */,
 				B617B3C12A7EB4E600613526 /* FlashFitMobileAppTests.swift in Sources */,
+				72DD6E002A99F51C000245F5 /* PredictionCalculatorAppTest.swift in Sources */,
 				B621B2742A873538001C4711 /* HealthStatusTests.swift in Sources */,
 				B621B2762A87399F001C4711 /* BMICalculatorTests.swift in Sources */,
 			);
@@ -745,6 +752,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				72DD6E022A99F8E6000245F5 /* PredictionUITest.swift in Sources */,
 				B617B3CB2A7EB4E600613526 /* FlashFitMobileAppUITests.swift in Sources */,
 				B617B3CD2A7EB4E600613526 /* FlashFitMobileAppUITestsLaunchTests.swift in Sources */,
 				B6284EAF2A99EBAB00C3E49C /* LoginViewUITests.swift in Sources */,
