@@ -10,6 +10,8 @@ import SwiftUI
 struct LogoShapeView: View {
     
     var heightLimiter: CGFloat = 0.7
+    var logoTypeName: String
+    
     var body: some View {
         
                 GeometryReader { geometry in
@@ -25,15 +27,13 @@ struct LogoShapeView: View {
                                 .frame(width: geometry.size.width, height: geometry.size.width * heightLimiter, alignment: .top)
 //                                .frame(minWidth: geometry.size.width, maxWidth: .infinity, minHeight: geometry.size.width * heightLimiter, maxHeight: .infinity, alignment: .center)
                                 .clipped()
-                       
                             
-                            Image("download")
+                            Image(logoTypeName)
                                 .resizable()
                                 .scaledToFit()
                                 .aspectRatio(contentMode: .fit)
                                 .frame(width: geometry.size.width * 0.5, height: geometry.size.width * 0.4, alignment: .center)
                                 .clipped()
-                            
                             
                             
                         }.edgesIgnoringSafeArea(.all)
@@ -77,8 +77,8 @@ extension View {
         
 
 
-struct LogoShapeView_Previews: PreviewProvider {
+/*struct LogoShapeView_Previews: PreviewProvider {
     static var previews: some View {
         LogoShapeView()
     }
-}
+}*/

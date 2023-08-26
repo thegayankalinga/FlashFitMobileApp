@@ -29,7 +29,7 @@ struct LoginView: View {
         NavigationStack{
             VStack(alignment: .center) {
                 
-                LogoShapeView()
+                LogoShapeView(logoTypeName: "home-logo")
                 
                 
                 Text("Welcome Back")
