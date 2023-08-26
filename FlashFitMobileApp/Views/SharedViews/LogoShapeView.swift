@@ -27,7 +27,7 @@ struct LogoShapeView: View {
                                 .clipped()
                        
                             
-                            Image("login-image")
+                            Image("download")
                                 .resizable()
                                 .scaledToFit()
                                 .aspectRatio(contentMode: .fit)
