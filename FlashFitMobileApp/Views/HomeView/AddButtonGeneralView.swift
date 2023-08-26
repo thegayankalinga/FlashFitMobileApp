@@ -65,6 +65,7 @@ struct AddButtonGeneralView: View{
              
       
             }
+           
             
             .edgesIgnoringSafeArea(.all)
             .padding()
@@ -80,8 +81,11 @@ struct AddButtonGeneralView: View{
         }
         .padding(40)
         .background(LinearGradient(colors: [CustomColors.backgroundGray, CustomColors.gradientLower], startPoint: .topLeading, endPoint: .bottomTrailing))
+        .shadow(color: .gray, radius: 5)
+        .border(.gray, width: 2)
    
     }
+    
 }
 
 struct AddButtonGeneralView_Previews: PreviewProvider {
