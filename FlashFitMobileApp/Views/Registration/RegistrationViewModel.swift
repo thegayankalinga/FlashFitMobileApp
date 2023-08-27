@@ -27,16 +27,13 @@ class RegistrationViewModel: ObservableObject{
     @Published var weight = ""
     @Published var height = ""
     @Published var userImage: UIImage
-  
-    var dateFormatter = DateFormatter()
 
     
     init(_ uiImage: UIImage){
-        self.dateFormatter.dateFormat = "yyyy-MMM-dd"
         self.userImage = uiImage
     }
     
-    init( navigationPath: NavigationPath = NavigationPath(), email: String = "", name: String = "", password: String = "", confirmPassword: String = "", genderType: GenderTypeEnum = GenderTypeEnum.Male, dateOfBirth: Foundation.Date? = nil, weight: String = "", height: String = "", dateFormatter: DateFormatter = DateFormatter(), image: UIImage) {
+    init( navigationPath: NavigationPath = NavigationPath(), email: String = "", name: String = "", password: String = "", confirmPassword: String = "", genderType: GenderTypeEnum = GenderTypeEnum.Male, dateOfBirth: Foundation.Date? = nil, weight: String = "", height: String = "", image: UIImage) {
         
         self.navigationPath = navigationPath
         self.email = email
@@ -47,7 +44,6 @@ class RegistrationViewModel: ObservableObject{
         self.dateOfBirth = dateOfBirth ?? Calendar.current.date(byAdding: .year, value: -15, to: Date())!
         self.weight = weight
         self.height = height
-        self.dateFormatter.dateFormat = "yyyy-MMM-dd"
         self.userImage = image
     }
 

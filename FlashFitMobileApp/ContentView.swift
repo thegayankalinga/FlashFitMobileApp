@@ -32,11 +32,13 @@ struct ContentView: View {
                                 self.previousSelectedTab = "home"
                             }
                             .tabItem{
-                                HStack{
+                         
                                     Image(systemName: "house.fill")
+                                    .symbolRenderingMode(.multicolor)
+                                    
                                     Text("Home")
-                                }
-                                Label("Home", systemImage: "house.fill")
+                                
+                               // Label("Home", systemImage: "house.fill")
                             }
                             .tag("home")
                     
