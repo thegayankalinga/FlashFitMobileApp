@@ -160,7 +160,7 @@ struct AddMealView: View {
                             if moc.hasChanges{
                                 try? moc.save()
                                 print("updated")
-                                dismiss()
+                                //dismiss()
                             }
                         }else{
                             print(viewModel.totalCalories)

@@ -164,7 +164,7 @@ struct AddWorkoutView: View {
                             if moc.hasChanges{
                                 try? moc.save()
                                 print("updated")
-                                dismiss()
+                                //dismiss()
                             }
                         }else{
                             print(viewModel.totalCaloriesBurned)

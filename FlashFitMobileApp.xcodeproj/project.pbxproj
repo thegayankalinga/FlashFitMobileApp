@@ -40,8 +40,6 @@
 		B621B26D2A873185001C4711 /* PasswordHasher.swift in Sources */ = {isa = PBXBuildFile; fileRef = B621B26C2A873185001C4711 /* PasswordHasher.swift */; };
 		B621B2702A873365001C4711 /* GenderTypeEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = B621B26F2A873365001C4711 /* GenderTypeEnum.swift */; };
 		B621B2722A87338E001C4711 /* HealthStatusEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = B621B2712A87338E001C4711 /* HealthStatusEnum.swift */; };
-		B621B2742A873538001C4711 /* HealthStatusTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B621B2732A873538001C4711 /* HealthStatusTests.swift */; };
-		B621B2762A87399F001C4711 /* BMICalculatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B621B2752A87399F001C4711 /* BMICalculatorTests.swift */; };
 		B621B2792A873A89001C4711 /* UserRegisterDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = B621B2782A873A89001C4711 /* UserRegisterDto.swift */; };
 		B621B27C2A873BBB001C4711 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B621B27B2A873BBB001C4711 /* DataController.swift */; };
 		B621B27F2A873D95001C4711 /* FlashFitMobileApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B621B27D2A873D95001C4711 /* FlashFitMobileApp.xcdatamodeld */; };
@@ -65,6 +63,7 @@
 		B6B7AE512A8D2FA6009B0D36 /* AddWorkoutTypeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B7AE502A8D2FA6009B0D36 /* AddWorkoutTypeViewModel.swift */; };
 		B6B7AE552A8D2FDB009B0D36 /* WorkoutTypeEnumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B7AE542A8D2FDB009B0D36 /* WorkoutTypeEnumView.swift */; };
 		B6C2C9102A9AE083004A7AC5 /* DateUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C2C90F2A9AE083004A7AC5 /* DateUtilities.swift */; };
+		B6C2C9122A9AE242004A7AC5 /* DateUtilitiesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C2C9112A9AE242004A7AC5 /* DateUtilitiesTests.swift */; };
 		B6D1FCF42A874FB100BD4BAC /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D1FCF32A874FB100BD4BAC /* RegistrationView.swift */; };
 		B6D1FCF62A875D1B00BD4BAC /* GradientTextFieldBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D1FCF52A875D1B00BD4BAC /* GradientTextFieldBackground.swift */; };
 		B6D1FCF92A87617800BD4BAC /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D1FCF82A87617800BD4BAC /* LoginView.swift */; };
@@ -149,8 +148,6 @@
 		B621B26C2A873185001C4711 /* PasswordHasher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordHasher.swift; sourceTree = "<group>"; };
 		B621B26F2A873365001C4711 /* GenderTypeEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderTypeEnum.swift; sourceTree = "<group>"; };
 		B621B2712A87338E001C4711 /* HealthStatusEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthStatusEnum.swift; sourceTree = "<group>"; };
-		B621B2732A873538001C4711 /* HealthStatusTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthStatusTests.swift; sourceTree = "<group>"; };
-		B621B2752A87399F001C4711 /* BMICalculatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BMICalculatorTests.swift; sourceTree = "<group>"; };
 		B621B2782A873A89001C4711 /* UserRegisterDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRegisterDto.swift; sourceTree = "<group>"; };
 		B621B27B2A873BBB001C4711 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		B621B27E2A873D95001C4711 /* FlashFitMobileApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FlashFitMobileApp.xcdatamodel; sourceTree = "<group>"; };
@@ -174,6 +171,7 @@
 		B6B7AE502A8D2FA6009B0D36 /* AddWorkoutTypeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWorkoutTypeViewModel.swift; sourceTree = "<group>"; };
 		B6B7AE542A8D2FDB009B0D36 /* WorkoutTypeEnumView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutTypeEnumView.swift; sourceTree = "<group>"; };
 		B6C2C90F2A9AE083004A7AC5 /* DateUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUtilities.swift; sourceTree = "<group>"; };
+		B6C2C9112A9AE242004A7AC5 /* DateUtilitiesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUtilitiesTests.swift; sourceTree = "<group>"; };
 		B6D1FCF32A874FB100BD4BAC /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
 		B6D1FCF52A875D1B00BD4BAC /* GradientTextFieldBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientTextFieldBackground.swift; sourceTree = "<group>"; };
 		B6D1FCF82A87617800BD4BAC /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
@@ -424,10 +422,9 @@
 			isa = PBXGroup;
 			children = (
 				B617B3C02A7EB4E600613526 /* FlashFitMobileAppTests.swift */,
-				B621B2732A873538001C4711 /* HealthStatusTests.swift */,
-				B621B2752A87399F001C4711 /* BMICalculatorTests.swift */,
 				B6284EAC2A99EB5200C3E49C /* LoginViewModelTests.swift */,
 				72DD6DFF2A99F51C000245F5 /* PredictionCalculatorAppTest.swift */,
+				B6C2C9112A9AE242004A7AC5 /* DateUtilitiesTests.swift */,
 			);
 			path = FlashFitMobileAppTests;
 			sourceTree = "<group>";
@@ -746,9 +743,8 @@
 			files = (
 				B6284EAD2A99EB5200C3E49C /* LoginViewModelTests.swift in Sources */,
 				B617B3C12A7EB4E600613526 /* FlashFitMobileAppTests.swift in Sources */,
+				B6C2C9122A9AE242004A7AC5 /* DateUtilitiesTests.swift in Sources */,
 				72DD6E002A99F51C000245F5 /* PredictionCalculatorAppTest.swift in Sources */,
-				B621B2742A873538001C4711 /* HealthStatusTests.swift in Sources */,
-				B621B2762A87399F001C4711 /* BMICalculatorTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

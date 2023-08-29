@@ -72,7 +72,7 @@ struct RegistrationThirdView: View {
                             
                             HStack(spacing: 20){
                                 Text("Date of Birth: ")
-                                Text(DateUtilities.getDate(date: registrationVM.dateOfBirth))
+                                Text(DateUtilities.getDate(for: registrationVM.dateOfBirth))
                                 
                             }
                             
